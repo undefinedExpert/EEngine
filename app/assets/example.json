@@ -1,0 +1,237 @@
+{
+    "materials": [{
+        "depthTest": true,
+        "color": 11579568,
+        "shininess": 50,
+        "specular": 8355711,
+        "depthWrite": true,
+        "vertexColors": false,
+        "blending": "NormalBlending",
+        "ambient": 11579568,
+        "name": "CircleDefault",
+        "emissive": 0,
+        "uuid": "4E9B4311-042A-3D51-8AF8-B84BC4407941",
+        "type": "MeshPhongMaterial",
+        "side": 2
+    },{
+        "depthTest": true,
+        "color": 11579568,
+        "shininess": 50,
+        "specular": 8355711,
+        "depthWrite": true,
+        "vertexColors": false,
+        "blending": "NormalBlending",
+        "ambient": 11579568,
+        "name": "PlaneDefault",
+        "emissive": 0,
+        "uuid": "3070F8ED-68CE-333B-92BD-338D10760C82",
+        "type": "MeshPhongMaterial",
+        "side": 2
+    }],
+    "textures": [],
+    "metadata": {
+        "type": "Object",
+        "generator": "io_three",
+        "version": 4.4
+    },
+    "animations": [{
+        "tracks": [{
+            "keys": [{
+                "value": [0,0,0],
+                "time": 0
+            },{
+                "value": [0,0,0],
+                "time": 120
+            },{
+                "value": [0,0,0],
+                "time": 240
+            },{
+                "value": [0,0,0],
+                "time": 360
+            }],
+            "type": "vector3",
+            "name": "CameraPreset.position"
+        },{
+            "keys": [{
+                "value": [1,1,1],
+                "time": 0
+            },{
+                "value": [1,1,1],
+                "time": 120
+            },{
+                "value": [1,1,1],
+                "time": 240
+            },{
+                "value": [1,1,1],
+                "time": 360
+            }],
+            "type": "vector3",
+            "name": "CameraPreset.scale"
+        },{
+            "keys": [{
+                "value": [0,0.707107,0.707107,0],
+                "time": 0
+            },{
+                "value": [-0.612372,-0.353553,-0.353553,0.612372],
+                "time": 120
+            },{
+                "value": [-0.612372,0.353553,0.353553,0.612372],
+                "time": 240
+            },{
+                "value": [-0,0.707107,0.707107,0],
+                "time": 360
+            }],
+            "type": "quaternion",
+            "name": "CameraPreset.quaternion"
+        }],
+        "fps": 29,
+        "name": "default"
+    }],
+    "images": [],
+    "object": {
+        "uuid": "FA1EDF12-4634-4F05-9A43-29BA2AA9E77F",
+        "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
+        "type": "Scene",
+        "children": [{
+            "name": "CameraPreset",
+            "uuid": "B0C4E574-DECC-3D97-99F0-60577F3026BF",
+            "matrix": [-1,0,-0,0,-0,0,1,0,0,1,0,0,0,0,0,1],
+            "visible": true,
+            "type": "Object",
+            "children": [{
+                "name": "TurnTableCamera",
+                "uuid": "D7C44AB9-C5E4-3E53-805E-02A6D8DC90EC",
+                "matrix": [0.866025,-0.5,0,0,0.25,0.433013,0.866025,0,-0.433013,-0.75,0.5,0,-8.93177,-15.4703,10.3135,1],
+                "visible": true,
+                "type": "PerspectiveCamera",
+                "far": 50000,
+                "near": 0.1,
+                "aspect": 1.77778,
+                "fov": 38.6274
+            }]
+        },{
+            "name": "Circle",
+            "uuid": "A40B3D0E-BDE2-31A5-A53D-8EB5565032A8",
+            "matrix": [-1,0,0,0,0,0,1,0,0,1,0,0,0,0.6776,0,1],
+            "visible": true,
+            "type": "Mesh",
+            "material": "4E9B4311-042A-3D51-8AF8-B84BC4407941",
+            "castShadow": true,
+            "receiveShadow": true,
+            "geometry": "3AC3F5E9-8E07-33F7-B8A8-82F3DBF01B38"
+        },{
+            "name": "Plane",
+            "uuid": "631279BD-3DB0-34E6-BE17-B19991DEF360",
+            "matrix": [-1,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1],
+            "visible": true,
+            "type": "Mesh",
+            "material": "3070F8ED-68CE-333B-92BD-338D10760C82",
+            "castShadow": true,
+            "receiveShadow": true,
+            "geometry": "FDA35051-77AC-3FCF-B642-34C990EA7344"
+        },{
+            "name": "PointLight",
+            "uuid": "4D91F193-A6CB-34C5-81EC-7DAE746A446E",
+            "matrix": [-1,0,0,0,0,1,-0,0,0,-0,-1,0,-0.0001,1.6503,-0.001,1],
+            "visible": true,
+            "type": "PointLight",
+            "color": 16777215,
+            "intensity": 1,
+            "distance": 0,
+            "decayExponent": 2
+        }]
+    },
+    "geometries": [{
+        "materials": [{
+            "visible": true,
+            "depthTest": true,
+            "wireframe": false,
+            "transparent": false,
+            "depthWrite": true,
+            "DbgColor": 15658734,
+            "colorSpecular": [0.5,0.5,0.5],
+            "blending": "NormalBlending",
+            "colorEmissive": [0,0,0],
+            "colorAmbient": [0.690196,0.690196,0.690196],
+            "DbgIndex": 0,
+            "specularCoef": 50,
+            "opacity": 1,
+            "shading": "phong",
+            "colorDiffuse": [0.690196,0.690196,0.690196],
+            "DbgName": "CircleDefault",
+            "doubleSided": true
+        }],
+        "uuid": "3AC3F5E9-8E07-33F7-B8A8-82F3DBF01B38",
+        "type": "Geometry",
+        "data": {
+            "faces": [42,1,2,0,0,0,1,2,0,0,0,42,2,3,0,0,1,3,2,0,0,0,42,3,4,0,0,3,4,2,0,0,0,42,4,5,0,0,4,5,2,0,0,0,42,5,6,0,0,5,6,2,0,0,0,42,6,7,0,0,6,7,2,0,0,0,42,7,8,0,0,7,8,2,0,0,0,42,8,9,0,0,8,9,2,0,0,0,42,9,10,0,0,9,10,2,0,0,0,42,10,11,0,0,10,11,2,0,0,0,42,11,12,0,0,11,12,2,0,0,0,42,12,13,0,0,12,0,2,0,0,0],
+            "skinWeights": [],
+            "uvs": [[1,0.5,0.933013,0.75,0.5,0.5,0.75,0.933013,0.5,1,0.25,0.933013,0.066987,0.75,0,0.5,0.066987,0.25,0.25,0.066987,0.5,0,0.75,0.066987,0.933013,0.25]],
+            "morphTargets": [],
+            "normals": [0,-1,0],
+            "metadata": {
+                "materials": 1,
+                "faces": 12,
+                "generator": "io_three",
+                "version": 3,
+                "uvs": 1,
+                "vertices": 14,
+                "morphTargets": 0,
+                "bones": 0,
+                "normals": 1
+            },
+            "influencesPerVertex": 2,
+            "animations": [],
+            "name": "CircleGeometry",
+            "skinIndices": [],
+            "vertices": [0,0,0,0.5,0,0,0.433013,0,0.25,0.25,0,0.433013,0,0,0.5,-0.25,0,0.433013,-0.433013,0,0.25,-0.5,0,0,-0.433013,0,-0.25,-0.25,0,-0.433013,-0,0,-0.5,0.25,0,-0.433013,0.433013,0,-0.25,0.5,0,-0],
+            "bones": []
+        }
+    },{
+        "materials": [{
+            "visible": true,
+            "depthTest": true,
+            "wireframe": false,
+            "transparent": false,
+            "depthWrite": true,
+            "DbgColor": 15658734,
+            "colorSpecular": [0.5,0.5,0.5],
+            "blending": "NormalBlending",
+            "colorEmissive": [0,0,0],
+            "colorAmbient": [0.690196,0.690196,0.690196],
+            "DbgIndex": 0,
+            "specularCoef": 50,
+            "opacity": 1,
+            "shading": "phong",
+            "colorDiffuse": [0.690196,0.690196,0.690196],
+            "DbgName": "PlaneDefault",
+            "doubleSided": true
+        }],
+        "uuid": "FDA35051-77AC-3FCF-B642-34C990EA7344",
+        "type": "Geometry",
+        "data": {
+            "faces": [43,0,2,3,1,0,0,1,2,3,0,0,0,0],
+            "skinWeights": [],
+            "uvs": [[0,1,0,0,1,0,1,1]],
+            "morphTargets": [],
+            "normals": [0,0,1],
+            "metadata": {
+                "materials": 1,
+                "faces": 1,
+                "generator": "io_three",
+                "version": 3,
+                "uvs": 1,
+                "vertices": 4,
+                "morphTargets": 0,
+                "bones": 0,
+                "normals": 1
+            },
+            "influencesPerVertex": 2,
+            "animations": [],
+            "name": "PlaneGeometry",
+            "skinIndices": [],
+            "vertices": [-8,3,0,8,3,0,-8,-3,-0,8,-3,-0],
+            "bones": []
+        }
+    }]
+}
