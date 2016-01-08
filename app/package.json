@@ -7,7 +7,9 @@
   "author": "Mr Gumby",
   "main": "background.js",
   "dependencies": {
+    "cannon": "^0.6.2",
     "fs-jetpack": "^0.7.0",
+    "three-pointerlock": "0.0.2",
     "three.js": "^0.73.0"
   }
 }
