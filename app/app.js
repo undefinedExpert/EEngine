@@ -38,73 +38,23 @@ var
 
 
 /*
-* When electron dom will load then:
+* When electron DOM will load then:
 * */
 document.addEventListener('DOMContentLoaded', function () {
-  //
 
-
-
+  /*
+  * Running cores functions:
+  * init() - initialize scene and item of three.js
+  * cannon() - initialize configurations for physics (cannon.js)
+  * animate() - initialize animation progress function with in all requaired function
+  * updatePhysics() - initialize updatePhysics progress function with in all requaired function
+  * render() - three.js rendering function
+  * */
 
   core.init();
-
-  //console.log(  init().init)
   core.cannon();
-
   core.animate();
-
   core.updatePhysics();
   core.render();
-
-
-
-
-  //function onWindowResize() {
-  //
-  //  windowHalfX = window.innerWidth / 2;
-  //  windowHalfY = window.innerHeight / 2;
-  //
-  //  camera.aspect = window.innerWidth / window.innerHeight;
-  //  camera.updateProjectionMatrix();
-  //
-  //  renderer.setSize(window.innerWidth, window.innerHeight);
-  //
-  //}
-
-  //function onDocumentMouseMove(event) {
-  //
-  //  mouseX = ( event.clientX - windowHalfX ) / 2;
-  //  mouseY = ( event.clientY - windowHalfY ) / 2;
-  //
-  //}
-
-  //
-  //
-  //function animate() {
-  //
-  //  requestAnimationFrame(animate);
-  //  updatePhysics();
-  //  render();
-  //
-  //}
-  //
-  //function updatePhysics() {
-  //
-  //  // Step the physics world
-  //  world.step(timeStep);
-  //
-  //  // Copy coordinates from Cannon.js to Three.js
-  //  //mesh.position.copy(body.position);
-  //  //mesh.quaternion.copy(body.quaternion);
-  //
-  //}
-  //
-  //function render() {
-  //
-  //  //renderer.render(scene, camera);
-  //
-  //}
-
-  //dodatkowy kodzik
 
 });

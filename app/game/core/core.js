@@ -14,9 +14,8 @@ var windowHalfY = window.innerHeight / 2;
 
 
 
-export default {
+var core = {
 
-    return: {
         init: function () {
 
 
@@ -66,10 +65,7 @@ export default {
             //	} );
             //	// END Clara.io JSON loader code
             //
-            //	renderer = new THREE.WebGLRenderer();
-            //	renderer.setSize( window.innerWidth, window.innerHeight );
-            //	container.appendChild( renderer.domElement );
-            //
+
             //	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
             //
             //	//
@@ -91,7 +87,7 @@ export default {
                 mass: 1
             });
             body.addShape(shape);
-            body.angularVelocity.set(0, 10, 0);
+            body.angularVelocity.set(25, 50, 0);
             body.angularDamping = 0.5;
             world.addBody(body);
         },
@@ -120,7 +116,7 @@ export default {
 
     }
 
-    }
 
 };
 
+export default core;
