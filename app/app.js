@@ -1,176 +1,110 @@
-// Here is the starting point for your application code.
-// All stuff below is just to show you how it works. You can delete all of it.
+/*
+*
+* Project Specs
+*
+* 1. Projekt powinnien byc modularny, pozwalac na zaimportowanie odpowiednich modolow
+*    a. Modul "Core" - powinnien zawierac kod opowiadajacy za wszystkie komponenty ktore sluza do wirtualizacji i inicjalizacji projektu/gry. Elementy jakie powinny sie tutaj znajdowac to
+*    wszelkiego rodzaju domyslne funkcje z three.js/cannon.js ktore beda wykorzystywane w obszarze calej gry.
+*    b. Modul "MainMenu" - Modul ten bedzie zawieral funkcje odpowiadajace za nawigacje po menu, bedziemy mogli znalesc tam wszystkie metody konfiguracji calej aplikacji.
+*    c. Moduly "etap_00 - etap_x" - Moduly te beda zawieraly wszystkie elementy dotyczace poziomu, liste obiektow, liste dzwiekow, zadania npc etc, wszystkie zaleznosci beda
+*    odnosily sie tylko do danego pluginu.
+*
+* TODO: napisanie reszty specyfikacji
+* */
 
-// Use new ES6 modules syntax for everything.
-import os from 'os'; // native node.js module
-import { remote } from 'electron'; // native electron module
-import jetpack from 'fs-jetpack'; // module loaded from npm
-import THREE from 'three.js'; // module loaded from npm
-import three from 'three.js'
-import CANNON from 'cannon'; // module loaded from npm
-//import PointerLockControls from 'three-pointerlock'; // module loaded from npm
-import { greet } from './hello_world/hello_world'; // code authored by you in this project
-import env from './env';
+/*
+* Importing modules from node_modules
+* */
+import os from 'os'; // system
+import { remote } from 'electron'; // electron system
+import jetpack from 'fs-jetpack';  // module which helps with file serving
 
-console.log('Loaded environment variables:', env);
 
-var app = remote.app;
-var appDir = jetpack.cwd(app.getAppPath());
+/*
+ * Importing custom modules
+ * */
+import env from './env'; // Envoierment vars
 
-// Holy crap! This is browser window with HTML and stuff, but I can read
-// here files like it is node.js! Welcome to Electron world :)
-console.log('The author of this app is:', appDir.read('package.json', 'json').author);
+import core from './game/core/core'; // Envoierment vars
 
+
+
+/*
+* Setting up GLOBAL vars
+* */
+var
+  app = remote.app,
+  appDir = jetpack.cwd(app.getAppPath());
+
+
+/*
+* When electron dom will load then:
+* */
 document.addEventListener('DOMContentLoaded', function () {
-    // document.getElementById('greet').innerHTML = greet();
-    // document.getElementById('platform-info').innerHTML = os.platform();
-    // document.getElementById('env-name').innerHTML = env.name;
-
-    var container, stats;
-
-			//
-  			var camera, scene, renderer;
-			//Cannon
-			var world, mass, body, shape, timeStep=1/60, geometry, material, mesh;
-
-  			var mouseX = 0, mouseY = 0;
-
-  			var windowHalfX = window.innerWidth / 2;
-  			var windowHalfY = window.innerHeight / 2;
-
-
-  			init();
-              initCannon();
-  			animate();
+  //
 
 
 
-              function initCannon() {
-				  world = new CANNON.World();
-				  world.gravity.set(0,0,0);
-				  world.broadphase = new CANNON.NaiveBroadphase();
-				  world.solver.iterations = 10;
 
-				  shape = new CANNON.Box(new CANNON.Vec3(1,1,1));
-				  mass = 1;
-				  body = new CANNON.Body({
-					  mass: 1
-				  });
-				  body.addShape(shape);
-				  body.angularVelocity.set(0,10,0);
-				  body.angularDamping = 0.5;
-				  world.addBody(body);
-              }
+  core.init();
+
+  //console.log(  init().init)
+  core.cannon();
+
+  core.animate();
+
+  core.updatePhysics();
+  core.render();
 
 
-  			function init() {
-
-				scene = new THREE.Scene();
-
-				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 100 );
-				camera.position.z = 5;
-				scene.add( camera );
-
-				geometry = new THREE.BoxGeometry( 2, 2, 2 );
-				material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
-
-				mesh = new THREE.Mesh( geometry, material );
-				scene.add( mesh );
-
-				renderer = new THREE.WebGLRenderer();
-				renderer.setSize( window.innerWidth, window.innerHeight );
-
-				document.body.appendChild( renderer.domElement );
 
 
-				
+  //function onWindowResize() {
+  //
+  //  windowHalfX = window.innerWidth / 2;
+  //  windowHalfY = window.innerHeight / 2;
+  //
+  //  camera.aspect = window.innerWidth / window.innerHeight;
+  //  camera.updateProjectionMatrix();
+  //
+  //  renderer.setSize(window.innerWidth, window.innerHeight);
+  //
+  //}
 
-  			//	container = document.createElement( 'div' );
-  			//	document.body.appendChild( container );
-          //
-  			//	camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
-  			//	camera.position.z = 4;
-          //camera.position.y = 1;
-          //
-          //
-  			//	// scene
-          //
-  			//	scene = new THREE.Scene();
-          //
-  			//	var ambient = new THREE.AmbientLight( 0x444444 );
-  			//	scene.add( ambient );
-          //
-  			//	var directionalLight = new THREE.DirectionalLight( 0xffeedd );
-  			//	directionalLight.position.set( 0, 0, 1 ).normalize();
-  			//	scene.add( directionalLight );
-          //
-  			//	// BEGIN Clara.io JSON loader code
-  			//	var objectLoader = new THREE.ObjectLoader();
-  			//	objectLoader.load("assets/example.json", function ( obj ) {
-          //  		mesh = obj.children[0];
-			//		console.log(mesh);
-  			//	 	scene.add( obj );
-  			//	} );
-  			//	// END Clara.io JSON loader code
-          //
-  			//	renderer = new THREE.WebGLRenderer();
-  			//	renderer.setSize( window.innerWidth, window.innerHeight );
-  			//	container.appendChild( renderer.domElement );
-          //
-  			//	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-          //
-  			//	//
-          //
-  			//	window.addEventListener( 'resize', onWindowResize, false );
+  //function onDocumentMouseMove(event) {
+  //
+  //  mouseX = ( event.clientX - windowHalfX ) / 2;
+  //  mouseY = ( event.clientY - windowHalfY ) / 2;
+  //
+  //}
 
-  			}
+  //
+  //
+  //function animate() {
+  //
+  //  requestAnimationFrame(animate);
+  //  updatePhysics();
+  //  render();
+  //
+  //}
+  //
+  //function updatePhysics() {
+  //
+  //  // Step the physics world
+  //  world.step(timeStep);
+  //
+  //  // Copy coordinates from Cannon.js to Three.js
+  //  //mesh.position.copy(body.position);
+  //  //mesh.quaternion.copy(body.quaternion);
+  //
+  //}
+  //
+  //function render() {
+  //
+  //  //renderer.render(scene, camera);
+  //
+  //}
 
-  			function onWindowResize() {
-
-  				windowHalfX = window.innerWidth / 2;
-  				windowHalfY = window.innerHeight / 2;
-
-  				camera.aspect = window.innerWidth / window.innerHeight;
-  				camera.updateProjectionMatrix();
-
-  				renderer.setSize( window.innerWidth, window.innerHeight );
-
-  			}
-
-  			function onDocumentMouseMove( event ) {
-
-  				mouseX = ( event.clientX - windowHalfX ) / 2;
-  				mouseY = ( event.clientY - windowHalfY ) / 2;
-
-  			}
-
-  			//
-
-	function animate() {
-
-		requestAnimationFrame( animate );
-		updatePhysics();
-		render();
-
-	}
-
-	function updatePhysics() {
-
-		// Step the physics world
-		world.step(timeStep);
-
-		// Copy coordinates from Cannon.js to Three.js
-		mesh.position.copy(body.position);
-		mesh.quaternion.copy(body.quaternion);
-
-	}
-
-	function render() {
-
-		renderer.render( scene, camera );
-
-	}
-
-	//dodatkowy kodzik
+  //dodatkowy kodzik
 
 });

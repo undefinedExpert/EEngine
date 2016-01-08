@@ -19,6 +19,8 @@ var paths = {
         './node_modules/**',
         './vendor/**',
         './assets/**/*',
+        './config/**/*',
+        './game/**/*',
         './**/*.html',
         './**/*.+(jpg|png|svg)'
     ],
