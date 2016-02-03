@@ -1,28 +1,42 @@
 import THREE from 'three.js'; // 3D library
 import CANNON from 'cannon'; // Physics Library
 
+
+//Setting namespaces for values
+
+//Three.js
 var camera, scene, renderer;
 
-//Cannon
+//Cannon (physic engine)
 var geometry, material, mesh;
 var world, mass, body, shape, timeStep = 1 / 60;
 
-var mouseX = 0, mouseY = 0;
 
-var windowHalfX = window.innerWidth / 2;
-var windowHalfY = window.innerHeight / 2;
+/**
+  * nazwaMojejFunkcji()
+  * @desc opens a modal window to display a message
+  * @param string $msg - the message to be displayed
+  * @return bool - success or failure
+*/
 
+var nazwaMojejFunkcji = (mojParametr) => {
+    //Set vars for nazwaMojejFunkcji
+    let returnedValue = mojParametr;
 
+    //Do stuff
+
+    //Return a value from nazwaMojejFunkcji
+    return returnedValue;
+};
 
 var core = {
 
-        init: function () {
+      init: function () {
             scene = new THREE.Scene();
-
             // Adding lighting
-          	var directionalLight = new THREE.DirectionalLight( 0xffeedd );
-          	directionalLight.position.set( 0, 0, 1 ).normalize();
-          	scene.add( directionalLight );
+            var directionalLight = new THREE.DirectionalLight(0xffeedd);
+            directionalLight.position.set(0, 0, 1).normalize();
+            scene.add(directionalLight);
 
             camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 100);
             camera.position.z = 5;
@@ -39,23 +53,22 @@ var core = {
 
             document.body.appendChild(renderer.domElement);
 
-          /*
-           * Init other functions
-           * cannon() - initialize configurations for physics (cannon.js)
-           * animate() - initialize animation progress function with in all requaired function
-           * updatePhysics() - initialize updatePhysics progress function with in all requaired function
-           * render() - three.js rendering function
-          * */
-            core.cannon();
-            core.animate();
-            core.updatePhysics();
-            core.render();
+            /*
+             * Init other functions
+             * cannon() - initialize configurations for physics (cannon.js)
+             * animate() - initialize animation progress function with in all requaired function
+             * updatePhysics() - initialize updatePhysics progress function with in all requaired function
+             * render() - three.js rendering function
+             * */
 
+            this.cannon();
+            this.animate();
+            this.updatePhysics();
+            this.render();
+      },
 
-        },
-        cannon: function(){
-            //Cannon
-
+    cannon: function () {
+            //Cannon init
             world = new CANNON.World();
             world.gravity.set(0, 0, 0);
             world.broadphase = new CANNON.NaiveBroadphase();
@@ -65,43 +78,35 @@ var core = {
             shape = new CANNON.Box(new CANNON.Vec3(1, 1, 1));
             mass = 1;
             body = new CANNON.Body({
-                mass: 1
+                  mass: 1
             });
             body.addShape(shape);
             body.angularVelocity.set(25, 15, 15);
             body.angularDamping = 0.5;
             world.addBody(body);
-        },
-        animate: function(){
-
-
+      },
+      animate: function () {
             //requestAnimationFrame(this.animate.bind(this.()));
-          requestAnimationFrame(this.animate.bind(this));
+            requestAnimationFrame(this.animate.bind(this));
 
-          //Aktualizuje fizyke
-          this.updatePhysics();
-          this.render();
-
-
-        },
-        updatePhysics: function(){
+            //Aktualizuje fizyke
+            this.updatePhysics();
+            this.render();
+      },
+      updatePhysics: function () {
             // Step the physics world
             world.step(timeStep);
 
             // Copy coordinates from Cannon.js to Three.js
             /*
-            * Tutaj aktualizuje pozycje mecha z wartoscia ktora jest sprecyzowana w core.cannon()
-            * */
+             * Tutaj aktualizuje pozycje mecha z wartoscia ktora jest sprecyzowana w core.cannon()
+             * */
             mesh.position.copy(body.position);
             mesh.quaternion.copy(body.quaternion);
-        },
-
-        render: function(){
-
-        renderer.render(scene, camera);
-
-    }
-
+      },
+      render: function () {
+            renderer.render(scene, camera);
+      }
 
 };
 
