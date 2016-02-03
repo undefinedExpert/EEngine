@@ -1,5 +1,5 @@
 {
-  "parser": "espree",
+  "parser": "babel-eslint",
   "ecmaFeatures": {},
   "rules": {
     "no-alert": 0,

@@ -1,3 +1,5 @@
+"use strict";
+
 import THREE from 'three.js'; // 3D library
 import CANNON from 'cannon'; // Physics Library
 
@@ -12,25 +14,12 @@ var geometry, material, mesh;
 var world, mass, body, shape, timeStep = 1 / 60;
 
 
-/**
-  * nazwaMojejFunkcji()
-  * @desc opens a modal window to display a message
-  * @param string $msg - the message to be displayed
-  * @return bool - success or failure
-*/
-
-var nazwaMojejFunkcji = (mojParametr) => {
-    //Set vars for nazwaMojejFunkcji
-    let returnedValue = mojParametr;
-
-    //Do stuff
-
-    //Return a value from nazwaMojejFunkcji
-    return returnedValue;
-};
-
 var core = {
 
+      /**
+       * @function init
+         * @desc Init whole scene with assets
+       */
       init: function () {
             scene = new THREE.Scene();
             // Adding lighting
@@ -43,7 +32,10 @@ var core = {
             scene.add(camera);
 
             geometry = new THREE.BoxGeometry(2, 2, 2);
-            material = new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: true});
+            material = new THREE.MeshBasicMaterial({
+                  color: 0xff0000,
+                  wireframe: true
+            });
 
             mesh = new THREE.Mesh(geometry, material);
             scene.add(mesh);
@@ -56,8 +48,8 @@ var core = {
             /*
              * Init other functions
              * cannon() - initialize configurations for physics (cannon.js)
-             * animate() - initialize animation progress function with in all requaired function
-             * updatePhysics() - initialize updatePhysics progress function with in all requaired function
+             * animate() - initialize animation progress function with in all required function
+             * updatePhysics() - initialize updatePhysics progress function with in all required function
              * render() - three.js rendering function
              * */
 
@@ -67,7 +59,7 @@ var core = {
             this.render();
       },
 
-    cannon: function () {
+      cannon: function () {
             //Cannon init
             world = new CANNON.World();
             world.gravity.set(0, 0, 0);
