@@ -4,6 +4,7 @@ var pathUtil = require('path');
 var Q = require('q');
 var gulp = require('gulp');
 var rollup = require('rollup');
+var babel = require('rollup-plugin-babel');
 var less = require('gulp-less');
 var jetpack = require('fs-jetpack');
 
@@ -50,6 +51,11 @@ var bundle = function (src, dest) {
 
     rollup.rollup({
         entry: src,
+          plugins: [
+                babel({
+                      exclude: 'node_modules/**'
+                })
+          ]
     }).then(function (bundle) {
         var jsFile = pathUtil.basename(dest);
         var result = bundle.generate({

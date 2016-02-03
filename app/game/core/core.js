@@ -11,7 +11,6 @@ var geometry, material, mesh;
 var world, mass, square, shape, timeStep = 1 / 60;
 
 
-
 var core = {
 
       /**
@@ -122,20 +121,30 @@ var core = {
       },
 
       /**
-        * @function addMovment
-        * @desc opens a modal window to display a message
-        * @param string $msg - the message to be displayed
-        * @return bool - success or failure
-      */
+       * @function addMovment
+         * @desc opens a modal window to display a message
+         * @param object $element - which element will be affected
+         * @param number $force - What is the force of affection
+       */
+      addMovement: function (element, force=0) {
 
-      addMovement: function(element, force) {
+            let velocity = element.angularVelocity;
 
-          let meshPosition = mesh.position.copy(element.position);
-          let meshQuaternion = mesh.quaternion.copy(element.quaternion);
-
-          element.angularVelocity.y = element.angularVelocity.y + force;
+            velocity.y = velocity.y + force;
       }
 
 };
 
 export default core;
+
+
+//es5
+function initializeCanvas (options) {
+      var height = options.height || 600;
+      var width = options.width || 400;
+      var lineStroke = options.lineStroke || 'black';
+}
+
+//vs
+
+//es6
