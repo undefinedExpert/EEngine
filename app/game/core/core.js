@@ -17,8 +17,6 @@ var windowHalfY = window.innerHeight / 2;
 var core = {
 
         init: function () {
-
-
             scene = new THREE.Scene();
 
             // Adding lighting
@@ -36,85 +34,23 @@ var core = {
             mesh = new THREE.Mesh(geometry, material);
             scene.add(mesh);
 
-          //
-          //var objectLoader = new THREE.ObjectLoader();
-
-          //function createObject( objFile, objName ) {
-          //  var container = new THREE.Object3D();
-          //  objectLoader.load( objFile , function ( object ) {
-          //    object.name = objName;
-          //    container.add( object );
-          //  });
-          //  return container;
-          //}D:\game_dev\elizabeth\ele-boilerplate\electron-boilerplate\build\node_modules\three.js\build\three.…:21257 THREE.WebGLRenderer 73
-          //
-          //var sceneLoaded = createObject('assets/example.json', 'Scene');
-          //    console.log(sceneLoaded.objName);
-
-          //TODO: resolve async problem
-          //function loadObject(objectFileToLoad, callback) {
-          //
-          //  var container = new THREE.Object3D();
-          //
-          //    objectLoader.load( objectFileToLoad , function ( loadedObject ) {
-          //     // console.log(loadedObject.getObjectByName('Circle'));
-          //      container.add( loadedObject );
-          //    });
-          //
-          //  return container;
-          //
-          //}
-          //var objectLoaded = loadObject('assets/example.json');
-          //
-          //
-          //
-          //console.log(objectLoaded);
-
-
-          //objectLoader.load("assets/example.json", function ( obj ) {
-          //    console.log(obj);
-          //    circle = obj.getObjectByName('Circle');
-          //	 	scene.add( obj.getObjectByName('Circle') );
-          //	} );
-
-          //console.log(circle);
-          //var allChildren = scene.children;
-          //var lastObject = allChildren[allChildren.length-1];
-          //console.log( scene.children)
-          //if (lastObject instanceof THREE.Mesh) {
-          //  //scene.remove(lastObject);
-          //  console.log(lastObject)
-          //  this.numberOfObjects = scene.children.length;
-          //}
-
-          //console.log(mesh);
-
             renderer = new THREE.WebGLRenderer();
             renderer.setSize(window.innerWidth, window.innerHeight);
 
             document.body.appendChild(renderer.domElement);
 
+          /*
+           * Init other functions
+           * cannon() - initialize configurations for physics (cannon.js)
+           * animate() - initialize animation progress function with in all requaired function
+           * updatePhysics() - initialize updatePhysics progress function with in all requaired function
+           * render() - three.js rendering function
+          * */
+            core.cannon();
+            core.animate();
+            core.updatePhysics();
+            core.render();
 
-            //	container = document.createElement( 'div' );
-            //	document.body.appendChild( container );
-            //
-            //	// scene
-            //
-            //	// BEGIN Clara.io JSON loader code
-            //	var objectLoader = new THREE.ObjectLoader();
-            //	objectLoader.load("assets/example.json", function ( obj ) {
-            //  		mesh = obj.children[0];
-            //		console.log(mesh);
-            //	 	scene.add( obj );
-            //	} );
-            //	// END Clara.io JSON loader code
-            //
-
-            //	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-            //
-            //	//
-            //
-            //	window.addEventListener( 'resize', onWindowResize, false );
 
         },
         cannon: function(){

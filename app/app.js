@@ -44,17 +44,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /*
   * Running cores functions:
-  * init() - initialize scene and item of three.js
-  * cannon() - initialize configurations for physics (cannon.js)
-  * animate() - initialize animation progress function with in all requaired function
-  * updatePhysics() - initialize updatePhysics progress function with in all requaired function
-  * render() - three.js rendering function
+  * init() - initialize all requiared assets of core modules
   * */
 
   core.init();
-  core.cannon();
-  core.animate();
-  core.updatePhysics();
-  core.render();
+
 
 });
