@@ -12,6 +12,8 @@
         </XML>
         <codeStyleSettings language="JavaScript">
           <option name="LINE_COMMENT_AT_FIRST_COLUMN" value="true" />
+          <option name="CATCH_ON_NEW_LINE" value="true" />
+          <option name="FINALLY_ON_NEW_LINE" value="true" />
           <option name="SPACE_BEFORE_METHOD_PARENTHESES" value="true" />
         </codeStyleSettings>
         <codeStyleSettings language="SCSS">
