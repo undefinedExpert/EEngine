@@ -41,6 +41,20 @@ var core = {
 
             document.body.appendChild(renderer.domElement);
 
+            //Dodaje nowy "kolidator" dla body nadaje mu wartosci masy ksztaltu obrotu etc i by na koncu dodac go to "world", czyli sceny
+
+           //tworzenie nowego obiektu
+            shape = new CANNON.Box(new CANNON.Vec3(1, 1, 1));
+            mass = 1;
+            square = new CANNON.Body({
+                  mass: 1
+            });
+            square.addShape(shape);
+            square.angularVelocity.set(0, 0, 0);
+
+            square.angularDamping = 0.5;
+
+
 
             //Interaction with square button
             var addSpeedButton = document.getElementById('addSpeed');
@@ -50,17 +64,13 @@ var core = {
 
 
             /*
-             * Init other functions
+             * Init other methtods
              * cannon() - initialize configurations for physics (cannon.js)
              * animate() - initialize animation progress function with in all required function
-             * updatePhysics() - initialize updatePhysics progress function with in all required function
-             * render() - three.js rendering function
              * */
 
             this.cannon();
             this.animate();
-            this.updatePhysics();
-            this.render();
       },
       /**
        * @method cannon
@@ -73,16 +83,7 @@ var core = {
             world.broadphase = new CANNON.NaiveBroadphase();
             world.solver.iterations = 10;
 
-            //Dodaje nowy "kolidator" dla body nadaje mu wartosci masy ksztaltu obrotu etc i by na koncu dodac go to "world", czyli sceny
-            shape = new CANNON.Box(new CANNON.Vec3(1, 1, 1));
-            mass = 1;
-            square = new CANNON.Body({
-                  mass: 1
-            });
-            square.addShape(shape);
-            square.angularVelocity.set(0, 0, 0);
 
-            square.angularDamping = 0.5;
             world.addBody(square);
       },
       /**
@@ -92,6 +93,7 @@ var core = {
        */
       animate: function () {
             requestAnimationFrame(this.animate.bind(this));
+
             this.updatePhysics();
             this.render();
       },
@@ -119,32 +121,20 @@ var core = {
       render: function () {
             renderer.render(scene, camera);
       },
-
       /**
-       * @function addMovment
-         * @desc opens a modal window to display a message
+       * @function addMovement
+         * @desc adds movment to velocity of an specified element
          * @param object $element - which element will be affected
          * @param number $force - What is the force of affection
        */
-      addMovement: function (element, force=0) {
+      addMovement: function (element, force = 0) {
 
+            console.log(element);
             let velocity = element.angularVelocity;
-
             velocity.y = velocity.y + force;
-      }
+
+      },
 
 };
 
 export default core;
-
-
-//es5
-function initializeCanvas (options) {
-      var height = options.height || 600;
-      var width = options.width || 400;
-      var lineStroke = options.lineStroke || 'black';
-}
-
-//vs
-
-//es6
