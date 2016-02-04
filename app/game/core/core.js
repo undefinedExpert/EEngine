@@ -3,14 +3,19 @@
 import THREE from 'three.js'; // 3D library
 import CANNON from 'cannon'; // Physics Library
 
+//TODO: Req.txt
+//TODO: Wstawienie komentarzy
+//TODO: Stworzenie prototypu ktory by zawieral schemat tworzenia nowego "obiektu" w scenie
+//TODO: Zaplanowanie wszystkich taskow, oraz celow ktore chce osiagnac i zrealizowac.
+
 //Three.js
 var camera, scene, renderer;
 
 //Cannon (physic engine)
 var geometry, material, mesh;
 var world, mass, square, shape, timeStep = 1 / 60;
-
-
+var mouseX = 15, mouseY = 0;
+var windowHalfY, windowHalfX;
 var core = {
 
       /**
@@ -20,13 +25,15 @@ var core = {
       init: function () {
             scene = new THREE.Scene();
             var directionalLight = new THREE.DirectionalLight(0xffeedd);
+
             directionalLight.position.set(0, 0, 1).normalize();
             scene.add(directionalLight);
 
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 100);
-            camera.position.z = 5;
+            camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 1, 100);
+            camera.position.z = 15;
             scene.add(camera);
-
+            document.addEventListener( 'mousemove', this.onDocumentMouseMove, false );
+            window.addEventListener( 'resize', this.onWindowResize, false );
             geometry = new THREE.BoxGeometry(2, 2, 2);
             material = new THREE.MeshBasicMaterial({
                   color: 0xff0000,
@@ -119,6 +126,12 @@ var core = {
        * @see {@link init}
        */
       render: function () {
+
+            camera.position.x += ( mouseX - camera.position.x ) * .00002;
+            camera.position.y = THREE.Math.clamp( camera.position.y + ( - mouseY - camera.position.y ) * .00002, 0, 1000 );
+
+            camera.lookAt( square );
+
             renderer.render(scene, camera);
       },
       /**
@@ -134,6 +147,14 @@ var core = {
             velocity.y = velocity.y + force;
 
       },
+      onDocumentMouseMove: function(event) {
+
+            windowHalfX = window.innerWidth / 2;
+            windowHalfY = window.innerHeight / 2;
+            mouseX = ( event.clientX - windowHalfX );
+            mouseY = ( event.clientY - windowHalfY );
+
+      }
 
 };
 
