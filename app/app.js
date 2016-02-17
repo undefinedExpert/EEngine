@@ -18,6 +18,7 @@
 import os from 'os'; // system
 import { remote } from 'electron'; // electron system
 import jetpack from 'fs-jetpack';  // module which helps with file serving
+var _ = require('lodash'); //laaddash
 
 
 /*
@@ -26,6 +27,8 @@ import jetpack from 'fs-jetpack';  // module which helps with file serving
 import env from './env'; // Envoierment vars
 
 import core from './game/core/core'; // Envoierment vars
+
+import level_0 from './game/levels/0_mainmenu/mainmenu'; // Envoierment vars
 
 
 
@@ -44,10 +47,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /*
   * Running cores functions:
-  * init() - initialize all requiared assets of core modules
+  * init() - initialize all required assets of core modules
   * */
-
-  core.init();
-
+  core.scener();
 
 });

@@ -1,7 +1,20 @@
+//ten plik bedzie zarzadzal wczytywaniem scen.
+
 "use strict";
 
 import THREE from 'three.js'; // 3D library
 import CANNON from 'cannon'; // Physics Library
+
+import config from './config'; // importing config of core module
+
+import * as make from './core_helpers';
+
+
+/**
+ * helper module.
+ */
+
+
 
 //TODO: Req.txt
 //TODO: Wstawienie komentarzy
@@ -12,64 +25,67 @@ import CANNON from 'cannon'; // Physics Library
 var camera, scene, renderer;
 
 //Cannon (physic engine)
-var geometry, material, mesh;
+var geometry, material, mesh, light, speedButton;
 var world, mass, square, shape, timeStep = 1 / 60;
 var mouseX = 15, mouseY = 0;
 var windowHalfY, windowHalfX;
-var core = {
 
+var core = {
       /**
        * @method init
        * @desc Init whole scene with assets
        */
-      init: function () {
-            scene = new THREE.Scene();
-            var directionalLight = new THREE.DirectionalLight(0xffeedd);
+      scener: function (callback) {
+            const that = this;
+            //W tej funkcji bede wczytywal poziomy
+            //Oraz dodawal wszystkie elementy potrzebne do importu takiej sceny, obiekty itd.
+            //Ta funkcja bedzie wykorzystywana do scalania kazdej sceny.
 
-            directionalLight.position.set(0, 0, 1).normalize();
-            scene.add(directionalLight);
+            //Jakie elementy sa potrzebne do stworzenia sceny?
+            //1. dla three.js scena
+            //2. Kamera
+            //3. Swiatlo
+            //4. Obiekty
 
-            camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 1, 100);
-            camera.position.z = 15;
-            scene.add(camera);
-            document.addEventListener( 'mousemove', this.onDocumentMouseMove, false );
-            window.addEventListener( 'resize', this.onWindowResize, false );
-            geometry = new THREE.BoxGeometry(2, 2, 2);
-            material = new THREE.MeshBasicMaterial({
-                  color: 0xff0000,
-                  wireframe: true
-            });
 
-            mesh = new THREE.Mesh(geometry, material);
-            scene.add(mesh);
+            scene = make.scene();
 
-            renderer = new THREE.WebGLRenderer();
-            renderer.setSize(window.innerWidth, window.innerHeight);
+            light = make.light();
+
+            camera = make.camera();
+
+            geometry = make.geometry();
+
+            material = make.material();
+
+            mesh = make.mesh();
+
+            make.add([mesh]);
+
+            renderer = make.render();
+
 
             document.body.appendChild(renderer.domElement);
 
             //Dodaje nowy "kolidator" dla body nadaje mu wartosci masy ksztaltu obrotu etc i by na koncu dodac go to "world", czyli sceny
 
            //tworzenie nowego obiektu
-            shape = new CANNON.Box(new CANNON.Vec3(1, 1, 1));
-            mass = 1;
-            square = new CANNON.Body({
-                  mass: 1
-            });
-            square.addShape(shape);
-            square.angularVelocity.set(0, 0, 0);
 
-            square.angularDamping = 0.5;
+
+            square = make.mesh.construct.init(square);
 
 
 
-            //Interaction with square button
-            var addSpeedButton = document.getElementById('addSpeed');
-            addSpeedButton.addEventListener('click', () => {
-                  this.addMovement(square, 5);
+
+            square.addShape(square.shape);
+
+
+            var button = document.getElementById('addSpeed');
+            speedButton = make.interaction(button, function(){
+                  that.addMovement(square,5);
             });
 
-
+            this.control();
             /*
              * Init other methtods
              * cannon() - initialize configurations for physics (cannon.js)
@@ -154,7 +170,12 @@ var core = {
             mouseX = ( event.clientX - windowHalfX );
             mouseY = ( event.clientY - windowHalfY );
 
+      },
+      control: function(){
+            document.addEventListener( 'mousemove', this.onDocumentMouseMove, false );
+            window.addEventListener( 'resize', this.onWindowResize, false );
       }
+
 
 };
 
