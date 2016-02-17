@@ -19,6 +19,7 @@ function camera() {
   camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 1, 100);
 
   camera.position.z = 15;
+  camera.position.y = 2;
 
   return camera;
 }
@@ -36,8 +37,7 @@ function geometry() {
 }
 
 function material() {
-  material = new THREE.MeshBasicMaterial({
-    color: 0xff0000,
+  material = new THREE.MeshDepthMaterial({
     wireframe: true
   });
 
@@ -82,7 +82,9 @@ function render() {
   render = new THREE.WebGLRenderer();
 
   render.setSize(window.innerWidth, window.innerHeight);
-
+  render.shadowMap.enabled = true;
+  render.setClearColor(0x5081B5);
+  document.body.appendChild(render.domElement);
   return render;
 }
 

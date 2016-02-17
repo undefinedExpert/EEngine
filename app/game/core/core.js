@@ -4,6 +4,8 @@
 
 import THREE from 'three.js'; // 3D library
 import CANNON from 'cannon'; // Physics Library
+var OrbitControls = require('three-orbit-controls')(THREE);
+
 
 import config from './config'; // importing config of core module
 
@@ -36,7 +38,7 @@ var core = {
        * @desc Init whole scene with assets
        */
       scener: function (callback) {
-            const that = this;
+            let that = this;
             //W tej funkcji bede wczytywal poziomy
             //Oraz dodawal wszystkie elementy potrzebne do importu takiej sceny, obiekty itd.
             //Ta funkcja bedzie wykorzystywana do scalania kazdej sceny.
@@ -60,20 +62,11 @@ var core = {
 
             mesh = make.mesh();
 
-            make.add([mesh]);
+            make.add([mesh, light]);
 
             renderer = make.render();
 
-
-            document.body.appendChild(renderer.domElement);
-
-            //Dodaje nowy "kolidator" dla body nadaje mu wartosci masy ksztaltu obrotu etc i by na koncu dodac go to "world", czyli sceny
-
-           //tworzenie nowego obiektu
-
-
             square = make.mesh.construct.init(square);
-
 
 
 
@@ -85,7 +78,8 @@ var core = {
                   that.addMovement(square,5);
             });
 
-            this.control();
+
+            var controls = new OrbitControls(camera);
             /*
              * Init other methtods
              * cannon() - initialize configurations for physics (cannon.js)
@@ -94,6 +88,7 @@ var core = {
 
             this.cannon();
             this.animate();
+
       },
       /**
        * @method cannon
@@ -172,8 +167,10 @@ var core = {
 
       },
       control: function(){
-            document.addEventListener( 'mousemove', this.onDocumentMouseMove, false );
+            //document.addEventListener( 'mousemove', this.onDocumentMouseMove, false );
             window.addEventListener( 'resize', this.onWindowResize, false );
+
+
       }
 
 
