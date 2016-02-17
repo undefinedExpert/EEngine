@@ -18,12 +18,12 @@ import * as make from './core_helpers';
 
 
 
-//TODO: Req.txt
-//TODO: Wstawienie komentarzy
-//TODO: Stworzenie prototypu ktory by zawieral schemat tworzenia nowego "obiektu" w scenie
-//TODO: Zaplanowanie wszystkich taskow, oraz celow ktore chce osiagnac i zrealizowac.
+    //TODO: Req.txt
+    //TODO: Wstawienie komentarzy
+    //TODO: Stworzenie prototypu ktory by zawieral schemat tworzenia nowego "obiektu" w scenie
+    //TODO: Zaplanowanie wszystkich taskow, oraz celow ktore chce osiagnac i zrealizowac.
 
-//Three.js
+    //Three.js
 var camera, scene, renderer;
 
 //Cannon (physic engine)
@@ -33,146 +33,144 @@ var mouseX = 0, mouseY = 0;
 var windowHalfY, windowHalfX;
 
 var core = {
-      /**
-       * @method init
-       * @desc Init whole scene with assets
-       */
-      scener: function (callback) {
-            let that = this;
-            //W tej funkcji bede wczytywal poziomy
-            //Oraz dodawal wszystkie elementy potrzebne do importu takiej sceny, obiekty itd.
-            //Ta funkcja bedzie wykorzystywana do scalania kazdej sceny.
+  /**
+   * @method init
+   * @desc Init whole scene with assets
+   */
+  scener: function (callback) {
+    let that = this;
+    //W tej funkcji bede wczytywal poziomy
+    //Oraz dodawal wszystkie elementy potrzebne do importu takiej sceny, obiekty itd.
+    //Ta funkcja bedzie wykorzystywana do scalania kazdej sceny.
 
-            //Jakie elementy sa potrzebne do stworzenia sceny?
-            //1. dla three.js scena
-            //2. Kamera
-            //3. Swiatlo
-            //4. Obiekty
+    //Jakie elementy sa potrzebne do stworzenia sceny?
+    //1. dla three.js scena
+    //2. Kamera
+    //3. Swiatlo
+    //4. Obiekty
 
+    //Init all basic functions which are create scene an so
+    this.init();
 
-            scene = make.scene();
+    //Init all required meshes for scene
+    this.object();
 
-            light = make.light();
+    renderer = make.render();
 
-            camera = make.camera();
-
-            geometry = make.geometry();
-
-            material = make.material();
-
-            mesh = make.mesh();
-
-            make.add([mesh, light]);
-
-            renderer = make.render();
-
-            square = make.mesh.construct.init(square);
+    var button = document.getElementById('addSpeed');
+    speedButton = make.interaction(button, function () {
+      that.addMovement(square, 5);
+    });
 
 
-
-            square.addShape(square.shape);
-
-
-            var button = document.getElementById('addSpeed');
-            speedButton = make.interaction(button, function(){
-                  that.addMovement(square,5);
-            });
+    controls = new OrbitControls(camera);
 
 
-            controls = new OrbitControls(camera);
+    make.add([mesh, light]);
+    /*
+     * Init other methtods
+     * cannon() - initialize configurations for physics (cannon.js)
+     * animate() - initialize animation progress function with in all required function
+     * */
 
-            /*
-             * Init other methtods
-             * cannon() - initialize configurations for physics (cannon.js)
-             * animate() - initialize animation progress function with in all required function
-             * */
+    this.cannon();
+    this.animate();
 
-            this.cannon();
-            this.animate();
+  },
+  init: function () {
+    scene = make.scene();
 
-      },
-      /**
-       * @method cannon
-       * @desc Initialize whole physics for scene and it's objects
-       */
-      cannon: function () {
-            //Cannon init
-            world = new CANNON.World();
-            world.gravity.set(0, 0, 0);
-            world.broadphase = new CANNON.NaiveBroadphase();
-            world.solver.iterations = 10;
+    camera = make.camera({x: 0, y: 2, z: 15}, 35);
 
+    light = make.light();
+  },
+  object: function(){
 
-            world.addBody(square);
-      },
-      /**
-       * @method animate
-       * @desc Three.js function which updates scene
-       * @see {@link init}
-       */
-      animate: function () {
-            requestAnimationFrame(this.animate.bind(this));
-
-            this.updatePhysics();
-            this.render();
-      },
-      /**
-       * @method updatePhysics
-       * @desc CommonJS function which updates physics of all objects and world
-       * @see {@link animate, @link cannon}
-       */
-      updatePhysics: function () {
-            // Step the physics world
-            world.step(timeStep);
-
-            // Copy coordinates from Cannon.js to Three.js
-            /*
-             * Tutaj aktualizuje pozycje mecha z wartoscia ktora jest sprecyzowana w core.cannon()
-             * */
-            mesh.position.copy(square.position);
-            mesh.quaternion.copy(square.quaternion);
-      },
-      /**
-       * @method render
-       * @desc three.js Method whose render scene
-       * @see {@link init}
-       */
-      render: function () {
-
-            camera.position.x += ( mouseX - camera.position.x ) * .00002;
-            camera.position.y = THREE.Math.clamp( camera.position.y + ( - mouseY - camera.position.y ) * .00002, 0, 1000 );
+    //TODO: rozwiazac problem z dodawniem wczesniej sprecyzowanego typu dla geometri
+    //TODO: Tworzenie wlasnego obiektu na podstawie wlasnych danych, i przypisywanie go automatycznie
+    //      Do sceny
+    geometry = make.geometry.cylinder();
+    console.log(geometry);
+    material = make.material();
+    mesh = make.mesh();
+    square = make.mesh.construct.init(square); //init phyx for this object
+  },
+  /**
+   * @method cannon
+   * @desc Initialize whole physics for scene and it's objects
+   */
+  cannon: function () {
+    //Cannon init
+    world = new CANNON.World();
+    world.gravity.set(0, 0, 0);
+    world.broadphase = new CANNON.NaiveBroadphase();
+    world.solver.iterations = 10;
 
 
+    world.addBody(square);
+  },
+  /**
+   * @method animate
+   * @desc Three.js function which updates scene
+   * @see {@link init}
+   */
+  animate: function () {
+    requestAnimationFrame(this.animate.bind(this));
 
-            renderer.render(scene, camera);
-      },
-      /**
-       * @function addMovement
-         * @desc adds movment to velocity of an specified element
-         * @param object $element - which element will be affected
-         * @param number $force - What is the force of affection
-       */
-      addMovement: function (element, force = 0) {
+    this.updatePhysics();
+    this.render();
+  },
+  /**
+   * @method updatePhysics
+   * @desc CommonJS function which updates physics of all objects and world
+   * @see {@link animate, @link cannon}
+   */
+  updatePhysics: function () {
+    // Step the physics world
+    world.step(timeStep);
 
-            console.log(element);
-            let velocity = element.angularVelocity;
-            velocity.y = velocity.y + force;
+    // Copy coordinates from Cannon.js to Three.js
+    /*
+     * Tutaj aktualizuje pozycje mecha z wartoscia ktora jest sprecyzowana w core.cannon()
+     * */
+    mesh.position.copy(square.position);
+    mesh.quaternion.copy(square.quaternion);
+  },
+  /**
+   * @method render
+   * @desc three.js Method whose render scene
+   * @see {@link init}
+   */
+  render: function () {
+    renderer.render(scene, camera);
+  },
+  /**
+   * @function addMovement
+     * @desc adds movment to velocity of an specified element
+     * @param object $element - which element will be affected
+     * @param number $force - What is the force of affection
+   */
+  addMovement: function (element, force = 0) {
 
-      },
-      onDocumentMouseMove: function(event) {
+    console.log(element);
+    let velocity = element.angularVelocity;
+    velocity.y = velocity.y + force;
 
-            windowHalfX = window.innerWidth / 2;
-            windowHalfY = window.innerHeight / 2;
-            mouseX = ( event.clientX - windowHalfX );
-            mouseY = ( event.clientY - windowHalfY );
+  },
+  onDocumentMouseMove: function (event) {
 
-      },
-      control: function(){
-            //document.addEventListener( 'mousemove', this.onDocumentMouseMove, false );
-            window.addEventListener( 'resize', this.onWindowResize, false );
+    windowHalfX = window.innerWidth / 2;
+    windowHalfY = window.innerHeight / 2;
+    mouseX = ( event.clientX - windowHalfX );
+    mouseY = ( event.clientY - windowHalfY );
+
+  },
+  control: function () {
+    //document.addEventListener( 'mousemove', this.onDocumentMouseMove, false );
+    window.addEventListener('resize', this.onWindowResize, false);
 
 
-      }
+  }
 
 
 };

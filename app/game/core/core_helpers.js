@@ -6,23 +6,31 @@
 import THREE from 'three.js'; // 3D library
 import CANNON from 'cannon'; // Physics Library
 
-// convert color to array of RGB values (0-255)
-function log(msg) {
-  return console.log(msg);
-}
-
+/**
+  * @desc Placing scene object into application
+  * @function scene()
+*/
 function scene() {
   return scene = new THREE.Scene();
 }
 
-function camera() {
-  camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 1, 10000);
+/**
+  * @desc Placing camera into scene
+  * @function camera
+  * @param {object} position - set initial position of the camera
+  * @param {number} fov - camera Field of View value
+  * @return bool - camera object
+*/
 
-  camera.position.z = 15;
-  camera.position.y = 2;
+function camera(position={x: 0, y: 0, z: 0}, fov=35) {
+  camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, 1, 10000);
+
+  //Setting camera position
+  camera.position.set(position.x,position.y,position.z);
 
   return camera;
 }
+
 
 function light() {
   light = new THREE.DirectionalLight(0xffeedd);
@@ -31,7 +39,13 @@ function light() {
 }
 
 function geometry() {
-  geometry = new THREE.BoxGeometry(2, 2, 2);
+//TODO: znalezienie sposobu na dostarczanie odpowiednich geometrii
+  geometry = {
+    cylinder: function(){
+      new THREE.CylinderGeometry( 5, 5, 20, 32 );
+
+    }
+  };
 
   return geometry;
 }
@@ -135,7 +149,6 @@ export {
  * @returns {Array.} An array of the red, green, and blue values,
  * each ranging from 0 to 255.
  */
-  log as log,
   light as light,
   scene as scene,
   camera as camera,
