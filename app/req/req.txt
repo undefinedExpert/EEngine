@@ -1,0 +1,11 @@
+Milestone 0
+TODO: Stworzenie podstawowych funkcji ktore bede mogl powszechnie wykorzystywac podczas
+tworzenia bardziej rozleglych scen. Zalicza sie do tego miedzy innymi:
+- Dodawanie obiektu do scen z opdpowiednia fizyka
+- Dodawanie komponentow UI
+- Proste dodawanie swiatel
+- Stworzenie biblioteki materialow
+- Stworzenie biblioteki obiektow, wraz z predefiniowanymi animacjami (cut out 2d animations).
+
+
+TODO:

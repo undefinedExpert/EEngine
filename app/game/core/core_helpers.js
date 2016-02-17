@@ -16,7 +16,7 @@ function scene() {
 }
 
 function camera() {
-  camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 1, 100);
+  camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 1, 10000);
 
   camera.position.z = 15;
   camera.position.y = 2;
@@ -68,6 +68,8 @@ function mesh() {
     }
 
   };
+
+
   return mesh;
 }
 

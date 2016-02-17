@@ -27,9 +27,9 @@ import * as make from './core_helpers';
 var camera, scene, renderer;
 
 //Cannon (physic engine)
-var geometry, material, mesh, light, speedButton;
+var geometry, material, mesh, light, speedButton, controls;
 var world, mass, square, shape, timeStep = 1 / 60;
-var mouseX = 15, mouseY = 0;
+var mouseX = 0, mouseY = 0;
 var windowHalfY, windowHalfX;
 
 var core = {
@@ -79,7 +79,8 @@ var core = {
             });
 
 
-            var controls = new OrbitControls(camera);
+            controls = new OrbitControls(camera);
+
             /*
              * Init other methtods
              * cannon() - initialize configurations for physics (cannon.js)
@@ -141,7 +142,7 @@ var core = {
             camera.position.x += ( mouseX - camera.position.x ) * .00002;
             camera.position.y = THREE.Math.clamp( camera.position.y + ( - mouseY - camera.position.y ) * .00002, 0, 1000 );
 
-            camera.lookAt( square );
+
 
             renderer.render(scene, camera);
       },
