@@ -6,6 +6,11 @@
 import THREE from 'three.js'; // 3D library
 import CANNON from 'cannon'; // Physics Library
 
+function toTitleCase(str)
+{
+  return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
+
 /**
   * @desc Placing scene object into application
   * @function scene()
@@ -38,16 +43,40 @@ function light() {
   return light;
 }
 
-function geometry() {
+function geometry(name, pickedSize) {
 //TODO: znalezienie sposobu na dostarczanie odpowiednich geometrii
-  geometry = {
-    cylinder: function(){
-      new THREE.CylinderGeometry( 5, 5, 20, 32 );
 
+
+  var allSizes = {
+    cylinder: {
+      small: function(){
+        return [5, 5, 20, 32];
+      }
     }
   };
+  if(allSizes[name][pickedSize].name === pickedSize){
+    pickedSize = allSizes[name][pickedSize]();
+    console.log(pickedSize);
 
-  return geometry;
+
+  }
+
+
+
+
+  name = toTitleCase(name);
+
+
+  function craftGeometry(){
+
+  }
+  //Tutaj wykorzystujemy nasza wlasna nazwe jako proporcje THREE, zajebiste rozwiazanie.
+  let craftedGeometry = new THREE[name + 'Geometry'];
+  console.log(new THREE[name + 'Geometry'].apply(this, [5, 5, 20, 32]));
+
+
+  return craftedGeometry;
+
 }
 
 function material() {
@@ -58,8 +87,8 @@ function material() {
   return material;
 }
 
-function mesh() {
-  mesh = new THREE.Mesh(geometry, material);
+function mesh(cylinder) {
+  mesh = new THREE.Mesh(cylinder, material);
   mesh.construct = {
     shape: function () {
       this.shape = new CANNON.Box(new CANNON.Vec3(1, 1, 1));
@@ -67,7 +96,6 @@ function mesh() {
     },
     mass: 1,
     init: function (name) {
-
       name = new CANNON.Body({
         mass: 1
       });
@@ -83,13 +111,11 @@ function mesh() {
 
   };
 
-
   return mesh;
 }
 
 function addObjects(arrayOfElementsToAdd) {
   for (var i = 0, len = arrayOfElementsToAdd.length; i < len; i++) {
-    console.log(arrayOfElementsToAdd[i]);
     scene.add(arrayOfElementsToAdd[i]);
   }
 }

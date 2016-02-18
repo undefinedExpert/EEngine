@@ -89,11 +89,12 @@ var core = {
     //TODO: rozwiazac problem z dodawniem wczesniej sprecyzowanego typu dla geometri
     //TODO: Tworzenie wlasnego obiektu na podstawie wlasnych danych, i przypisywanie go automatycznie
     //      Do sceny
-    geometry = make.geometry.cylinder();
-    console.log(geometry);
+    var box = make.geometry('cylinder', 'small');
+
     material = make.material();
-    mesh = make.mesh();
+    mesh = make.mesh(box);
     square = make.mesh.construct.init(square); //init phyx for this object
+
   },
   /**
    * @method cannon
@@ -143,6 +144,7 @@ var core = {
    */
   render: function () {
     renderer.render(scene, camera);
+
   },
   /**
    * @function addMovement
