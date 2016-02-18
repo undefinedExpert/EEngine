@@ -55,7 +55,7 @@ function light() {
 function geometry(type, pickedSize) {
 //TODO: znalezienie sposobu na dostarczanie odpowiednich geometrii
 //TODO: Dodanie najlepiej w osobnym pliku nowych predefiniowanych proporcji dla roznego rodzaju ksztaltow.
-
+//TODO: Ustawic GETTER/SETTER dla klas
 
 
   var shapes = {
@@ -108,11 +108,11 @@ function geometry(type, pickedSize) {
     }
 
     small(){
-      return [5, 5, 5, 32];
+      return [2, 2, 5, 32];
     }
 
     low() {
-      return [5, 5, 5, 32];
+      return [2, 2, 5, 8];
     }
 
     craft(radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength){
