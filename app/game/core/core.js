@@ -12,12 +12,6 @@ import config from './config'; // importing config of core module
 import * as make from './core_helpers';
 
 
-/**
- * helper module.
- */
-
-
-
     //TODO: Req.txt
     //TODO: Wstawienie komentarzy
     //TODO: Stworzenie prototypu ktory by zawieral schemat tworzenia nowego "obiektu" w scenie
@@ -84,13 +78,15 @@ var core = {
 
     light = make.light();
   },
+
+  //TODO: Te funkcje to powinny bys konstruktory, z konsktruktora obiektu
+  // Tworzylo by sie inne obiekty na podstawie wprowadzanych danych etc.
   object: function(){
 
     //TODO: rozwiazac problem z dodawniem wczesniej sprecyzowanego typu dla geometri
     //TODO: Tworzenie wlasnego obiektu na podstawie wlasnych danych, i przypisywanie go automatycznie
     //      Do sceny
     var box = make.geometry('cylinder', 'small');
-
     material = make.material();
     mesh = make.mesh(box);
     square = make.mesh.construct.init(square); //init phyx for this object

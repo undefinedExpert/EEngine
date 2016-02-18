@@ -6,32 +6,33 @@
 import THREE from 'three.js'; // 3D library
 import CANNON from 'cannon'; // Physics Library
 
-function toTitleCase(str)
-{
-  return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+function toTitleCase(str) {
+  return str.replace(/\w\S*/g, function (txt) {
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+  });
 }
 
 /**
-  * @desc Placing scene object into application
-  * @function scene()
-*/
+   * @desc Placing scene object into application
+   * @function scene()
+ */
 function scene() {
   return scene = new THREE.Scene();
 }
 
 /**
-  * @desc Placing camera into scene
-  * @function camera
-  * @param {object} position - set initial position of the camera
-  * @param {number} fov - camera Field of View value
+   * @desc Placing camera into scene
+   * @function camera
+ * @param {object} position - set initial position of the camera
+ * @param {number} fov - camera Field of View value
   * @return bool - camera object
-*/
+ */
 
-function camera(position={x: 0, y: 0, z: 0}, fov=35) {
+function camera(position = {x: 0, y: 0, z: 0}, fov = 35) {
   camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, 1, 10000);
 
   //Setting camera position
-  camera.position.set(position.x,position.y,position.z);
+  camera.position.set(position.x, position.y, position.z);
 
   return camera;
 }
@@ -43,40 +44,156 @@ function light() {
   return light;
 }
 
-function geometry(name, pickedSize) {
+
+/**
+   * @desc Returning a shape of geometry which will be used in mesh create function
+   * @function geometry
+ * @param {string} type - type of currently selected geometry
+ * @param {string} pickedSize - the message to be displayed
+   * @return object - newly created object
+ */
+function geometry(type, pickedSize) {
 //TODO: znalezienie sposobu na dostarczanie odpowiednich geometrii
+//TODO: Dodanie najlepiej w osobnym pliku nowych predefiniowanych proporcji dla roznego rodzaju ksztaltow.
 
 
-  var allSizes = {
-    cylinder: {
-      small: function(){
-        return [5, 5, 20, 32];
-      }
+
+  var shapes = {
+    "cylinder": function(){
+      return new Cylinder(type,pickedSize);
+    },
+    "box": function(){
+      return new Box(type,pickedSize);
     }
   };
-  if(allSizes[name][pickedSize].name === pickedSize){
-    pickedSize = allSizes[name][pickedSize]();
-    console.log(pickedSize);
 
+  //Class which represents types of all geometries
+  class Type{
+    /**
+     * Create a Sizes.
+     * @param {string} type - type value.
+     */
+    constructor(type, size) {
+      type = toTitleCase(type);
+      this.type = type;
+      this.size = size;
+    }
 
+    small(){
+      return [5, 5, 5, 8];
+    }
+
+    low(){
+      return [5, 5, 5, 8];
+    }
+
+    ////Box default arguments
+    //craft(width, height, depth, widthSegments, heightSegments, depthSegments) {
+    //  return new THREE[this.type + 'Geometry'](width, height, depth, widthSegments, heightSegments, depthSegments);
+    //}
+  }
+
+  /**
+   * Class representing a dot.
+   * @extends Type
+   */
+
+  //Prototype of cylinders
+  class Cylinder extends Type {
+    /**
+     * Create a dot.
+     */
+    constructor(type, size) {
+      super(type, size)
+    }
+
+    small(){
+      return [5, 5, 5, 32];
+    }
+
+    low() {
+      return [5, 5, 5, 32];
+    }
+
+    craft(radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength){
+      return new THREE[this.type + 'Geometry'](radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength);
+
+    }
+  }
+
+  class Box extends Type {
+    /**
+     * Create a dot.
+     */
+    constructor(type, size) {
+      super(type, size)
+    }
+
+    small(){
+      return [1, 1, 1, 8, 8, 8];
+    }
+
+    low() {
+      return [1, 1, 1, 1, 1, 1];
+    }
+
+    craft(width, height, depth, widthSegments, heightSegments, depthSegments){
+      return new THREE[this.type + 'Geometry'](width, height, depth, widthSegments, heightSegments, depthSegments);
+
+    }
   }
 
 
+  var allSizes =  shapes[type](type, pickedSize);
 
 
-  name = toTitleCase(name);
+  //var object = allSizes.craft([5, 5, 5, 8]);
 
 
-  function craftGeometry(){
 
+  //var allSizes = {
+  //  cylinder: {
+  //    small: function () {
+  //      return [5, 5, 5, 32];
+  //    },
+  //    low: function () {
+  //      return [5, 5, 5, 8];
+  //    },
+  //    craft: function (radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength) {
+  //      return new THREE[type + 'Geometry'](radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength)
+  //    }
+  //  },
+  //  box: {
+  //    small: function () {
+  //      return [2, 2, 2, 1, 1, 1];
+  //    },
+  //    low: function () {
+  //      return [1, 1, 1, 1, 1, 1];
+  //    },
+  //    craft: function (width, height, depth, widthSegments, heightSegments, depthSegments) {
+  //      return new THREE[type + 'Geometry'](width, height, depth, widthSegments, heightSegments, depthSegments)
+  //    }
+  //  }
+  //};
+
+  //If requested type 'size' match any of sizes (name of a function)
+  if (allSizes[pickedSize].name === pickedSize) {
+    var selected = allSizes[pickedSize]();
   }
-  //Tutaj wykorzystujemy nasza wlasna nazwe jako proporcje THREE, zajebiste rozwiazanie.
-  let craftedGeometry = new THREE[name + 'Geometry'];
-  console.log(new THREE[name + 'Geometry'].apply(this, [5, 5, 20, 32]));
+
+  //Making sure that type is spelled capital uppercase (three.js uses Capitalized letters as geometries, cause they are constructors)
 
 
+
+
+
+  //Cloning special craft method, and adding size arguments for newly created geometry
+  let craftedGeometry = allSizes.craft.apply(allSizes, selected);
+
+  console.log(craftedGeometry);
+
+  //Returning a geometry
   return craftedGeometry;
-
 }
 
 function material() {
@@ -122,7 +239,6 @@ function addObjects(arrayOfElementsToAdd) {
 
 function render() {
   render = new THREE.WebGLRenderer();
-
   render.setSize(window.innerWidth, window.innerHeight);
   render.shadowMap.enabled = true;
   render.setClearColor(0x5081B5);
@@ -130,7 +246,7 @@ function render() {
   return render;
 }
 
-function interaction(button, fn){
+function interaction(button, fn) {
   //Interaction with square button
   button.addEventListener('click', () => {
     fn();
