@@ -3,6 +3,8 @@
  * Ten plik zawiera funkcje ktore sa aktywnie wykorzystywane w naszym pliku core
  *
  * */
+
+"use strict";
 import THREE from 'three.js'; // 3D library
 import CANNON from 'cannon'; // Physics Library
 
@@ -21,10 +23,10 @@ function scene() {
 }
 
 /**
-   * @desc Placing camera into scene
-   * @function camera
- * @param {object} position - set initial position of the camera
- * @param {number} fov - camera Field of View value
+  * @desc Placing camera into scene
+  * @function camera
+  * @param {object} position - set initial position of the camera
+  * @param {number} fov - camera Field of View value
   * @return bool - camera object
  */
 
@@ -55,9 +57,9 @@ function light() {
 function geometry(type, pickedSize) {
 //TODO: znalezienie sposobu na dostarczanie odpowiednich geometrii
 //TODO: Dodanie najlepiej w osobnym pliku nowych predefiniowanych proporcji dla roznego rodzaju ksztaltow.
-//TODO: Ustawic GETTER/SETTER dla klas
+//TODO: Ustawic GETTER/SETTER dla class
 
-
+  //Base shapes which are used to create correct shape from Classes with apropriate prototypes
   var shapes = {
     "cylinder": function(){
       return new Cylinder(type,pickedSize);
@@ -70,8 +72,9 @@ function geometry(type, pickedSize) {
   //Class which represents types of all geometries
   class Type{
     /**
-     * Create a Sizes.
-     * @param {string} type - type value.
+     * @desc Default type of the shape
+     * @param {string} type - Type of selected shape
+     * @param {string} size - Type of selected size
      */
     constructor(type, size) {
       type = toTitleCase(type);
@@ -87,21 +90,14 @@ function geometry(type, pickedSize) {
       return [5, 5, 5, 8];
     }
 
-    ////Box default arguments
-    //craft(width, height, depth, widthSegments, heightSegments, depthSegments) {
-    //  return new THREE[this.type + 'Geometry'](width, height, depth, widthSegments, heightSegments, depthSegments);
-    //}
   }
-
-  /**
-   * Class representing a dot.
-   * @extends Type
-   */
 
   //Prototype of cylinders
   class Cylinder extends Type {
     /**
-     * Create a dot.
+     * @desc Creates cylinder with selected size.
+     * @param {string} type - Type of selected shape
+     * @param {string} size - Type of selected size
      */
     constructor(type, size) {
       super(type, size)
@@ -117,13 +113,14 @@ function geometry(type, pickedSize) {
 
     craft(radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength){
       return new THREE[this.type + 'Geometry'](radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength);
-
     }
   }
 
   class Box extends Type {
     /**
-     * Create a dot.
+     * @desc Creates box with selected size.
+     * @param {string} type - Type of selected shape
+     * @param {string} size - Type of selected size
      */
     constructor(type, size) {
       super(type, size)
@@ -143,38 +140,7 @@ function geometry(type, pickedSize) {
     }
   }
 
-
   var allSizes =  shapes[type](type, pickedSize);
-
-
-  //var object = allSizes.craft([5, 5, 5, 8]);
-
-
-
-  //var allSizes = {
-  //  cylinder: {
-  //    small: function () {
-  //      return [5, 5, 5, 32];
-  //    },
-  //    low: function () {
-  //      return [5, 5, 5, 8];
-  //    },
-  //    craft: function (radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength) {
-  //      return new THREE[type + 'Geometry'](radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength)
-  //    }
-  //  },
-  //  box: {
-  //    small: function () {
-  //      return [2, 2, 2, 1, 1, 1];
-  //    },
-  //    low: function () {
-  //      return [1, 1, 1, 1, 1, 1];
-  //    },
-  //    craft: function (width, height, depth, widthSegments, heightSegments, depthSegments) {
-  //      return new THREE[type + 'Geometry'](width, height, depth, widthSegments, heightSegments, depthSegments)
-  //    }
-  //  }
-  //};
 
   //If requested type 'size' match any of sizes (name of a function)
   if (allSizes[pickedSize].name === pickedSize) {
@@ -183,30 +149,124 @@ function geometry(type, pickedSize) {
 
   //Making sure that type is spelled capital uppercase (three.js uses Capitalized letters as geometries, cause they are constructors)
 
-
-
-
-
   //Cloning special craft method, and adding size arguments for newly created geometry
   let craftedGeometry = allSizes.craft.apply(allSizes, selected);
-
-  console.log(craftedGeometry);
 
   //Returning a geometry
   return craftedGeometry;
 }
 
-function material() {
-  material = new THREE.MeshDepthMaterial({
-    wireframe: true
-  });
 
-  return material;
+/**
+  * @desc Material creator function
+  * @function material
+  * @param {string} type - type of material
+  * @param {object} properties - Proporties of a material
+  * @return bool - object
+*/
+function material(type='basic', properties={wireframe: true}) {
+//TODO: Adding more base materials
+  //Base materials which are use to create new objects from classes
+  var materials = {
+    "basic": function(){
+      return new Material(type,properties);
+    },
+    "depth": function(){
+      return new Material(type,properties);
+    }
+  };
+
+  //Main class
+  class Material{
+    /**
+     * @desc Default constructor of material
+     * @param {string} type - Type of selected shape
+     * @param {object} properties - Type of selected size
+     */
+    constructor(type, properties) {
+      type = toTitleCase(type);
+      this.type = type;
+      this.properties = properties;
+    }
+
+
+    craft(properties){
+      //console.log(new THREE['Mesh' + this.type + 'Material']({wireframe: true}));
+      //Properties are from Constructor
+      return new THREE[['Mesh' + this.type + 'Material']](properties);
+    }
+
+  }
+
+  //Setting specific type with properties to materials
+  var material = materials[type](type, properties);
+
+  //Creating material
+  let craftedMaterial = material.craft.apply(material, [properties]);
+
+  //Returning material
+  return craftedMaterial;
 }
 
-function mesh(cylinder) {
-  mesh = new THREE.Mesh(cylinder, material);
-  mesh.construct = {
+
+function mesh(type, object, material) {
+
+  console.log()
+  var meshes = {
+    basic: function () {
+      return new Mesh(type, object, material);
+    }
+  };
+
+  class Mesh {
+    /**
+     * @desc Default constructor of material
+     * @param {string} type - Type of selected shape
+     * @param {object} properties - Type of selected size
+     */
+    constructor(type, object, material) {
+      type = toTitleCase(type);
+      this.type = type;
+      this.object = object;
+      this.material = material;
+
+    }
+
+
+    craft(type, object, material) {
+      //console.log(new THREE['Mesh' + this.type + 'Material']({wireframe: true}));
+      //Properties are from Constructor
+      return new THREE.Mesh(object, material);
+    }
+
+    shape() {
+      this.shape = new CANNON.Box(new CANNON.Vec3(1, 1, 1));
+      return this.shape;
+    }
+
+    init(name) {
+      name = new CANNON.Body({
+        mass: 1
+      });
+
+      name.shape = this.shape();
+
+      name.angularVelocity.set(0, 0, 0);
+
+      name.angularDamping = 0.5;
+
+      return name;
+    }
+
+  }
+
+
+  var mesh = meshes[type](type, object, material);
+
+
+  var craftedMesh = mesh.craft.apply(Mesh, [type, object, material]);
+
+  craftedMesh.construct = {
     shape: function () {
       this.shape = new CANNON.Box(new CANNON.Vec3(1, 1, 1));
       return this.shape;
@@ -228,7 +288,11 @@ function mesh(cylinder) {
 
   };
 
-  return mesh;
+  //Returning material
+
+  return craftedMesh;
+
+
 }
 
 function addObjects(arrayOfElementsToAdd) {

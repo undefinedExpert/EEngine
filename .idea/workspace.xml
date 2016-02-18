@@ -4,11 +4,13 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/game/core/core.js" line="175" />
+    <bookmark url="file://$PROJECT_DIR$/app/game/core/core.js" line="206" />
+    <bookmark url="file://$PROJECT_DIR$/app/game/core/core_helpers.js" line="73" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c91b8b3f-6a8b-4a9b-9f64-def8c25a1430" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/core/core.js" afterPath="$PROJECT_DIR$/app/game/core/core.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/core/core_helpers.js" afterPath="$PROJECT_DIR$/app/game/core/core_helpers.js" />
     </list>
     <ignored path="electron-boilerplate.iws" />
@@ -29,7 +31,7 @@
     <favorites_list name="electron-boilerplate" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.4006869">
+    <splitter split-orientation="horizontal" split-proportion="0.40984544">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
@@ -45,10 +47,10 @@
           <file leaf-file-name="core.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/game/core/core.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.4808989">
-                  <caret line="88" column="37" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="37" />
+                <state vertical-scroll-proportion="0.62222224">
+                  <caret line="75" column="53" selection-start-line="75" selection-start-column="53" selection-end-line="75" selection-end-column="53" />
                   <folding>
-                    <element signature="e#3067#3170#0" expanded="false" />
+                    <element signature="e#3588#3691#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -81,12 +83,14 @@
           <file leaf-file-name="core_helpers.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/game/core/core_helpers.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.11011236">
-                  <caret line="114" column="24" selection-start-line="114" selection-start-column="24" selection-end-line="114" selection-end-column="24" />
+                <state vertical-scroll-proportion="0.6">
+                  <caret line="195" column="68" selection-start-line="195" selection-start-column="68" selection-end-line="195" selection-end-column="68" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
-                    <element signature="e#3483#3501#0" expanded="false" />
-                    <element signature="e#6047#6062#0" expanded="false" />
+                    <element signature="e#1386#1452#0" expanded="false" />
+                    <element signature="n#Type#0;n#!!block;n#geometry#0" expanded="false" />
+                    <element signature="n#Box#0;n#!!block;n#geometry#0" expanded="false" />
+                    <element signature="e#7627#7642#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -306,7 +310,7 @@
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="TODO_SCOPE" value="fiels" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/game_dev/eliza/app/app.js" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/game_dev/eliza/app/game/core/config.js" />
     <property name="editor.config.accepted" value="true" />
     <property name="js.eslint.nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="js.eslint.eslintPackage" value="C:\Users\Emanuel Slotwinski\AppData\Roaming\npm\node_modules\eslint" />
@@ -399,7 +403,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13435195" sideWeight="0.51901567" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.074074075" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17663817" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12155745" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -426,7 +430,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="12" />
+      <option name="time" value="14" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -444,7 +448,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3067#3170#0" expanded="false" />
+            <element signature="e#3588#3691#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -504,7 +508,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3067#3170#0" expanded="false" />
+            <element signature="e#3588#3691#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -557,7 +561,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3067#3170#0" expanded="false" />
+            <element signature="e#3588#3691#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -713,6 +717,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -720,6 +725,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -792,22 +800,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/game/core/core_helpers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11011236">
-          <caret line="114" column="24" selection-start-line="114" selection-start-column="24" selection-end-line="114" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.6">
+          <caret line="195" column="68" selection-start-line="195" selection-start-column="68" selection-end-line="195" selection-end-column="68" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#3483#3501#0" expanded="false" />
-            <element signature="e#6047#6062#0" expanded="false" />
+            <element signature="e#1386#1452#0" expanded="false" />
+            <element signature="n#Type#0;n#!!block;n#geometry#0" expanded="false" />
+            <element signature="n#Box#0;n#!!block;n#geometry#0" expanded="false" />
+            <element signature="e#7627#7642#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/game/core/core.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4808989">
-          <caret line="88" column="37" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.62222224">
+          <caret line="75" column="53" selection-start-line="75" selection-start-column="53" selection-end-line="75" selection-end-column="53" />
           <folding>
-            <element signature="e#3067#3170#0" expanded="false" />
+            <element signature="e#3588#3691#0" expanded="false" />
           </folding>
         </state>
       </provider>

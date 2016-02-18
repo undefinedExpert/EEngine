@@ -47,8 +47,30 @@ var core = {
     this.init();
 
     //Init all required meshes for scene
-    this.object();
+    var siemanko = this.object({
+      geoType: 'cylinder',
+      geoSize: 'low',
+      materialType: 'basic',
+      materialProps: {
+        wireframe: true
+      },
+      meshType: 'basic'
 
+    });
+
+    var siemanko1 = this.object({
+      geoType: 'box',
+      geoSize: 'low',
+      materialType: 'basic',
+      materialProps: {
+        wireframe: true
+      },
+      meshType: 'basic'
+
+    });
+
+
+    console.log(siemanko);
     renderer = make.render();
 
     var button = document.getElementById('addSpeed');
@@ -60,7 +82,7 @@ var core = {
     controls = new OrbitControls(camera);
 
 
-    make.add([mesh, light]);
+    make.add([siemanko, siemanko1, light]);
     /*
      * Init other methtods
      * cannon() - initialize configurations for physics (cannon.js)
@@ -81,16 +103,25 @@ var core = {
 
   //TODO: Te funkcje to powinny bys konstruktory, z konsktruktora obiektu
   // Tworzylo by sie inne obiekty na podstawie wprowadzanych danych etc.
-  object: function(){
+  object: function(props){
 
     //TODO: rozwiazac problem z dodawniem wczesniej sprecyzowanego typu dla geometri
     //TODO: Tworzenie wlasnego obiektu na podstawie wlasnych danych, i przypisywanie go automatycznie
     //      Do sceny
-    var box = make.geometry('cylinder', 'small');
-    material = make.material();
-    mesh = make.mesh(box);
-    square = make.mesh.construct.init(square); //init phyx for this object
 
+
+    var box = make.geometry(props.geoType, props.geoSize);
+
+
+
+    material = make.material(props.materialType, props.materialProps);
+
+
+     mesh = make.mesh(props.meshType, box, material);
+
+    square = mesh.construct.init(square); //init phyx for this object
+
+    return mesh;
   },
   /**
    * @method cannon
