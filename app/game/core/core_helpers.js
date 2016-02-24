@@ -211,7 +211,7 @@ function material(type='basic', properties={wireframe: true}) {
 
 function mesh(type, object, material) {
 
-  console.log()
+
   var meshes = {
     basic: function () {
       return new Mesh(type, object, material);

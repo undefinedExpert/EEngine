@@ -18,6 +18,27 @@ import * as make from './core_helpers';
     //TODO: Zaplanowanie wszystkich taskow, oraz celow ktore chce osiagnac i zrealizowac.
 
     //Three.js
+
+/** Class representing a GameObject. */
+
+class GameObject {
+    /**
+     * Create a GameObject.
+     */
+    constructor(props) {
+      this.name = name;
+      this.props = props;
+
+    }
+
+
+}
+
+
+
+
+
+
 var camera, scene, renderer;
 
 //Cannon (physic engine)
@@ -47,42 +68,42 @@ var core = {
     this.init();
 
     //Init all required meshes for scene
-    var siemanko = this.object({
+    var object1 = this.object({
       geoType: 'cylinder',
       geoSize: 'low',
       materialType: 'basic',
       materialProps: {
         wireframe: true
       },
-      meshType: 'basic'
-
+      meshType: 'basic',
+      phyxName: 'objectPhyx'
     });
 
-    var siemanko1 = this.object({
+    //TODO: do phyx for each object
+    var object2 = this.object({
       geoType: 'box',
       geoSize: 'low',
       materialType: 'basic',
       materialProps: {
-        wireframe: true
+        wireframe: false
       },
-      meshType: 'basic'
-
+      meshType: 'basic',
+      phyxName: 'object2'
     });
 
-
-    console.log(siemanko);
     renderer = make.render();
 
     var button = document.getElementById('addSpeed');
     speedButton = make.interaction(button, function () {
-      that.addMovement(square, 5);
+      console.log(object2);
+      that.addMovement(object2, 5);
     });
 
 
     controls = new OrbitControls(camera);
 
 
-    make.add([siemanko, siemanko1, light]);
+    make.add([object1, object2, light]);
     /*
      * Init other methtods
      * cannon() - initialize configurations for physics (cannon.js)
@@ -109,6 +130,7 @@ var core = {
     //TODO: Tworzenie wlasnego obiektu na podstawie wlasnych danych, i przypisywanie go automatycznie
     //      Do sceny
 
+    let name = props.phyxName;
 
     var box = make.geometry(props.geoType, props.geoSize);
 
@@ -117,25 +139,52 @@ var core = {
     material = make.material(props.materialType, props.materialProps);
 
 
-     mesh = make.mesh(props.meshType, box, material);
+    mesh = make.mesh(props.meshType, box, material);
 
-    square = mesh.construct.init(square); //init phyx for this object
+    props.phyxName = mesh.construct.init(props.phyxName); //init phyx for this object
 
+    this.cannon(function(){
+
+      //console.log( props.phyxName.angularVelocity);
+      let phyx = {};
+      phyx.name = name;
+      phyx.add = world.addBody(props.phyxName);
+      phyx.mesh =  props.phyxName;
+      return phyx;
+    });
+
+
+
+
+    console.log(props.phyxName);
+    console.log(mesh);
     return mesh;
   },
   /**
    * @method cannon
    * @desc Initialize whole physics for scene and it's objects
    */
-  cannon: function () {
+  cannon: function (cb) {
     //Cannon init
     world = new CANNON.World();
     world.gravity.set(0, 0, 0);
     world.broadphase = new CANNON.NaiveBroadphase();
     world.solver.iterations = 10;
 
+    //
+    //world.addBody(square);
+    if(typeof(cb) !== 'undefined'){
+      cb();
 
-    world.addBody(square);
+//      console.log(element);
+      this.updatePhysics(function(){
+
+        cb().mesh.position.copy(cb().name);
+        cb().mesh.quaternion.copy(cb().name);
+
+      });
+    }
+
   },
   /**
    * @method animate
@@ -153,7 +202,7 @@ var core = {
    * @desc CommonJS function which updates physics of all objects and world
    * @see {@link animate, @link cannon}
    */
-  updatePhysics: function () {
+  updatePhysics: function (cb) {
     // Step the physics world
     world.step(timeStep);
 
@@ -161,8 +210,11 @@ var core = {
     /*
      * Tutaj aktualizuje pozycje mecha z wartoscia ktora jest sprecyzowana w core.cannon()
      * */
-    mesh.position.copy(square.position);
-    mesh.quaternion.copy(square.quaternion);
+
+
+    if(typeof(cb) !== 'undefined'){
+      cb();
+    }
   },
   /**
    * @method render
@@ -181,7 +233,7 @@ var core = {
    */
   addMovement: function (element, force = 0) {
 
-    console.log(element);
+    console.log(this.scener.object);
     let velocity = element.angularVelocity;
     velocity.y = velocity.y + force;
 
@@ -203,5 +255,22 @@ var core = {
 
 
 };
+
+
+var newObject = new GameObject();
+
+newObject.props =  core.object({
+  geoType: 'box',
+  geoSize: 'low',
+  materialType: 'basic',
+  materialProps: {
+    wireframe: false
+  },
+  meshType: 'basic',
+  phyxName: 'siemanko1'
+
+});
+
+//console.log(newObject);
 
 export default core;
