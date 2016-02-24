@@ -121,9 +121,12 @@ var core = {
      * animate() - initialize animation progress function with in all required function
      * */
 
-    this.cannon();
-    this.updatePhysics(object2);
-    this.animate(object2);
+
+
+    //fizyka
+    this.cannon([object1 , object2]);
+    //mesh
+    this.animate([object1 , object2]);
 
   },
   init: function () {
@@ -158,16 +161,6 @@ var core = {
     props.phyxName = props.meshName.construct.init(props.phyxName); //init phyx for this object
 
     //adding object to world?
-    this.cannon(function(){
-
-      //console.log( props.phyxName.angularVelocity);
-      var phyx = {};
-      phyx.name = name;
-      phyx.add = world.addBody(props.phyxName);
-      phyx.mesh =  props.phyxName;
-      return phyx;
-    });
-
 
     container.phyx = props.phyxName;
     return container;
@@ -176,34 +169,30 @@ var core = {
    * @method cannon
    * @desc Initialize whole physics for scene and it's objects
    */
-  cannon: function (cb) {
+  cannon: function (items) {
     //Cannon init
     world = new CANNON.World();
     world.gravity.set(0, 0, 0);
     world.broadphase = new CANNON.NaiveBroadphase();
     world.solver.iterations = 10;
 
-    //
+
+
     //world.addBody(square);
-    if(typeof(cb) !== 'undefined'){
-      //Adding newly created meshes to cannon.js world
-
-      world.addBody(cb().mesh);
-      console.log(world.bodies);
-
-//      console.log(element);
-
-    }
-
+    //Tutaj trzeba dodac fizyczne "cialo" na ktorym sie odbywa manipulacja do swiata
+    items.forEach(function(item){
+      console.log(item);
+      world.addBody(item.phyx);
+    })
   },
   /**
    * @method animate
    * @desc Three.js function which updates scene
    * @see {@link init}
    */
-  animate: function (object2) {
-    requestAnimationFrame(this.animate.bind(this, object2));
-    this.updatePhysics(object2);
+  animate: function (elements) {
+    requestAnimationFrame(this.animate.bind(this, elements));
+    this.updatePhysics(elements);
     this.render();
   },
   /**
@@ -211,15 +200,18 @@ var core = {
    * @desc CommonJS function which updates physics of all objects and world
    * @see {@link animate, @link cannon}
    */
-  updatePhysics: function (object2) {
+  updatePhysics: function (items) {
     // Step the physics world
 
 
     world.step(timeStep);
 
-    object2.mesh.position.copy(object2.phyx.position);
-    object2.mesh.quaternion.copy(object2.phyx.quaternion);
-    // Copy coordinates from Cannon.js to Three.js
+    //Tutaj dodajemy powloke (mesh) obiektu ktorym chcemy manipulowac
+    items.forEach(function(item){
+      item.mesh.position.copy(item.phyx.position);
+      item.mesh.quaternion.copy(item.phyx.quaternion);
+    });
+
 
 
   },
@@ -240,11 +232,9 @@ var core = {
    */
   addMovement: function (element, force = 0) {
 
-    console.log(element.phyx);
     let velocity = element.phyx.angularVelocity;
     velocity.y = velocity.y + force;
 
-    console.log(element);
 
   },
   onDocumentMouseMove: function (event) {
@@ -264,22 +254,6 @@ var core = {
 
 
 };
-
-
-var newObject = new GameObject();
-
-newObject.props =  core.object({
-  geoType: 'box',
-  geoSize: 'low',
-  materialType: 'basic',
-  materialProps: {
-    wireframe: false
-  },
-  meshType: 'basic',
-  phyxName: 'siemanko1'
-
-});
-
 //console.log(newObject);
 
 export default core;
