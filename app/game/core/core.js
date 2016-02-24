@@ -88,9 +88,11 @@ var core = {
         wireframe: false
       },
       meshType: 'basic',
+      meshName: 'object2',
       phyxName: 'object2Phyx'
     });
 
+    console.log(object2);
     renderer = make.render();
 
     var button = document.getElementById('addSpeed');
@@ -112,7 +114,7 @@ var core = {
 
 
     //tutdaj dodaje meshes
-    make.add([object1, object2, light]);
+    make.add([object1.mesh, object2.mesh, light]);
     /*
      * Init other methtods
      * cannon() - initialize configurations for physics (cannon.js)
@@ -140,33 +142,35 @@ var core = {
     //TODO: Tworzenie wlasnego obiektu na podstawie wlasnych danych, i przypisywanie go automatycznie
     //      Do sceny
 
+    var container = {};
     let name = props.phyxName;
 
     var box = make.geometry(props.geoType, props.geoSize);
 
-
-
     material = make.material(props.materialType, props.materialProps);
 
 
-    mesh = make.mesh(props.meshType, box, material);
+    props.meshName = make.mesh(props.meshType, box, material);
 
+    //container
+    container.mesh = props.meshName;
 
+    props.phyxName = props.meshName.construct.init(props.phyxName); //init phyx for this object
 
-    props.phyxName = mesh.construct.init(props.phyxName); //init phyx for this object
-
-    mesh.phyx = props.phyxName;
+    //adding object to world?
     this.cannon(function(){
 
       //console.log( props.phyxName.angularVelocity);
-      let phyx = {};
+      var phyx = {};
       phyx.name = name;
       phyx.add = world.addBody(props.phyxName);
       phyx.mesh =  props.phyxName;
       return phyx;
     });
 
-    return mesh;
+
+    container.phyx = props.phyxName;
+    return container;
   },
   /**
    * @method cannon
@@ -197,9 +201,9 @@ var core = {
    * @desc Three.js function which updates scene
    * @see {@link init}
    */
-  animate: function () {
-    requestAnimationFrame(this.animate.bind(this));
-    this.updatePhysics();
+  animate: function (object2) {
+    requestAnimationFrame(this.animate.bind(this, object2));
+    this.updatePhysics(object2);
     this.render();
   },
   /**
@@ -207,16 +211,16 @@ var core = {
    * @desc CommonJS function which updates physics of all objects and world
    * @see {@link animate, @link cannon}
    */
-  updatePhysics: function () {
+  updatePhysics: function (object2) {
     // Step the physics world
 
 
     world.step(timeStep);
 
-
+    object2.mesh.position.copy(object2.phyx.position);
+    object2.mesh.quaternion.copy(object2.phyx.quaternion);
     // Copy coordinates from Cannon.js to Three.js
-    mesh.position.copy(mesh.phyx.position);
-    mesh.quaternion.copy(mesh.phyx.quaternion);
+
 
   },
   /**
@@ -236,9 +240,11 @@ var core = {
    */
   addMovement: function (element, force = 0) {
 
-
+    console.log(element.phyx);
     let velocity = element.phyx.angularVelocity;
     velocity.y = velocity.y + force;
+
+    console.log(element);
 
   },
   onDocumentMouseMove: function (event) {
