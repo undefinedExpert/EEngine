@@ -25,8 +25,8 @@ function scene() {
 /**
   * @desc Placing camera into scene
   * @function camera
-  * @param {object} position - set initial position of the camera
-  * @param {number} fov - camera Field of View value
+ * @param {object} position - set initial position of the camera
+ * @param {number} fov - camera Field of View value
   * @return bool - camera object
  */
 
@@ -46,7 +46,6 @@ function light() {
   return light;
 }
 
-
 /**
    * @desc Returning a shape of geometry which will be used in mesh create function
    * @function geometry
@@ -61,16 +60,19 @@ function geometry(type, pickedSize) {
 
   //Base shapes which are used to create correct shape from Classes with apropriate prototypes
   var shapes = {
-    "cylinder": function(){
-      return new Cylinder(type,pickedSize);
+    "cylinder": function () {
+      return new Cylinder(type, pickedSize);
     },
-    "box": function(){
-      return new Box(type,pickedSize);
+    "box": function () {
+      return new Box(type, pickedSize);
+    },
+    "plane": function(){
+      return new Plane(type, pickedSize);
     }
   };
 
   //Class which represents types of all geometries
-  class Type{
+  class Type {
     /**
      * @desc Default type of the shape
      * @param {string} type - Type of selected shape
@@ -82,11 +84,11 @@ function geometry(type, pickedSize) {
       this.size = size;
     }
 
-    small(){
+    small() {
       return [5, 5, 5, 8];
     }
 
-    low(){
+    low() {
       return [5, 5, 5, 8];
     }
 
@@ -103,7 +105,7 @@ function geometry(type, pickedSize) {
       super(type, size)
     }
 
-    small(){
+    small() {
       return [2, 2, 5, 32];
     }
 
@@ -111,7 +113,7 @@ function geometry(type, pickedSize) {
       return [2, 2, 5, 8];
     }
 
-    craft(radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength){
+    craft(radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength) {
       return new THREE[this.type + 'Geometry'](radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength);
     }
   }
@@ -126,7 +128,7 @@ function geometry(type, pickedSize) {
       super(type, size)
     }
 
-    small(){
+    small() {
       return [1, 1, 1, 8, 8, 8];
     }
 
@@ -134,13 +136,37 @@ function geometry(type, pickedSize) {
       return [1, 1, 1, 1, 1, 1];
     }
 
-    craft(width, height, depth, widthSegments, heightSegments, depthSegments){
+    craft(width, height, depth, widthSegments, heightSegments, depthSegments) {
       return new THREE[this.type + 'Geometry'](width, height, depth, widthSegments, heightSegments, depthSegments);
 
     }
   }
 
-  var allSizes =  shapes[type](type, pickedSize);
+  class Plane extends Type {
+    /**
+     * @desc Creates box with selected size.
+     * @param {string} type - Type of selected shape
+     * @param {string} size - Type of selected size
+     */
+    constructor(type, size) {
+      super(type, size)
+    }
+
+    small() {
+      return [5, 20, 32];
+    }
+
+    low() {
+      return [5, 5, 8];
+    }
+
+    craft(width, height, widthSegments, heightSegments) {
+      return new THREE[this.type + 'Geometry'](width, height, widthSegments, heightSegments);
+
+    }
+  }
+
+  var allSizes = shapes[type](type, pickedSize);
 
   //If requested type 'size' match any of sizes (name of a function)
   if (allSizes[pickedSize].name === pickedSize) {
@@ -158,26 +184,26 @@ function geometry(type, pickedSize) {
 
 
 /**
-  * @desc Material creator function
-  * @function material
-  * @param {string} type - type of material
-  * @param {object} properties - Proporties of a material
-  * @return bool - object
-*/
-function material(type='basic', properties={wireframe: true}) {
+   * @desc Material creator function
+   * @function material
+ * @param {string} type - type of material
+ * @param {object} properties - Proporties of a material
+   * @return bool - object
+ */
+function material(type = 'basic', properties = {wireframe: true}) {
 //TODO: Adding more base materials
   //Base materials which are use to create new objects from classes
   var materials = {
-    "basic": function(){
-      return new Material(type,properties);
+    "basic": function () {
+      return new Material(type, properties);
     },
-    "depth": function(){
-      return new Material(type,properties);
+    "depth": function () {
+      return new Material(type, properties);
     }
   };
 
   //Main class
-  class Material{
+  class Material {
     /**
      * @desc Default constructor of material
      * @param {string} type - Type of selected shape
@@ -190,7 +216,7 @@ function material(type='basic', properties={wireframe: true}) {
     }
 
 
-    craft(properties){
+    craft(properties) {
       //console.log(new THREE['Mesh' + this.type + 'Material']({wireframe: true}));
       //Properties are from Constructor
       return new THREE[['Mesh' + this.type + 'Material']](properties);
@@ -262,8 +288,6 @@ function mesh(type, object, material) {
 
 
   var mesh = meshes[type](type, object, material);
-
-
   var craftedMesh = mesh.craft.apply(Mesh, [type, object, material]);
 
   craftedMesh.construct = {
@@ -297,7 +321,7 @@ function mesh(type, object, material) {
 
 function addObjects(arrayOfElementsToAdd) {
   for (var i = 0, len = arrayOfElementsToAdd.length; i < len; i++) {
-    scene.add(arrayOfElementsToAdd[i]);
+    scene.add(arrayOfElementsToAdd[i].mesh);
   }
 }
 

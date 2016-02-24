@@ -35,3 +35,18 @@ export {
  */
   GameObjects as GameObjects
 }
+
+//Usage sample, still not included in project
+//newObject.props = {
+//  geoType: 'box',
+//  geoSize: 'small',
+//  materialType: 'basic',
+//  materialProps: {
+//    wireframe: false
+//  },
+//  meshType: 'basic',
+//  phyxName: 'siemanko1'
+//
+//};
+//
+//var obiekty = this.object(newObject.props);

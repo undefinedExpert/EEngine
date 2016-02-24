@@ -5,32 +5,16 @@
 import THREE from 'three.js'; // 3D library
 import CANNON from 'cannon'; // Physics Library
 var OrbitControls = require('three-orbit-controls')(THREE);
-
-
-
-
 import config from './config'; // importing config of core module
 
 import * as make from './core_helpers';
 import {GameObjects} from './GameObjectClass';
 
-
-    //TODO: Req.txt
-    //TODO: Wstawienie komentarzy
-    //TODO: Stworzenie prototypu ktory by zawieral schemat tworzenia nowego "obiektu" w scenie
-    //TODO: Zaplanowanie wszystkich taskow, oraz celow ktore chce osiagnac i zrealizowac.
-
-    //Three.js
-
-
-
-
-
 var camera, scene, renderer;
 
 //Cannon (physic engine)
-var geometry, material, mesh, light, speedButton, controls;
-var world, mass, square, shape, timeStep = 1 / 60;
+var  material, light, speedButton, controls;
+var world, timeStep = 1 / 60;
 var mouseX = 0, mouseY = 0;
 var windowHalfY, windowHalfX;
 
@@ -39,7 +23,7 @@ var core = {
    * @method init
    * @desc Init whole scene with assets
    */
-  scener: function (callback) {
+  scener: function () {
     let that = this;
     //W tej funkcji bede wczytywal poziomy
     //Oraz dodawal wszystkie elementy potrzebne do importu takiej sceny, obiekty itd.
@@ -54,46 +38,50 @@ var core = {
     //Init all basic functions which are create scene an so
     this.init();
 
-    var newObject = new GameObjects();
+    var objectsListToRender = [];
 
-    newObject.props = {
-      geoType: 'box',
-      geoSize: 'small',
-      materialType: 'basic',
-      materialProps: {
-        wireframe: false
-      },
-      meshType: 'basic',
-      phyxName: 'siemanko1'
+
+    var objectSet = {
+      object1: that.object({
+        geoType: 'cylinder',
+        geoSize: 'low',
+        materialType: 'basic',
+        materialProps: {
+          wireframe: true
+        },
+        meshType: 'basic',
+        phyxName: 'objectPhyx'
+      }),
+      object2: that.object({
+        geoType: 'box',
+        geoSize: 'low',
+        materialType: 'basic',
+        materialProps: {
+          wireframe: false
+        },
+        meshType: 'basic',
+        meshName: 'object2',
+        phyxName: 'object2Phyx'
+      }),
+      object3: that.object({
+        geoType: 'box',
+        geoSize: 'small',
+        materialType: 'basic',
+        materialProps: {
+          wireframe: true
+        },
+        meshType: 'basic',
+        meshName: 'object3',
+        phyxName: 'object3Phyx'
+      })
 
     };
 
-    var obiekty = this.object(newObject.props);
 
-    //Init all required meshes for scene
-    var object1 = this.object({
-      geoType: 'cylinder',
-      geoSize: 'low',
-      materialType: 'basic',
-      materialProps: {
-        wireframe: true
-      },
-      meshType: 'basic',
-      phyxName: 'objectPhyx'
-    });
+    //Object manipulations
+    objectSet.object2.phyx.position.set(2,  2, 0);
+    console.log(objectSet.object2.mesh.position);
 
-    //TODO: do phyx for each object
-    var object2 = this.object({
-      geoType: 'box',
-      geoSize: 'low',
-      materialType: 'basic',
-      materialProps: {
-        wireframe: false
-      },
-      meshType: 'basic',
-      meshName: 'object2',
-      phyxName: 'object2Phyx'
-    });
 
 
     //init render
@@ -102,14 +90,21 @@ var core = {
     //Adding interaction to button
     var button = document.getElementById('addSpeed');
     speedButton = make.interaction(button, function () {
-      that.addMovement(object1, 5);
+      that.addMovement(objectSet.object2, 5);
     });
 
     //init mouse controls
     controls = new OrbitControls(camera);
 
-    //tutdaj dodaje meshes
-    make.add([object1.mesh, object2.mesh, light]);
+    //Adding all object into array
+    for(var key in objectSet){
+      let name = objectSet[key];
+      objectsListToRender.push(name);
+    }
+
+    //Adding object to scene using custom method
+    make.add(objectsListToRender);
+   // make.add([objectSet.object1.mesh, objectSet.object2.mesh, light]);
 
 
     /*
@@ -118,9 +113,9 @@ var core = {
      * animate() - initialize animation progress function with in all required function
      * */
     //fizyka
-    this.cannon([object1 , object2]);
+    this.cannon(objectsListToRender);
     //mesh
-    this.animate([object1 , object2]);
+    this.animate(objectsListToRender);
 
   },
   init: function () {
@@ -130,7 +125,6 @@ var core = {
 
     light = make.light();
   },
-
   //TODO: Te funkcje to powinny bys konstruktory, z konsktruktora obiektu
   // Tworzylo by sie inne obiekty na podstawie wprowadzanych danych etc.
   object: function(props){
@@ -234,6 +228,5 @@ var core = {
     window.addEventListener('resize', this.onWindowResize, false);
   }
 };
-
 
 export default core;
