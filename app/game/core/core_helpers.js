@@ -1,7 +1,7 @@
 /*
  *
  * Ten plik zawiera funkcje ktore sa aktywnie wykorzystywane w naszym pliku core
- *
+ * TODO: Rozibice tego pliku na mniejsze czesci
  * */
 
 "use strict";

@@ -40,6 +40,12 @@ var core = {
     //Init all basic functions which are create scene an so
     this.init();
 
+
+    //TODO: Latwiejsze dodawanie swiatel do widoku
+    //TODO: Cienie dla obiektow/swiatel
+    //TODO: Dodawanie obiektow z prototypu
+    //TODO: Stworzenie obiektu 'grunt' ktory przyjmowal by cienie innych obiektow
+    //TODO: Rozbicie tego pliku na mniejsze pliki
     var objectsListToRender = [];
 
 
