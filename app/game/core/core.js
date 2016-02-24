@@ -27,17 +27,24 @@ class GameObject {
      */
     constructor(props) {
       this.name = name;
-      this.props = props;
 
+      this.props = {
+        geoType: 'box',
+        geoSize: 'low',
+        materialType: 'basic',
+        materialProps: {
+          wireframe: false
+        },
+        meshType: 'basic',
+        meshName: 'object2',
+        phyxName: 'object2Phyx'
+      };
+
+      this.props = props;
     }
 
 
 }
-
-
-
-
-
 
 var camera, scene, renderer;
 
@@ -67,6 +74,20 @@ var core = {
     //Init all basic functions which are create scene an so
     this.init();
 
+    var newObject = new GameObject();
+
+    newObject.props =  this.object({
+      geoType: 'box',
+      geoSize: 'low',
+      materialType: 'basic',
+      materialProps: {
+        wireframe: false
+      },
+      meshType: 'basic',
+      phyxName: 'siemanko1'
+
+    });
+
     //Init all required meshes for scene
     var object1 = this.object({
       geoType: 'cylinder',
@@ -92,21 +113,16 @@ var core = {
       phyxName: 'object2Phyx'
     });
 
-    console.log(object2);
+
     renderer = make.render();
 
+
+
+    //Adding interaction to button
     var button = document.getElementById('addSpeed');
 
-    //a tutaj pracuje na'fizyce' obiektu
-    /*
-    * co nalezy zrobic aby zaktualizowac fizyke?
-    * >dodac fizyke do mesha
-    * >ma
-    * */
-
-
     speedButton = make.interaction(button, function () {
-      that.addMovement(object2, 5);
+      that.addMovement(object1, 5);
     });
 
 
@@ -141,28 +157,24 @@ var core = {
   // Tworzylo by sie inne obiekty na podstawie wprowadzanych danych etc.
   object: function(props){
 
-    //TODO: rozwiazac problem z dodawniem wczesniej sprecyzowanego typu dla geometri
-    //TODO: Tworzenie wlasnego obiektu na podstawie wlasnych danych, i przypisywanie go automatycznie
-    //      Do sceny
-
+    //init materials to build mesh
     var container = {};
-    let name = props.phyxName;
-
     var box = make.geometry(props.geoType, props.geoSize);
-
     material = make.material(props.materialType, props.materialProps);
 
-
+    //building up mesh from options
     props.meshName = make.mesh(props.meshType, box, material);
 
-    //container
+    //Dodawanie mecha do proporcji zwrotnych
     container.mesh = props.meshName;
 
+    //Adding phyx to this mesh
     props.phyxName = props.meshName.construct.init(props.phyxName); //init phyx for this object
 
-    //adding object to world?
-
+    //Dodawanie phyx do proporcji zwrotnych
     container.phyx = props.phyxName;
+
+    //return object mesh with phyx
     return container;
   },
   /**
@@ -176,14 +188,12 @@ var core = {
     world.broadphase = new CANNON.NaiveBroadphase();
     world.solver.iterations = 10;
 
-
-
-    //world.addBody(square);
     //Tutaj trzeba dodac fizyczne "cialo" na ktorym sie odbywa manipulacja do swiata
     items.forEach(function(item){
       console.log(item);
       world.addBody(item.phyx);
     })
+
   },
   /**
    * @method animate
@@ -202,8 +212,6 @@ var core = {
    */
   updatePhysics: function (items) {
     // Step the physics world
-
-
     world.step(timeStep);
 
     //Tutaj dodajemy powloke (mesh) obiektu ktorym chcemy manipulowac
@@ -211,8 +219,6 @@ var core = {
       item.mesh.position.copy(item.phyx.position);
       item.mesh.quaternion.copy(item.phyx.quaternion);
     });
-
-
 
   },
   /**
@@ -248,12 +254,8 @@ var core = {
   control: function () {
     //document.addEventListener( 'mousemove', this.onDocumentMouseMove, false );
     window.addEventListener('resize', this.onWindowResize, false);
-
-
   }
-
-
 };
-//console.log(newObject);
+
 
 export default core;

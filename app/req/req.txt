@@ -1,7 +1,8 @@
 Milestone 0
 TODO: Stworzenie podstawowych funkcji ktore bede mogl powszechnie wykorzystywac podczas
 tworzenia bardziej rozleglych scen. Zalicza sie do tego miedzy innymi:
-- Dodawanie obiektu do scen z opdpowiednia fizyka
+- Dodawanie obiektu do scen z opdpowiednia fizyka //done
+- Poprawa struktury core.js
 - Dodawanie komponentow UI
 - Proste dodawanie swiatel
 - Stworzenie biblioteki materialow
