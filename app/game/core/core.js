@@ -76,9 +76,9 @@ var core = {
 
     var newObject = new GameObject();
 
-    newObject.props =  this.object({
+    newObject.props = {
       geoType: 'box',
-      geoSize: 'low',
+      geoSize: 'small',
       materialType: 'basic',
       materialProps: {
         wireframe: false
@@ -86,7 +86,12 @@ var core = {
       meshType: 'basic',
       phyxName: 'siemanko1'
 
-    });
+    };
+
+    var obiekty = this.object(newObject.props);
+
+
+    console.log();
 
     //Init all required meshes for scene
     var object1 = this.object({
@@ -129,8 +134,9 @@ var core = {
     controls = new OrbitControls(camera);
 
 
+    console.log(obiekty);
     //tutdaj dodaje meshes
-    make.add([object1.mesh, object2.mesh, light]);
+    make.add([object1.mesh, object2.mesh, obiekty.mesh, light]);
     /*
      * Init other methtods
      * cannon() - initialize configurations for physics (cannon.js)
