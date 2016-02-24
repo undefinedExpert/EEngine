@@ -5,11 +5,11 @@
   </component>
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/app/game/core/core_helpers.js" line="75" />
-    <bookmark url="file://$PROJECT_DIR$/app/game/core/core.js" line="251" />
+    <bookmark url="file://$PROJECT_DIR$/app/game/core/core.js" line="293" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c91b8b3f-6a8b-4a9b-9f64-def8c25a1430" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/core/config.js" afterPath="$PROJECT_DIR$/app/game/core/config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/core/core.js" afterPath="$PROJECT_DIR$/app/game/core/core.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/core/core_helpers.js" afterPath="$PROJECT_DIR$/app/game/core/core_helpers.js" />
     </list>
@@ -57,19 +57,17 @@
           <file leaf-file-name="core.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/game/core/core.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.20306513">
-                  <caret line="106" column="31" selection-start-line="106" selection-start-column="31" selection-end-line="106" selection-end-column="31" />
+                <state vertical-scroll-proportion="0.3234245">
+                  <caret line="187" column="4" selection-start-line="187" selection-start-column="4" selection-end-line="187" selection-end-column="4" />
                   <folding>
-                    <element signature="e#4907#5266#0" expanded="false" />
-                    <element signature="e#5270#5372#0" expanded="false" />
-                    <element signature="e#5404#5524#0" expanded="false" />
-                    <element signature="e#5528#5680#0" expanded="false" />
-                    <element signature="e#5715#5996#0" expanded="false" />
-                    <element signature="e#6000#6098#0" expanded="false" />
-                    <element signature="e#6167#6389#0" expanded="false" />
-                    <element signature="e#6435#6529#0" expanded="false" />
-                    <element signature="e#6571#6753#0" expanded="false" />
-                    <element signature="e#6778#6931#0" expanded="false" />
+                    <element signature="e#5931#6290#0" expanded="false" />
+                    <element signature="e#6294#6396#0" expanded="false" />
+                    <element signature="e#6639#6791#0" expanded="false" />
+                    <element signature="e#7111#7209#0" expanded="false" />
+                    <element signature="e#7278#7500#0" expanded="false" />
+                    <element signature="e#7546#7640#0" expanded="false" />
+                    <element signature="e#7682#7864#0" expanded="false" />
+                    <element signature="e#7889#8042#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -78,7 +76,7 @@
           <file leaf-file-name="threejs_mousepick.html" pinned="false" current-in-tab="false">
             <entry file="file://$USER_HOME$/Downloads/schteppe-cannon.js-v0.6.2-60-g748afef (1)/schteppe-cannon.js-748afef/examples/threejs_mousepick.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-7.660714">
+                <state vertical-scroll-proportion="0.0">
                   <caret line="288" column="59" selection-start-line="288" selection-start-column="59" selection-end-line="288" selection-end-column="59" />
                   <folding>
                     <element signature="e#1130#4188#0" expanded="false" />
@@ -117,11 +115,11 @@
           <file leaf-file-name="core_helpers.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/game/core/core_helpers.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="1.24291">
-                  <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.5985222">
+                  <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
-                    <element signature="e#8720#8735#0" expanded="false" />
+                    <element signature="e#8797#8812#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -277,6 +275,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -377,7 +376,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -479,14 +477,14 @@
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13962065" sideWeight="0.45967743" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13962065" sideWeight="0.4556962" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3346191" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1756885" sideWeight="0.50842994" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13962065" sideWeight="0.5403226" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17552182" sideWeight="0.5126449" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13962065" sideWeight="0.5443038" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1756885" sideWeight="0.4915701" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17552182" sideWeight="0.4873551" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12155745" sideWeight="0.49367756" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12155745" sideWeight="0.4915701" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -564,16 +562,14 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#4907#5266#0" expanded="false" />
-            <element signature="e#5270#5372#0" expanded="false" />
-            <element signature="e#5404#5524#0" expanded="false" />
-            <element signature="e#5528#5680#0" expanded="false" />
-            <element signature="e#5715#5996#0" expanded="false" />
-            <element signature="e#6000#6098#0" expanded="false" />
-            <element signature="e#6167#6389#0" expanded="false" />
-            <element signature="e#6435#6529#0" expanded="false" />
-            <element signature="e#6571#6753#0" expanded="false" />
-            <element signature="e#6778#6931#0" expanded="false" />
+            <element signature="e#5931#6290#0" expanded="false" />
+            <element signature="e#6294#6396#0" expanded="false" />
+            <element signature="e#6639#6791#0" expanded="false" />
+            <element signature="e#7111#7209#0" expanded="false" />
+            <element signature="e#7278#7500#0" expanded="false" />
+            <element signature="e#7546#7640#0" expanded="false" />
+            <element signature="e#7682#7864#0" expanded="false" />
+            <element signature="e#7889#8042#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -626,16 +622,14 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#4907#5266#0" expanded="false" />
-            <element signature="e#5270#5372#0" expanded="false" />
-            <element signature="e#5404#5524#0" expanded="false" />
-            <element signature="e#5528#5680#0" expanded="false" />
-            <element signature="e#5715#5996#0" expanded="false" />
-            <element signature="e#6000#6098#0" expanded="false" />
-            <element signature="e#6167#6389#0" expanded="false" />
-            <element signature="e#6435#6529#0" expanded="false" />
-            <element signature="e#6571#6753#0" expanded="false" />
-            <element signature="e#6778#6931#0" expanded="false" />
+            <element signature="e#5931#6290#0" expanded="false" />
+            <element signature="e#6294#6396#0" expanded="false" />
+            <element signature="e#6639#6791#0" expanded="false" />
+            <element signature="e#7111#7209#0" expanded="false" />
+            <element signature="e#7278#7500#0" expanded="false" />
+            <element signature="e#7546#7640#0" expanded="false" />
+            <element signature="e#7682#7864#0" expanded="false" />
+            <element signature="e#7889#8042#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -876,7 +870,7 @@
     </entry>
     <entry file="file://$USER_HOME$/Downloads/schteppe-cannon.js-v0.6.2-60-g748afef (1)/schteppe-cannon.js-748afef/examples/threejs_mousepick.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.660714">
+        <state vertical-scroll-proportion="0.0">
           <caret line="288" column="59" selection-start-line="288" selection-start-column="59" selection-end-line="288" selection-end-column="59" />
           <folding>
             <element signature="e#1130#4188#0" expanded="false" />
@@ -907,30 +901,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/game/core/core_helpers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.24291">
-          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5985222">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#8720#8735#0" expanded="false" />
+            <element signature="e#8797#8812#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/game/core/core.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20306513">
-          <caret line="106" column="31" selection-start-line="106" selection-start-column="31" selection-end-line="106" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.3234245">
+          <caret line="187" column="4" selection-start-line="187" selection-start-column="4" selection-end-line="187" selection-end-column="4" />
           <folding>
-            <element signature="e#4907#5266#0" expanded="false" />
-            <element signature="e#5270#5372#0" expanded="false" />
-            <element signature="e#5404#5524#0" expanded="false" />
-            <element signature="e#5528#5680#0" expanded="false" />
-            <element signature="e#5715#5996#0" expanded="false" />
-            <element signature="e#6000#6098#0" expanded="false" />
-            <element signature="e#6167#6389#0" expanded="false" />
-            <element signature="e#6435#6529#0" expanded="false" />
-            <element signature="e#6571#6753#0" expanded="false" />
-            <element signature="e#6778#6931#0" expanded="false" />
+            <element signature="e#5931#6290#0" expanded="false" />
+            <element signature="e#6294#6396#0" expanded="false" />
+            <element signature="e#6639#6791#0" expanded="false" />
+            <element signature="e#7111#7209#0" expanded="false" />
+            <element signature="e#7278#7500#0" expanded="false" />
+            <element signature="e#7546#7640#0" expanded="false" />
+            <element signature="e#7682#7864#0" expanded="false" />
+            <element signature="e#7889#8042#0" expanded="false" />
           </folding>
         </state>
       </provider>

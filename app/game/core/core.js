@@ -15,6 +15,8 @@ var NEAR = 10, FAR = 3000;
 //Cannon (physic engine)
 var  material, light, speedButton, controls;
 var world, timeStep = 1 / 60;
+var lightPosition4D = new THREE.Vector4();
+
 var mouseX = 0, mouseY = 0;
 var windowHalfY, windowHalfX;
 
@@ -47,7 +49,7 @@ var core = {
         geoSize: 'low',
         materialType: 'lambert',
         materialProps: {
-          wireframe: false
+          color: 'rgb(255,0,0)', emissive: 0x200000
         },
         meshType: 'basic',
         phyxName: 'objectPhyx',
@@ -58,7 +60,7 @@ var core = {
         geoSize: 'low',
         materialType: 'lambert',
         materialProps: {
-          wireframe: false
+          color: 'rgb(255,0,0)', emissive: 0x200000
         },
         meshType: 'basic',
         meshName: 'object2',
@@ -67,9 +69,9 @@ var core = {
       ground: that.object({
         geoType: 'plane',
         geoSize: 'low',
-        materialType: 'lambert',
+        materialType: 'phong',
         materialProps: {
-          wireframe: false
+          color: 'rgb(255,255,255)', emissive: 0xffffff
         },
         meshType: 'basic',
         meshName: 'ground',
@@ -81,12 +83,32 @@ var core = {
 
 
     //Object manipulations
-    objectSet.object2.phyx.position.set(2,  2, 0);
+    objectSet.object2.phyx.position.set(4,  2, 0);
+    objectSet.object1.phyx.position.set(2,  3, 0);
+    objectSet.object1.mesh.castShadow = true;
+    objectSet.object2.mesh.castShadow = true;
+
 
     objectSet.ground.phyx.quaternion.setFromAxisAngle(new CANNON.Vec3(1,0,0),-Math.PI/2);
+    objectSet.ground.mesh.reciveShadow = true;
 
 
     console.log(objectSet.object2.mesh.position);
+
+
+    light.position.set( 5, 7, - 1 );
+    light.lookAt( scene.position );
+    scene.add( light );
+
+
+
+    lightPosition4D.x = light.position.x;
+    lightPosition4D.y = light.position.y;
+    lightPosition4D.z = light.position.z;
+    // amount of light-ray divergence. Ranging from:
+    // 0.001 = sunlight(min divergence) to 1.0 = pointlight(max divergence)
+    lightPosition4D.w = 0.001; // must be slightly greater than 0, due to 0 causing matrixInverse errors
+
 
 
 
@@ -130,13 +152,19 @@ var core = {
     // LIGHTS
 
     // add subtle ambient lighting
-    var ambientLight = new THREE.AmbientLight(0x0c0c0c);
-    scene.add(ambientLight);
-    // add spotlight for the shadows
-    var spotLight = new THREE.SpotLight(0xffffff);
-    spotLight.position.set(-30, 60, 60);
+    scene.add( new THREE.AmbientLight( 0x404040 ) );
+    var spotLight = new THREE.SpotLight( 0xffffff );
+    spotLight.name = 'Spot Light';
+    spotLight.angle = Math.PI / 5;
+    spotLight.penumbra = 0.3;
+    spotLight.position.set( 10, 10, 5 );
     spotLight.castShadow = true;
-    scene.add(spotLight);
+    spotLight.shadowCameraNear = 8;
+    spotLight.shadowCameraFar = 30;
+    spotLight.shadowMapWidth = 1024;
+    spotLight.shadowMapHeight = 1024;
+    scene.add( spotLight );
+    scene.add( new THREE.CameraHelper( spotLight.shadow.camera ) );
    // make.add([objectSet.object1.mesh, objectSet.object2.mesh, light]);
 
 
@@ -208,6 +236,20 @@ var core = {
   animate: function (elements) {
     requestAnimationFrame(this.animate.bind(this, elements));
     this.updatePhysics(elements);
+
+
+    //elements.forEach(function(item){
+    //  console.log(item);
+    //});
+
+
+
+
+
+
+
+
+
     this.render();
   },
   /**

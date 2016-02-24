@@ -202,6 +202,9 @@ function material(type = 'basic', properties = {wireframe: true}) {
     },
     "lambert": function(){
       return new Material(type, properties);
+    },
+    "phong": function(){
+      return new Material(type, properties);
     }
   };
 
