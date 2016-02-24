@@ -11,7 +11,7 @@ import * as make from './core_helpers';
 import {GameObjects} from './GameObjectClass';
 
 var camera, scene, renderer;
-
+var NEAR = 10, FAR = 3000;
 //Cannon (physic engine)
 var  material, light, speedButton, controls;
 var world, timeStep = 1 / 60;
@@ -45,17 +45,18 @@ var core = {
       object1: that.object({
         geoType: 'cylinder',
         geoSize: 'low',
-        materialType: 'basic',
+        materialType: 'lambert',
         materialProps: {
-          wireframe: true
+          wireframe: false
         },
         meshType: 'basic',
-        phyxName: 'objectPhyx'
+        phyxName: 'objectPhyx',
+        phyxType: 'Plane'
       }),
       object2: that.object({
         geoType: 'box',
         geoSize: 'low',
-        materialType: 'basic',
+        materialType: 'lambert',
         materialProps: {
           wireframe: false
         },
@@ -63,16 +64,17 @@ var core = {
         meshName: 'object2',
         phyxName: 'object2Phyx'
       }),
-      object3: that.object({
-        geoType: 'box',
-        geoSize: 'small',
-        materialType: 'basic',
+      ground: that.object({
+        geoType: 'plane',
+        geoSize: 'low',
+        materialType: 'lambert',
         materialProps: {
-          wireframe: true
+          wireframe: false
         },
         meshType: 'basic',
-        meshName: 'object3',
-        phyxName: 'object3Phyx'
+        meshName: 'ground',
+        phyxName: 'groundPhyx',
+        phyxType: 'Plane'
       })
 
     };
@@ -80,12 +82,17 @@ var core = {
 
     //Object manipulations
     objectSet.object2.phyx.position.set(2,  2, 0);
+
+    objectSet.ground.phyx.quaternion.setFromAxisAngle(new CANNON.Vec3(1,0,0),-Math.PI/2);
+
+
     console.log(objectSet.object2.mesh.position);
 
 
 
     //init render
     renderer = make.render();
+
 
     //Adding interaction to button
     var button = document.getElementById('addSpeed');
@@ -95,6 +102,19 @@ var core = {
 
     //init mouse controls
     controls = new OrbitControls(camera);
+    //
+    objectSet.ground.mesh.reciveShadow = true;
+    objectSet.object2.mesh.castShadow = true;
+    objectSet.object1.mesh.castShadow = true;
+
+    objectSet.object2.mesh.reciveShadow = true;
+    objectSet.object1.mesh.reciveShadow = true;
+
+
+    light.castShadow = true;
+    light.shadowDarkness = 0.5;
+
+
 
     //Adding all object into array
     for(var key in objectSet){
@@ -102,8 +122,21 @@ var core = {
       objectsListToRender.push(name);
     }
 
+
+
+
     //Adding object to scene using custom method
     make.add(objectsListToRender);
+    // LIGHTS
+
+    // add subtle ambient lighting
+    var ambientLight = new THREE.AmbientLight(0x0c0c0c);
+    scene.add(ambientLight);
+    // add spotlight for the shadows
+    var spotLight = new THREE.SpotLight(0xffffff);
+    spotLight.position.set(-30, 60, 60);
+    spotLight.castShadow = true;
+    scene.add(spotLight);
    // make.add([objectSet.object1.mesh, objectSet.object2.mesh, light]);
 
 
@@ -135,7 +168,7 @@ var core = {
     material = make.material(props.materialType, props.materialProps);
 
     //building up mesh from options
-    props.meshName = make.mesh(props.meshType, box, material);
+    props.meshName = make.mesh(props.meshType, box, material, props.phyxType);
 
     //Dodawanie mecha do proporcji zwrotnych
     container.mesh = props.meshName;

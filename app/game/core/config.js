@@ -16,6 +16,7 @@ var config = {
                         return scene;
                   },
                   light: {
+
                       directional: function(color, position){
                             var directionalLight = new THREE.DirectionalLight('0x' + color);
                             directionalLight.position.set(0, 0, 1).normalize();

@@ -31,7 +31,7 @@ function scene() {
  */
 
 function camera(position = {x: 0, y: 0, z: 0}, fov = 35) {
-  camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, 1, 10000);
+  camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, 1, 3000);
 
   //Setting camera position
   camera.position.set(position.x, position.y, position.z);
@@ -157,7 +157,7 @@ function geometry(type, pickedSize) {
     }
 
     low() {
-      return [5, 5, 8];
+      return [25, 25, 8];
     }
 
     craft(width, height, widthSegments, heightSegments) {
@@ -199,6 +199,9 @@ function material(type = 'basic', properties = {wireframe: true}) {
     },
     "depth": function () {
       return new Material(type, properties);
+    },
+    "lambert": function(){
+      return new Material(type, properties);
     }
   };
 
@@ -235,12 +238,12 @@ function material(type = 'basic', properties = {wireframe: true}) {
 }
 
 
-function mesh(type, object, material) {
+function mesh(type, object, material, phyxType='Box') {
 
 
   var meshes = {
     basic: function () {
-      return new Mesh(type, object, material);
+      return new Mesh(type, object, material, phyxType);
     }
   };
 
@@ -250,11 +253,12 @@ function mesh(type, object, material) {
      * @param {string} type - Type of selected shape
      * @param {object} properties - Type of selected size
      */
-    constructor(type, object, material) {
+    constructor(type, object, material, phyxType) {
       type = toTitleCase(type);
       this.type = type;
       this.object = object;
       this.material = material;
+      this.phyxType = phyxType;
 
     }
 
@@ -266,14 +270,19 @@ function mesh(type, object, material) {
     }
 
     shape() {
-      this.shape = new CANNON.Box(new CANNON.Vec3(1, 1, 1));
-      return this.shape;
-    }
+      this.shape = new CANNON[phyxType](new CANNON.Vec3(1, 1, 1));
 
+      return this.shape;
+
+
+    }
     init(name) {
       name = new CANNON.Body({
         mass: 1
       });
+
+      console.log(this.shape());
+
 
       name.shape = this.shape();
 
@@ -287,12 +296,12 @@ function mesh(type, object, material) {
   }
 
 
-  var mesh = meshes[type](type, object, material);
+  var mesh = meshes[type](type, object, material, phyxType);
   var craftedMesh = mesh.craft.apply(Mesh, [type, object, material]);
 
   craftedMesh.construct = {
     shape: function () {
-      this.shape = new CANNON.Box(new CANNON.Vec3(1, 1, 1));
+      this.shape = new CANNON[phyxType](new CANNON.Vec3(1, 1, 1));
       return this.shape;
     },
     mass: 1,
@@ -303,7 +312,7 @@ function mesh(type, object, material) {
 
       name.shape = this.shape();
 
-      name.angularVelocity.set(0, 5, 0);
+      name.angularVelocity.set(0, 0, 0);
 
       name.angularDamping = 0.5;
 
@@ -326,10 +335,24 @@ function addObjects(arrayOfElementsToAdd) {
 }
 
 function render() {
-  render = new THREE.WebGLRenderer();
+  render = new THREE.WebGLRenderer( { antialias: true } );
   render.setSize(window.innerWidth, window.innerHeight);
   render.shadowMap.enabled = true;
   render.setClearColor(0x5081B5);
+
+
+  render.shadowMapSoft = true;
+
+  render.shadowCameraNear = 3;
+  render.shadowCameraFar = camera.far;
+  render.shadowCameraFov = 50;
+
+  render.shadowMapBias = 0.0039;
+  render.shadowMapDarkness = 0.5;
+  render.shadowMapWidth = 1024;
+  render.shadowMapHeight = 1024;
+
+
   document.body.appendChild(render.domElement);
   return render;
 }
