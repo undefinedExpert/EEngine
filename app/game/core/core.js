@@ -88,14 +88,22 @@ var core = {
         wireframe: false
       },
       meshType: 'basic',
-      phyxName: 'object2'
+      phyxName: 'object2Phyx'
     });
 
     renderer = make.render();
 
     var button = document.getElementById('addSpeed');
+
+    //a tutaj pracuje na'fizyce' obiektu
+    /*
+    * co nalezy zrobic aby zaktualizowac fizyke?
+    * >dodac fizyke do mesha
+    * >ma
+    * */
+
+
     speedButton = make.interaction(button, function () {
-      console.log(object2);
       that.addMovement(object2, 5);
     });
 
@@ -103,6 +111,7 @@ var core = {
     controls = new OrbitControls(camera);
 
 
+    //tutdaj dodaje meshes
     make.add([object1, object2, light]);
     /*
      * Init other methtods
@@ -111,7 +120,8 @@ var core = {
      * */
 
     this.cannon();
-    this.animate();
+    this.updatePhysics(object2);
+    this.animate(object2);
 
   },
   init: function () {
@@ -141,8 +151,11 @@ var core = {
 
     mesh = make.mesh(props.meshType, box, material);
 
+
+
     props.phyxName = mesh.construct.init(props.phyxName); //init phyx for this object
 
+    mesh.phyx = props.phyxName;
     this.cannon(function(){
 
       //console.log( props.phyxName.angularVelocity);
@@ -153,11 +166,6 @@ var core = {
       return phyx;
     });
 
-
-
-
-    console.log(props.phyxName);
-    console.log(mesh);
     return mesh;
   },
   /**
@@ -174,15 +182,13 @@ var core = {
     //
     //world.addBody(square);
     if(typeof(cb) !== 'undefined'){
-      cb();
+      //Adding newly created meshes to cannon.js world
+
+      world.addBody(cb().mesh);
+      console.log(world.bodies);
 
 //      console.log(element);
-      this.updatePhysics(function(){
 
-        cb().mesh.position.copy(cb().name);
-        cb().mesh.quaternion.copy(cb().name);
-
-      });
     }
 
   },
@@ -193,7 +199,6 @@ var core = {
    */
   animate: function () {
     requestAnimationFrame(this.animate.bind(this));
-
     this.updatePhysics();
     this.render();
   },
@@ -202,19 +207,17 @@ var core = {
    * @desc CommonJS function which updates physics of all objects and world
    * @see {@link animate, @link cannon}
    */
-  updatePhysics: function (cb) {
+  updatePhysics: function () {
     // Step the physics world
+
+
     world.step(timeStep);
 
+
     // Copy coordinates from Cannon.js to Three.js
-    /*
-     * Tutaj aktualizuje pozycje mecha z wartoscia ktora jest sprecyzowana w core.cannon()
-     * */
+    mesh.position.copy(mesh.phyx.position);
+    mesh.quaternion.copy(mesh.phyx.quaternion);
 
-
-    if(typeof(cb) !== 'undefined'){
-      cb();
-    }
   },
   /**
    * @method render
@@ -233,8 +236,8 @@ var core = {
    */
   addMovement: function (element, force = 0) {
 
-    console.log(this.scener.object);
-    let velocity = element.angularVelocity;
+
+    let velocity = element.phyx.angularVelocity;
     velocity.y = velocity.y + force;
 
   },

@@ -279,7 +279,7 @@ function mesh(type, object, material) {
 
       name.shape = this.shape();
 
-      name.angularVelocity.set(0, 0, 0);
+      name.angularVelocity.set(0, 5, 0);
 
       name.angularDamping = 0.5;
 
