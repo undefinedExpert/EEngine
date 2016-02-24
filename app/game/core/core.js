@@ -7,9 +7,12 @@ import CANNON from 'cannon'; // Physics Library
 var OrbitControls = require('three-orbit-controls')(THREE);
 
 
+
+
 import config from './config'; // importing config of core module
 
 import * as make from './core_helpers';
+import {GameObjects} from './GameObjectClass';
 
 
     //TODO: Req.txt
@@ -19,32 +22,9 @@ import * as make from './core_helpers';
 
     //Three.js
 
-/** Class representing a GameObject. */
-
-class GameObject {
-    /**
-     * Create a GameObject.
-     */
-    constructor(props) {
-      this.name = name;
-
-      this.props = {
-        geoType: 'box',
-        geoSize: 'low',
-        materialType: 'basic',
-        materialProps: {
-          wireframe: false
-        },
-        meshType: 'basic',
-        meshName: 'object2',
-        phyxName: 'object2Phyx'
-      };
-
-      this.props = props;
-    }
 
 
-}
+
 
 var camera, scene, renderer;
 
@@ -74,7 +54,7 @@ var core = {
     //Init all basic functions which are create scene an so
     this.init();
 
-    var newObject = new GameObject();
+    var newObject = new GameObjects();
 
     newObject.props = {
       geoType: 'box',
@@ -89,9 +69,6 @@ var core = {
     };
 
     var obiekty = this.object(newObject.props);
-
-
-    console.log();
 
     //Init all required meshes for scene
     var object1 = this.object({
@@ -119,32 +96,27 @@ var core = {
     });
 
 
+    //init render
     renderer = make.render();
-
-
 
     //Adding interaction to button
     var button = document.getElementById('addSpeed');
-
     speedButton = make.interaction(button, function () {
       that.addMovement(object1, 5);
     });
 
-
+    //init mouse controls
     controls = new OrbitControls(camera);
 
-
-    console.log(obiekty);
     //tutdaj dodaje meshes
-    make.add([object1.mesh, object2.mesh, obiekty.mesh, light]);
+    make.add([object1.mesh, object2.mesh, light]);
+
+
     /*
      * Init other methtods
      * cannon() - initialize configurations for physics (cannon.js)
      * animate() - initialize animation progress function with in all required function
      * */
-
-
-
     //fizyka
     this.cannon([object1 , object2]);
     //mesh
