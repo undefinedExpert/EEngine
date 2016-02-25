@@ -52,37 +52,27 @@ var core = {
     var objectSet = {
       object1: that.object({
         geoType: 'cylinder',
-        geoSize: 'low',
+        geoSize: 'small',
         materialType: 'lambert',
         materialProps: {
           color: 'rgb(255,0,0)', emissive: 0x200000
         },
         meshType: 'basic',
+        shadow: 'object1Shadow',
         phyxName: 'objectPhyx',
         phyxType: 'Plane'
       }),
       object2: that.object({
         geoType: 'box',
         geoSize: 'low',
-        materialType: 'lambert',
+        materialType: 'phong',
         materialProps: {
           color: 'rgb(255,0,0)', emissive: 0x200000
         },
         meshType: 'basic',
         meshName: 'object2',
+        shadow: 'object2Shadow',
         phyxName: 'object2Phyx'
-      }),
-      ground: that.object({
-        geoType: 'plane',
-        geoSize: 'low',
-        materialType: 'phong',
-        materialProps: {
-          color: 'rgb(255,255,255)', emissive: 0xffffff
-        },
-        meshType: 'basic',
-        meshName: 'ground',
-        phyxName: 'groundPhyx',
-        phyxType: 'Plane'
       })
 
     };
@@ -95,8 +85,20 @@ var core = {
     objectSet.object2.mesh.castShadow = true;
 
 
-    objectSet.ground.phyx.quaternion.setFromAxisAngle(new CANNON.Vec3(1,0,0),-Math.PI/2);
-    objectSet.ground.mesh.reciveShadow = true;
+
+    // create the ground plane
+    var planeGeometry = new THREE.PlaneGeometry(60, 40, 1, 1);
+    var planeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
+    var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+    plane.receiveShadow = true;
+    // rotate and position the plane
+    plane.rotation.x = -0.5 * Math.PI;
+    plane.position.x = 0;
+    plane.position.y = 0;
+    plane.position.z = 0;
+    // add the plane to the scene
+    scene.add(plane);
+
 
 
     console.log(objectSet.object2.mesh.position);
@@ -104,22 +106,28 @@ var core = {
 
     light.position.set( 5, 7, - 1 );
     light.lookAt( scene.position );
+    light.castShadow = true;
+
+    console.log(light);
     scene.add( light );
 
+    scene.add( new THREE.AmbientLight( 0x404040 ) );
+    var spotLight = new THREE.SpotLight( 0xffffff );
+    spotLight.name = 'Spot Light';
+    spotLight.angle = Math.PI / 5;
+    spotLight.penumbra = 0.3;
+    spotLight.position.set( 10, 10, 5 );
+    spotLight.castShadow = true;
+    spotLight.shadowCameraNear = 8;
+    spotLight.shadowCameraFar = 30;
+    spotLight.shadowMapWidth = 1024;
+    spotLight.shadowMapHeight = 1024;
+    scene.add( spotLight );
+    scene.add( new THREE.CameraHelper( spotLight.shadow.camera ) );
 
 
-    lightPosition4D.x = light.position.x;
-    lightPosition4D.y = light.position.y;
-    lightPosition4D.z = light.position.z;
-    // amount of light-ray divergence. Ranging from:
-    // 0.001 = sunlight(min divergence) to 1.0 = pointlight(max divergence)
-    lightPosition4D.w = 0.001; // must be slightly greater than 0, due to 0 causing matrixInverse errors
 
 
-
-
-    //init render
-    renderer = make.render();
 
 
     //Adding interaction to button
@@ -131,7 +139,9 @@ var core = {
     //init mouse controls
     controls = new OrbitControls(camera);
     //
-    objectSet.ground.mesh.reciveShadow = true;
+    //objectSet.ground.mesh.reciveShadow = true;
+    //objectSet.ground.mesh.castShadow = true;
+
     objectSet.object2.mesh.castShadow = true;
     objectSet.object1.mesh.castShadow = true;
 
@@ -142,7 +152,8 @@ var core = {
     light.castShadow = true;
     light.shadowDarkness = 0.5;
 
-
+    //init render
+    renderer = make.render();
 
     //Adding all object into array
     for(var key in objectSet){
@@ -158,19 +169,7 @@ var core = {
     // LIGHTS
 
     // add subtle ambient lighting
-    scene.add( new THREE.AmbientLight( 0x404040 ) );
-    var spotLight = new THREE.SpotLight( 0xffffff );
-    spotLight.name = 'Spot Light';
-    spotLight.angle = Math.PI / 5;
-    spotLight.penumbra = 0.3;
-    spotLight.position.set( 10, 10, 5 );
-    spotLight.castShadow = true;
-    spotLight.shadowCameraNear = 8;
-    spotLight.shadowCameraFar = 30;
-    spotLight.shadowMapWidth = 1024;
-    spotLight.shadowMapHeight = 1024;
-    scene.add( spotLight );
-    scene.add( new THREE.CameraHelper( spotLight.shadow.camera ) );
+
    // make.add([objectSet.object1.mesh, objectSet.object2.mesh, light]);
 
 
