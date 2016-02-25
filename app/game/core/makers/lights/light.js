@@ -1,16 +1,27 @@
+import THREE from 'three.js'; // 3D library
+import CANNON from 'cannon'; // Physics Library
 /**
- * This file has been created by Emanuel Slotwinski on 2016-02-25
+   * @desc Placing scene object into application
+   * @function scene()
  */
-/**
-  * @desc Placing camera into scene
-  * @function camera
- * @param {object} position - set initial position of the camera
- * @param {number} fov - camera Field of View value
-  * @return bool - camera object
- */
-//TODO: Light comment
-function light() {
-  light = new THREE.DirectionalLight(0xffeedd);
+class Light {
 
-  return light;
+  constructor() {}
+
+  /**
+     * @desc Creating Three.js scene
+     * @function create()
+   * @return new Three.js scene
+   */
+  create() {
+    light = new THREE.DirectionalLight(0xffeedd);
+    return light;
+  }
+
 }
+
+let light = new Light();
+
+export default light;
+
+

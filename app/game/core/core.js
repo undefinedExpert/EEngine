@@ -231,7 +231,7 @@ var core = {
 
     camera = make.camera({x: 0, y: 2, z: 15}, 35);
 
-    light = make.light();
+    light = api.light.create();
   },
   //TODO: Te funkcje to powinny bys konstruktory, z konsktruktora obiektu
   // Tworzylo by sie inne obiekty na podstawie wprowadzanych danych etc.

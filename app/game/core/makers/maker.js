@@ -13,6 +13,8 @@ import scene from './scene/scene';
 
 import render from './render/render';
 
+import light from './lights/light';
+
 
 
 
@@ -32,5 +34,6 @@ export {
  * each ranging from 0 to 255.
  */
   scene as scene,
-  render as render
+  render as render,
+  light as light
 };
