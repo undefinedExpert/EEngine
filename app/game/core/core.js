@@ -8,6 +8,7 @@ var OrbitControls = require('three-orbit-controls')(THREE);
 import config from './config'; // importing config of core module
 
 import * as make from './core_helpers';
+import * as api from './makers/maker';
 import {GameObjects} from './GameObjectClass';
 
 var camera, scene, renderer;
@@ -40,7 +41,7 @@ var core = {
     //Init all basic functions which are create scene an so
     this.init();
 
-
+    console.log(scene);
     //TODO: Latwiejsze dodawanie swiatel do widoku
     //TODO: Cienie dla obiektow/swiatel
     //TODO: Dodawanie obiektow z prototypu
@@ -201,7 +202,7 @@ var core = {
 
 
     //Adding object to scene using custom method
-    make.add(objectsListToRender);
+    api.scene.addObjects(objectsListToRender);
     // LIGHTS
 
     // add subtle ambient lighting
@@ -221,7 +222,8 @@ var core = {
 
   },
   init: function () {
-    scene = make.scene();
+    console.log(api.scene.scene);
+    scene = api.scene.scene();
 
     camera = make.camera({x: 0, y: 2, z: 15}, 35);
 

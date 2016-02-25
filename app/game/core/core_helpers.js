@@ -373,33 +373,7 @@ function interaction(button, fn) {
   return button;
 }
 
-//var light = {
-//  direct: function (color = '', strength = 1) {
-//    var returnedLight = {
-//      light: this.light,
-//      position: function (x, y, z) {
-//        console.log(this);
-//        this.light.position.set(x, y, z).normalize();
-//
-//      }
-//    };
-//
-//    returnedLight.light = new THREE.DirectionalLight(0xffffff, strength);
-//
-//    return returnedLight;
-//  },
-//  point: function () {
-//    throw 'light.point - not implemented yet';
-//  },
-//  spot: function () {
-//    throw 'light.spot - not implemented yet';
-//  },
-//  maker: function () {
-//
-//  }
-//
-//
-//};
+
 
 export {
 /**
