@@ -334,6 +334,7 @@ function mesh(type, object, material, phyxType='Box') {
 
 }
 
+
 function addObjects(arrayOfElementsToAdd) {
   for (var i = 0, len = arrayOfElementsToAdd.length; i < len; i++) {
     scene.add(arrayOfElementsToAdd[i].mesh);

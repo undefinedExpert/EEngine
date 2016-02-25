@@ -46,6 +46,8 @@ var core = {
     //TODO: Dodawanie obiektow z prototypu
     //TODO: Stworzenie obiektu 'grunt' ktory przyjmowal by cienie innych obiektow
     //TODO: Rozbicie tego pliku na mniejsze pliki
+    //TODO: Wlaczenie grawitacji dla obiektu 'ground'
+    //TODO: Kolekcja obiektow / zbior obiektow ktory wskazuje na obiekt o proporcjach z danego zbioru
     var objectsListToRender = [];
 
 
@@ -116,26 +118,9 @@ var core = {
     objectSet.plane.mesh.rotation.x = -0.5 * Math.PI;
 
 
-
-
-    // create the ground plane
-    var rot = new CANNON.Vec3(0,0,0)
-
-    //objectSet.plane.mesh.reciveShadow = true;
-    //
-    //objectSet.plane.phyx.quaternion.setFromAxisAngle(rot, Math.PI);
-    //objectSet.plane.phyx.position.set(0,0,0);
-
-
-    // rotate and position the plane.mesh
-
-
     objectSet.plane.mesh.position.clone(objectSet.plane.phyx.position);
     objectSet.plane.mesh.quaternion.clone(objectSet.plane.phyx.rotation);
 
-    //objectSet.plane.mesh.copy(objectSet.plane.phyx.position);
-
-    // add the objectSet.plane to the scene
 
 
 
@@ -153,13 +138,13 @@ var core = {
 
 
 
-    console.log(objectSet.object2.mesh.position);
+    //console.log(objectSet.object2.mesh.position);
 
 
-    light.position.set( 5, 7, - 1 );
+    light.position.set( 556, 555, 555 );
     light.lookAt( scene.position );
     light.castShadow = true;
-
+    scene.add( new THREE.CameraHelper( light.shadow.camera ) );
     scene.add( light );
 
     scene.add( new THREE.AmbientLight( 0x404040 ) );
