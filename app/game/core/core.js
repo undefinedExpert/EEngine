@@ -41,6 +41,7 @@ var core = {
     //Init all basic functions which are create scene an so
     this.init();
 
+    console.log(api);
 
     //TODO: Latwiejsze dodawanie swiatel do widoku
     //TODO: Cienie dla obiektow/swiatel
@@ -48,6 +49,7 @@ var core = {
     //TODO: Stworzenie obiektu 'grunt' ktory przyjmowal by cienie innych obiektow
     //TODO: Rozbicie tego pliku na mniejsze pliki
     //TODO: Wlaczenie grawitacji dla obiektu 'ground'
+    //TODO: Implementacja dzwiekow
     //TODO: Kolekcja obiektow / zbior obiektow ktory wskazuje na obiekt o proporcjach z danego zbioru
     var objectsListToRender = [];
 
@@ -169,7 +171,7 @@ var core = {
 
     //Adding interaction to button
     var button = document.getElementById('addSpeed');
-    speedButton = make.interaction(button, function () {
+    speedButton = api.interaction.click(button, function () {
       that.addMovement(objectSet.object2, 5);
     });
 

@@ -1,3 +1,27 @@
+import THREE from 'three.js'; // 3D library
+import CANNON from 'cannon'; // Physics Library
+import click from './recipes/click';
+
 /**
- * This file has been created by Emanuel Slotwinski on 2016-02-25
+   * @desc Adding interactions to elements
+   * @class Interaction
  */
+class Interaction {
+
+  constructor() {}
+
+  /**
+     * @desc Creating click event
+     * @function click()
+     * @return click interaction
+     * @param {object} button - DOM Button
+     * @param {function} fn - function which run on click
+   */
+  click(button, fn){
+    return click(button, fn);
+  }
+}
+
+let interaction = new Interaction();
+
+export default interaction;

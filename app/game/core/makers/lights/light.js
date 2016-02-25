@@ -1,17 +1,18 @@
 import THREE from 'three.js'; // 3D library
 import CANNON from 'cannon'; // Physics Library
 /**
-   * @desc Placing scene object into application
-   * @function scene()
+   * @desc Placing light object into application
+   * @class Light
  */
 class Light {
 
   constructor() {}
 
   /**
-     * @desc Creating Three.js scene
+     * @desc Creating Three.js light
      * @function create()
-   * @return new Three.js scene
+     * @return new Three.js light
+     * //TODO: Adding more lights
    */
   create() {
     light = new THREE.DirectionalLight(0xffeedd);

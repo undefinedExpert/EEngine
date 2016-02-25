@@ -13,7 +13,9 @@ import scene from './scene/scene';
 
 import render from './render/render';
 
-import light from './lights/light';
+import lights from './lights/light';
+
+import interactions from './interactions/interaction';
 
 
 
@@ -35,5 +37,6 @@ export {
  */
   scene as scene,
   render as render,
-  light as light
+  lights as light,
+  interactions as interaction
 };

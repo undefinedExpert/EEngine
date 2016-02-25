@@ -1,8 +1,4 @@
 /**
- * This file has been created by Emanuel Slotwinski on 2016-02-25
- */
-
-/**
   * @desc Placing camera into scene
   * @function camera
  * @param {object} position - set initial position of the camera
@@ -10,7 +6,7 @@
   * @return bool - camera object
  */
 //TODO: interaction comment
-function interaction(button, fn) {
+function click(button, fn) {
   //Interaction with square button
   button.addEventListener('click', () => {
     fn();
@@ -18,3 +14,5 @@ function interaction(button, fn) {
 
   return button;
 }
+
+export default click;
