@@ -60,44 +60,96 @@ var core = {
         meshType: 'basic',
         shadow: 'object1Shadow',
         phyxName: 'objectPhyx',
-        phyxType: 'Plane'
+        phyxBodyType: 'Body',
+        phyxBodyTypeParameters: {
+          mass: 1
+        }
       }),
       object2: that.object({
         geoType: 'box',
         geoSize: 'low',
-        materialType: 'phong',
+        materialType: 'lambert',
         materialProps: {
           color: 'rgb(255,0,0)', emissive: 0x200000
         },
         meshType: 'basic',
         meshName: 'object2',
         shadow: 'object2Shadow',
-        phyxName: 'object2Phyx'
+        phyxName: 'object2Phyx',
+        phyxBodyType: 'Body',
+        phyxBodyTypeParameters: {
+          mass: 1
+        }
+      }),
+      plane: that.object({
+        geoType: 'plane',
+        geoSize: 'low',
+        materialType: 'lambert',
+        materialProps: {
+          color: 0xffffff
+        },
+        meshType: 'basic',
+        meshName: 'plane',
+        shadow: 'planeShadow',
+        phyxName: 'planePhyx',
+        phyxType: 'Plane',
+        phyxShapeType: 'Plane',
+        phyxBodyType: 'Body',
+        phyxBodyTypeParameters: {
+          mass: 1
+        }
+
       })
 
     };
 
+    //grid
+    var grid = new THREE.GridHelper(100, 10);
+    scene.add(grid);
 
-    //Object manipulations
-    objectSet.object2.phyx.position.set(4,  2, 0);
-    objectSet.object1.phyx.position.set(2,  3, 0);
-    objectSet.object1.mesh.castShadow = true;
-    objectSet.object2.mesh.castShadow = true;
+
+    // create the ground plane
+
+
+    objectSet.plane.mesh.receiveShadow = true;
+    // rotate and position the plane
+    objectSet.plane.mesh.rotation.x = -0.5 * Math.PI;
+
 
 
 
     // create the ground plane
-    var planeGeometry = new THREE.PlaneGeometry(60, 40, 1, 1);
-    var planeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
-    var plane = new THREE.Mesh(planeGeometry, planeMaterial);
-    plane.receiveShadow = true;
-    // rotate and position the plane
-    plane.rotation.x = -0.5 * Math.PI;
-    plane.position.x = 0;
-    plane.position.y = 0;
-    plane.position.z = 0;
-    // add the plane to the scene
-    scene.add(plane);
+    var rot = new CANNON.Vec3(0,0,0)
+
+    //objectSet.plane.mesh.reciveShadow = true;
+    //
+    //objectSet.plane.phyx.quaternion.setFromAxisAngle(rot, Math.PI);
+    //objectSet.plane.phyx.position.set(0,0,0);
+
+
+    // rotate and position the plane.mesh
+
+
+    objectSet.plane.mesh.position.clone(objectSet.plane.phyx.position);
+    objectSet.plane.mesh.quaternion.clone(objectSet.plane.phyx.rotation);
+
+    //objectSet.plane.mesh.copy(objectSet.plane.phyx.position);
+
+    // add the objectSet.plane to the scene
+
+
+
+    //Object manipulations
+    objectSet.object2.phyx.position.set(5,  2, 0);
+    objectSet.object1.phyx.position.set(2,  3, 0);
+    objectSet.object1.mesh.castShadow = true;
+    objectSet.object2.mesh.castShadow = true;
+    objectSet.object1.mesh.receiveShadow = true;
+    objectSet.object2.mesh.receiveShadow = true;
+
+
+
+
 
 
 
@@ -108,7 +160,6 @@ var core = {
     light.lookAt( scene.position );
     light.castShadow = true;
 
-    console.log(light);
     scene.add( light );
 
     scene.add( new THREE.AmbientLight( 0x404040 ) );
@@ -198,6 +249,10 @@ var core = {
     //init materials to build mesh
     var container = {};
     var box = make.geometry(props.geoType, props.geoSize);
+
+    if(props.phyxType === 'Plane'){
+      box.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
+    }
     material = make.material(props.materialType, props.materialProps);
 
     //building up mesh from options
@@ -207,7 +262,7 @@ var core = {
     container.mesh = props.meshName;
 
     //Adding phyx to this mesh
-    props.phyxName = props.meshName.construct.init(props.phyxName); //init phyx for this object
+    props.phyxName = props.meshName.construct.init(props.phyxName, props.phyxBodyType, props.phyxBodyTypeParameters, props.phyxShapeType); //init phyx for this object
 
     //Dodawanie phyx do proporcji zwrotnych
     container.phyx = props.phyxName;
@@ -228,7 +283,7 @@ var core = {
 
     //Tutaj trzeba dodac fizyczne "cialo" na ktorym sie odbywa manipulacja do swiata
     items.forEach(function(item){
-      console.log(item);
+      //console.log(item);
       world.addBody(item.phyx);
     })
 

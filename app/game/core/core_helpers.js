@@ -152,6 +152,9 @@ function geometry(type, pickedSize) {
       super(type, size)
     }
 
+    medium() {
+      return [60, 40, 1, 1];
+    }
     small() {
       return [5, 20, 32];
     }
@@ -273,28 +276,27 @@ function mesh(type, object, material, phyxType='Box') {
     }
 
     shape() {
+      console.log(this);
       this.shape = new CANNON[phyxType](new CANNON.Vec3(1, 1, 1));
 
       return this.shape;
 
 
     }
-    init(name) {
-      name = new CANNON.Body({
-        mass: 1
-      });
-
-      console.log(this.shape());
-
-
-      name.shape = this.shape();
-
-      name.angularVelocity.set(0, 0, 0);
-
-      name.angularDamping = 0.5;
-
-      return name;
-    }
+    //init(name, bodyType='Body', parameters={mass: 1}) {
+    //  name = new CANNON.Body(parameters);
+    //  //new CANNON.RigidBody(0,groundShape,groundMaterial)
+    //  console.log(this.shape());
+    //
+    //
+    //  name.shape = this.shape();
+    //
+    //  name.angularVelocity.set(0, 0, 0);
+    //
+    //  name.angularDamping = 0.5;
+    //
+    //  return name;
+    //}
 
   }
 
@@ -303,17 +305,18 @@ function mesh(type, object, material, phyxType='Box') {
   var craftedMesh = mesh.craft.apply(Mesh, [type, object, material]);
 
   craftedMesh.construct = {
-    shape: function () {
+    shape: function (phyxType) {
+
       this.shape = new CANNON[phyxType](new CANNON.Vec3(1, 1, 1));
       return this.shape;
     },
     mass: 1,
-    init: function (name) {
-      name = new CANNON.Body({
-        mass: 1
-      });
+    init: function (name, bodyType='Body', bodyTypeProperties={mass: 1}, phyxType='Body') {
 
-      name.shape = this.shape();
+
+      name = new CANNON[bodyType](bodyTypeProperties);
+      //CANNON.RigidBody(0,groundShape,groundMaterial);
+      name.shape = this.shape(phyxType);
 
       name.angularVelocity.set(0, 0, 0);
 
