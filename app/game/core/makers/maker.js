@@ -13,6 +13,8 @@ import scene from './scene/scene';
 
 import render from './render/render';
 
+import camera from './camera/camera';
+
 import lights from './lights/light';
 
 import interactions from './interactions/interaction';
@@ -37,6 +39,7 @@ export {
  */
   scene as scene,
   render as render,
+  camera as camera,
   lights as light,
   interactions as interaction
 };

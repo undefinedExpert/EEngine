@@ -41,8 +41,6 @@ var core = {
     //Init all basic functions which are create scene an so
     this.init();
 
-    console.log(api);
-
     //TODO: Latwiejsze dodawanie swiatel do widoku
     //TODO: Cienie dla obiektow/swiatel
     //TODO: Dodawanie obiektow z prototypu
@@ -231,7 +229,7 @@ var core = {
     console.log(api);
     scene = api.scene.create();
 
-    camera = make.camera({x: 0, y: 2, z: 15}, 35);
+    camera = api.camera.create({x: 0, y: 2, z: 15}, 35);
 
     light = api.light.create();
   },

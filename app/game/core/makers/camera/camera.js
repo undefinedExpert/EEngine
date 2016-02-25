@@ -1,6 +1,6 @@
-/**
- * This file has been created by Emanuel Slotwinski on 2016-02-25
- */
+import THREE from 'three.js'; // 3D library
+import CANNON from 'cannon'; // Physics Library
+
 /**
   * @desc Placing camera into scene
   * @function camera
@@ -9,11 +9,25 @@
   * @return bool - camera object
  */
 
-function camera(position = {x: 0, y: 0, z: 0}, fov = 35) {
-  camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, 0.1, 3000);
+class Camera {
 
-  //Setting camera position
-  camera.position.set(position.x, position.y, position.z);
+  constructor() {}
 
-  return camera;
+  /**
+     * @desc Creating Three.js Camera
+     * @function create()
+     * @return new Three.js camera
+   */
+  create(position = {x: 0, y: 0, z: 0}, fov = 35, cameraNear=0.1, cameraFar=3000) {
+
+    camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, cameraNear, cameraFar);
+    camera.position.set(position.x, position.y, position.z);
+    return camera;
+
+  }
+
 }
+
+let camera = new Camera();
+
+export default camera;

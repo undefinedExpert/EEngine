@@ -18,9 +18,9 @@ function toTitleCase(str) {
    * @desc Placing scene object into application
    * @function scene()
  */
-function scene() {
-  return scene = new THREE.Scene();
-}
+//function scene() {
+//  return scene = new THREE.Scene();
+//}
 
 /**
   * @desc Placing camera into scene
@@ -30,21 +30,21 @@ function scene() {
   * @return bool - camera object
  */
 
-function camera(position = {x: 0, y: 0, z: 0}, fov = 35) {
-  camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, 0.1, 3000);
+//function camera(position = {x: 0, y: 0, z: 0}, fov = 35) {
+//  camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, 0.1, 3000);
+//
+//  //Setting camera position
+//  camera.position.set(position.x, position.y, position.z);
+//
+//  return camera;
+//}
 
-  //Setting camera position
-  camera.position.set(position.x, position.y, position.z);
 
-  return camera;
-}
-
-
-function light() {
-  light = new THREE.DirectionalLight(0xffeedd);
-
-  return light;
-}
+//function light() {
+//  light = new THREE.DirectionalLight(0xffeedd);
+//
+//  return light;
+//}
 
 /**
    * @desc Returning a shape of geometry which will be used in mesh create function
@@ -335,43 +335,43 @@ function mesh(type, object, material, phyxType='Box') {
 }
 
 
-function addObjects(arrayOfElementsToAdd) {
-  for (var i = 0, len = arrayOfElementsToAdd.length; i < len; i++) {
-    scene.add(arrayOfElementsToAdd[i].mesh);
-  }
-}
+//function addObjects(arrayOfElementsToAdd) {
+//  for (var i = 0, len = arrayOfElementsToAdd.length; i < len; i++) {
+//    scene.add(arrayOfElementsToAdd[i].mesh);
+//  }
+//}
 
-function siemankoRender() {
-  var render = new THREE.WebGLRenderer( { antialias: true } );
-  render.setSize(window.innerWidth, window.innerHeight);
-  render.shadowMap.enabled = true;
-  render.setClearColor(0x5081B5);
+//function siemankoRender() {
+//  var render = new THREE.WebGLRenderer( { antialias: true } );
+//  render.setSize(window.innerWidth, window.innerHeight);
+//  render.shadowMap.enabled = true;
+//  render.setClearColor(0x5081B5);
+//
+//
+//  render.shadowMapSoft = true;
+//
+//  render.shadowCameraNear = 3;
+//  render.shadowCameraFar = camera.far;
+//  render.shadowCameraFov = 50;
+//
+//  render.shadowMapBias = 0.0039;
+//  render.shadowMapDarkness = 0.5;
+//  render.shadowMapWidth = 1024;
+//  render.shadowMapHeight = 1024;
+//
+//
+//  document.body.appendChild(render.domElement);
+//  return render;
+//}
 
-
-  render.shadowMapSoft = true;
-
-  render.shadowCameraNear = 3;
-  render.shadowCameraFar = camera.far;
-  render.shadowCameraFov = 50;
-
-  render.shadowMapBias = 0.0039;
-  render.shadowMapDarkness = 0.5;
-  render.shadowMapWidth = 1024;
-  render.shadowMapHeight = 1024;
-
-
-  document.body.appendChild(render.domElement);
-  return render;
-}
-
-function interaction(button, fn) {
-  //Interaction with square button
-  button.addEventListener('click', () => {
-    fn();
-  });
-
-  return button;
-}
+//function interaction(button, fn) {
+//  //Interaction with square button
+//  button.addEventListener('click', () => {
+//    fn();
+//  });
+//
+//  return button;
+//}
 
 
 
@@ -383,13 +383,7 @@ export {
  * @returns {Array.} An array of the red, green, and blue values,
  * each ranging from 0 to 255.
  */
-  light as light,
-  scene as scene,
-  camera as camera,
   geometry as geometry,
   material as material,
-  mesh as mesh,
-  addObjects as add,
-  siemankoRender as render,
-  interaction as interaction
+  mesh as mesh
 };
