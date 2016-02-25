@@ -10,7 +10,9 @@ import THREE from 'three.js'; // 3D library
 import CANNON from 'cannon'; // Physics Library
 
 import scene from './scene/scene';
-console.log(scene);
+
+import render from './render/render';
+
 
 
 
@@ -30,4 +32,5 @@ export {
  * each ranging from 0 to 255.
  */
   scene as scene,
+  render as render
 };

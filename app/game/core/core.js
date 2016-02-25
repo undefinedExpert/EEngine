@@ -41,7 +41,7 @@ var core = {
     //Init all basic functions which are create scene an so
     this.init();
 
-    console.log(scene);
+
     //TODO: Latwiejsze dodawanie swiatel do widoku
     //TODO: Cienie dla obiektow/swiatel
     //TODO: Dodawanie obiektow z prototypu
@@ -190,7 +190,11 @@ var core = {
     light.shadowDarkness = 0.5;
 
     //init render
-    renderer = make.render();
+    //renderer = make.render();
+
+
+    renderer = api.render.create(camera, { antialias: true });
+
 
     //Adding all object into array
     for(var key in objectSet){
@@ -202,7 +206,7 @@ var core = {
 
 
     //Adding object to scene using custom method
-    api.scene.addObjects(objectsListToRender);
+    api.scene.add(objectsListToRender, 'mesh');
     // LIGHTS
 
     // add subtle ambient lighting
@@ -222,8 +226,8 @@ var core = {
 
   },
   init: function () {
-    console.log(api.scene.scene);
-    scene = api.scene.scene();
+    console.log(api);
+    scene = api.scene.create();
 
     camera = make.camera({x: 0, y: 2, z: 15}, 35);
 

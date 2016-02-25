@@ -341,8 +341,8 @@ function addObjects(arrayOfElementsToAdd) {
   }
 }
 
-function render() {
-  render = new THREE.WebGLRenderer( { antialias: true } );
+function siemankoRender() {
+  var render = new THREE.WebGLRenderer( { antialias: true } );
   render.setSize(window.innerWidth, window.innerHeight);
   render.shadowMap.enabled = true;
   render.setClearColor(0x5081B5);
@@ -390,6 +390,6 @@ export {
   material as material,
   mesh as mesh,
   addObjects as add,
-  render as render,
+  siemankoRender as render,
   interaction as interaction
 };

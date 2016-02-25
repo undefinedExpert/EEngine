@@ -1,25 +1,64 @@
+import THREE from 'three.js'; // 3D library
+import CANNON from 'cannon'; // Physics Library
 /**
- * This file has been created by Emanuel Slotwinski on 2016-02-25
+   * @desc Placing scene object into application
+   * @function scene()
+   * //FIXME: fix selecting camera rather then from create method make it from constructor
  */
-function render() {
-  render = new THREE.WebGLRenderer( { antialias: true } );
-  render.setSize(window.innerWidth, window.innerHeight);
-  render.shadowMap.enabled = true;
-  render.setClearColor(0x5081B5);
+class Render {
 
+  constructor(camera, renderProps='') {
+    render = this.render;
+    this.camera = camera;
+    this.props = renderProps;
+  }
 
-  render.shadowMapSoft = true;
+  /**
+     * @desc Creating Three.js render object
+     * @function create()
+     * @return render object
+   */
+  create(camera, renderProps) {
 
-  render.shadowCameraNear = 3;
-  render.shadowCameraFar = camera.far;
-  render.shadowCameraFov = 50;
+    //Create render three.js object
+    render = new THREE.WebGLRenderer(renderProps);
 
-  render.shadowMapBias = 0.0039;
-  render.shadowMapDarkness = 0.5;
-  render.shadowMapWidth = 1024;
-  render.shadowMapHeight = 1024;
+    //Setting props to camera
+    this.setRenderOptions(camera);
 
+    //Append camera at DOM
+    document.body.appendChild(render.domElement);
 
-  document.body.appendChild(render.domElement);
-  return render;
+    //return render three.js object
+    return render;
+  }
+
+  /**
+     * @desc Manipulate render settings
+     * @function setRenderOptions()
+   */
+  setRenderOptions(camera){
+
+    //General Settings of Render
+    render.setSize(window.innerWidth, window.innerHeight);
+    render.setClearColor(0x5081B5);
+
+    //Camera settings
+    render.shadowCameraNear = camera.near;
+    render.shadowCameraFar = camera.far;
+    render.shadowCameraFov = camera.fov;
+
+    //Shadow Settings
+    render.shadowMap.enabled = true;
+    render.shadowMapSoft = true;
+    render.shadowMapBias = 0.0039;
+    render.shadowMapDarkness = 0.5;
+    render.shadowMapWidth = 1024;
+    render.shadowMapHeight = 1024;
+
+  }
 }
+
+let render = new Render();
+
+export default render;
