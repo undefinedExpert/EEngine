@@ -34,6 +34,7 @@ var cleanupRuntime = function () {
 var packageBuiltApp = function () {
     var deferred = Q.defer();
 
+    //TODO: lepszy rozklad elementow w resource, zmiana nazwy app.asar
     asar.createPackage(projectDir.path('build'), readyAppDir.path('resources/app.asar'), function () {
         deferred.resolve();
     });

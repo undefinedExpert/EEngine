@@ -11,6 +11,7 @@ module.exports.os = function () {
         case 'linux':
             return 'linux';
         case 'win32':
+            //FIXME: if debugging done on release switch this to windows
             return 'windows';
     }
     return 'unsupported';
