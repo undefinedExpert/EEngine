@@ -32,10 +32,7 @@ class PlaneRecipe extends Shape{
   craft(size) {
     let values = this[size];
 
-    let craftedGeometry = this.makes.apply(this, values);
-
-
-    return craftedGeometry;
+    return new THREE[this.type + 'Geometry'](60, 40, 1, 1);
 
   }
 
