@@ -21,7 +21,7 @@ class PlaneRecipe extends ShapeRecipe{
 
   huge() {
     //width, height, widthSegments, heightSegments
-    return [120, 120, 1, 1];
+    return [128, 128, 1, 1];
   }
 
   medium() {
@@ -38,8 +38,6 @@ class PlaneRecipe extends ShapeRecipe{
     //width, height, widthSegments, heightSegments
     return [25, 25, 8,  1];
   }
-
-
 
 }
 

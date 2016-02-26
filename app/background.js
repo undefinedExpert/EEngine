@@ -51,6 +51,8 @@ app.on('ready', function () {
     mainWindow.on('close', function () {
         mainWindowState.saveState(mainWindow);
     });
+
+
 });
 
 app.on('window-all-closed', function () {
@@ -68,4 +70,7 @@ ipcMain.on('enter-full-screen', function() {
     }
 
 });
+
+
+
 

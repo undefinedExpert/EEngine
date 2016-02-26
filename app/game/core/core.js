@@ -11,7 +11,7 @@ import * as make from './core_helpers';
 import * as api from './makers/maker';
 import {GameObjects} from './GameObjectClass';
 
-import { ipcRenderer  } from 'electron'; // electron system
+import { ipcRenderer, remote  } from 'electron'; // electron system
 
 var camera, scene, renderer;
 var NEAR = 10, FAR = 3000;
@@ -125,8 +125,6 @@ var core = {
     objectSet.plane.mesh.quaternion.clone(objectSet.plane.phyx.rotation);
 
 
-
-
     //Object manipulations
     objectSet.object2.phyx.position.set(5,  2, 0);
     objectSet.object1.phyx.position.set(2,  3, 0);
@@ -134,11 +132,6 @@ var core = {
     objectSet.object2.mesh.castShadow = true;
     objectSet.object1.mesh.receiveShadow = true;
     objectSet.object2.mesh.receiveShadow = true;
-
-
-
-
-
 
 
     //console.log(objectSet.object2.mesh.position);
@@ -165,10 +158,6 @@ var core = {
     scene.add( new THREE.CameraHelper( spotLight.shadow.camera ) );
 
 
-
-
-
-
     //Adding interaction to button
     var button = document.getElementById('addSpeed');
     speedButton = api.interaction.click(button, function () {
@@ -178,10 +167,14 @@ var core = {
     console.log(ipcRenderer );
 
     var fullScreen = document.getElementById('fullscreen');
+
+
     fullScreen.addEventListener('click', function () {
       console.log('enter fullscreen');
       ipcRenderer .send('enter-full-screen');
     });
+
+
 
     //init mouse controls
     controls = new OrbitControls(camera);
@@ -233,6 +226,15 @@ var core = {
     this.cannon(objectsListToRender);
     //mesh
     this.animate(objectsListToRender);
+
+
+    //TODO: Opakowanie tego w funkcje, najlepiej helper
+    let currentWindow = remote.getCurrentWindow().removeAllListeners();
+
+    currentWindow.on('resize', _.debounce(function () {
+      that.onWindowResize();
+    }, 100));
+
 
   },
   init: function () {
@@ -360,9 +362,21 @@ var core = {
     mouseY = ( event.clientY - windowHalfY );
 
   },
+  onWindowResize: function(){
+    console.log('windowResized');
+    windowHalfX = window.innerWidth / 2;
+    windowHalfY = window.innerHeight / 2;
+
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    },
   control: function () {
     //document.addEventListener( 'mousemove', this.onDocumentMouseMove, false );
     window.addEventListener('resize', this.onWindowResize, false);
+
+
   }
 };
 

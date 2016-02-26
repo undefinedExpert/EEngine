@@ -34,16 +34,23 @@ import core from './game/core/core'; // Envoierment vars
 /*
 * Setting up GLOBAL vars
 * */
-var
+const
   app = remote.app,
   appDir = jetpack.cwd(app.getAppPath());
 
+var windowSize = remote.getCurrentWindow().getSize();
+var windowResize = remote.getCurrentWindow();
 
+windowResize.once('resize', function(){
 
+    console.log('czesc')
+
+});
 /*
 * When electron DOM will load then:
 * */
 document.addEventListener('DOMContentLoaded', function () {
+
 
   /*
   * Running cores functions:
