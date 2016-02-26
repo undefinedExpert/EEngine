@@ -28,8 +28,7 @@ import env from './env'; // Envoierment vars
 
 import core from './game/core/core'; // Envoierment vars
 
-import level_0 from './game/levels/0_mainmenu/mainmenu'; // Envoierment vars
-
+//import level_0 from './game/levels/0_mainmenu/mainmenu'; // Envoierment vars
 
 
 /*
