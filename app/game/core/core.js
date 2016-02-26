@@ -240,6 +240,9 @@ var core = {
     //init materials to build mesh
     var container = {};
     var box = make.geometry(props.geoType, props.geoSize);
+    //var box = api.geometry.create(props.geoType, props.geoSize);
+    //console.log(api.geometry.create(props.geoType, props.geoSize));
+    //console.log(box);
 
     if(props.phyxType === 'Plane'){
       box.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );

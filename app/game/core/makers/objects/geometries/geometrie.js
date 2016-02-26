@@ -2,6 +2,8 @@ import THREE from 'three.js'; // 3D library
 import CANNON from 'cannon'; // Physics Library
 import helpers from './../../collectors/helpers';
 
+import * as recipe from './recipes/recipe' ;
+
 /**
    * @desc Placing light object into application
    * @class Light
@@ -14,18 +16,27 @@ class Geometry {
     this.size = size;
   }
 
-  create(type){
-    console.log(this[type]);
+  create(type, size){
 
+    let shape = this[type](type, size);
+
+
+    shape = shape.craft(size);
     //return selected type of a function
-    return this[type];
+    return shape;
   }
 
-  cylinder(){}
+  cylinder(type, size){
+    return new recipe.Cylinder(type, size);
+  }
 
-  box(){}
+  box(type, size){
+    return new recipe.Box(type, size);
+  }
 
-  plane(){}
+  plane(type, size){
+    return new recipe.Plane(type, size);
+  }
 
 
   small() {
