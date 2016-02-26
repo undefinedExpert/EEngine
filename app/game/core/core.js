@@ -86,7 +86,7 @@ var core = {
       }),
       plane: that.object({
         geoType: 'plane',
-        geoSize: 'low',
+        geoSize: 'huge',
         materialType: 'lambert',
         materialProps: {
           color: 0xffffff
@@ -229,7 +229,7 @@ var core = {
     console.log(api);
     scene = api.scene.create();
 
-    camera = api.camera.create({x: 0, y: 2, z: 15}, 35);
+    camera = api.camera.create({x: 0, y: 3, z: 50}, 35);
 
     light = api.light.create();
   },
@@ -241,8 +241,6 @@ var core = {
     var container = {};
     //var box = make.geometry(props.geoType, props.geoSize);
     var box = api.geometry.create(props.geoType, props.geoSize);
-    //console.log(api.geometry.create(props.geoType, props.geoSize));
-    //console.log(box);
 
     if(props.phyxType === 'Plane'){
       box.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );

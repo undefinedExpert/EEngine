@@ -14,24 +14,25 @@ class CylinderRecipe extends ShapeRecipe{
    * @param {string} type - Type of selected shape
    * @param {string} size - Type of selected size
    */
-  constructor(type, size) {
-    super(type, size)
+  constructor(type, size='low') {
+    super(type);
+
+    console.log(size);
+
+    this.currentSize = this[size]();
   }
 
-  small() {
+   small() {
+     //radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength
     return [2, 2, 5, 32];
   }
 
-  low() {
+   low() {
+     //radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength
     return [2, 2, 5, 8];
   }
 
-  craft(size) {
 
-
-    return new THREE[this.type + 'Geometry'](2, 2, 5, 32);
-
-  }
 }
 
 export default CylinderRecipe;

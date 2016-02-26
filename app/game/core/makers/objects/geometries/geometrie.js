@@ -10,32 +10,34 @@ import * as recipe from './recipes/recipe' ;
  */
 class Geometry {
 
-  constructor(supportShapesTypes, type='Box', size='small') {
+  constructor(supportShapesTypes, type='Box', pickedSize='small') {
     type = helpers.toTitleCase(type);
     this.type = type;
-    this.size = size;
+    this.pickedSize = pickedSize;
+
   }
 
-  create(type, size){
+  create(type, pickedSize){
 
-    let shape = this[type](type, size);
+    let shape = this[type](type, pickedSize);
 
 
-    shape = shape.craft(size);
+
+    shape = shape.craft();
     //return selected type of a function
     return shape;
   }
 
-  cylinder(type, size){
-    return new recipe.Cylinder(type, size);
+  cylinder(type, pickedSize){
+    return new recipe.Cylinder(type, pickedSize);
   }
 
-  box(type, size){
-    return new recipe.Box(type, size);
+  box(type, pickedSize){
+    return new recipe.Box(type, pickedSize);
   }
 
-  plane(type, size){
-    return new recipe.Plane(type, size);
+  plane(type, pickedSize){
+    return new recipe.Plane(type, pickedSize);
   }
 
 

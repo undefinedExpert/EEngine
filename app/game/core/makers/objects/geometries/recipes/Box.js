@@ -14,8 +14,11 @@ class BoxRecipe extends ShapeRecipe{
    * @param {string} type - Type of selected shape
    * @param {string} size - Type of selected size
    */
-  constructor(type, size) {
-    super(type, size)
+  constructor(type, size='low') {
+    super(type);
+
+
+    this.currentSize = this[size]();
   }
 
   small() {
@@ -28,12 +31,6 @@ class BoxRecipe extends ShapeRecipe{
     return [1, 1, 1, 1, 1, 1];
   }
 
-  craft(size) {
-    let values = this[size];
-
-    return new THREE[this.type + 'Geometry'](1, 1, 1, 8, 8, 8);
-
-  }
 
 
 }

@@ -1,40 +1,45 @@
 import THREE from 'three.js'; // 3D library
 import CANNON from 'cannon'; // Physics Library
 
-import Shape from './Shape'
+import ShapeRecipe from './Shape'
 /**
    * @desc Placing light object into application
    * @class Light
    TODO: Poprawa komentarzy
  */
-class PlaneRecipe extends Shape{
+class PlaneRecipe extends ShapeRecipe{
 
   /**
    * @desc Creates box with selected size.
    * @param {string} type - Type of selected shape
    * @param {string} size - Type of selected size
    */
-  constructor(type, size) {
-    super(type, size)
+  constructor(type, size='medium') {
+    super(type);
+    this.currentSize = this[size]();
+  }
+
+  huge() {
+    //width, height, widthSegments, heightSegments
+    return [120, 120, 1, 1];
   }
 
   medium() {
+    //width, height, widthSegments, heightSegments
     return [60, 40, 1, 1];
   }
+
   small() {
-    return [5, 20, 32];
+    //width, height, widthSegments, heightSegments
+    return [5, 20, 32, 1];
   }
 
   low() {
-    return [25, 25, 8];
+    //width, height, widthSegments, heightSegments
+    return [25, 25, 8,  1];
   }
 
-  craft(size) {
-    let values = this[size];
 
-    return new THREE[this.type + 'Geometry'](60, 40, 1, 1);
-
-  }
 
 }
 

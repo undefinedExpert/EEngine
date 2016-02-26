@@ -13,13 +13,17 @@ class ShapeRecipe {
    * @param {string} type - Type of selected shape
    * @param {string} size - Type of selected size
    */
-  constructor(type='Box') {
+  constructor(type='Box', size='low') {
     var typeCapitalized = helpers.toTitleCase(type);
     this.type = typeCapitalized;
   }
+  craft() {
+    //trzeba tutaj udostepnic odpowiedni rozmiar
+    let shape = new THREE[this.type + 'Geometry'](...this.currentSize);
 
-  makes(arg){
-    return new THREE[this.type + 'Geometry'](arg);
+
+    return shape;
+
   }
 
 }
