@@ -39,6 +39,7 @@ var
   appDir = jetpack.cwd(app.getAppPath());
 
 
+
 /*
 * When electron DOM will load then:
 * */

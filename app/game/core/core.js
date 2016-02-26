@@ -11,6 +11,8 @@ import * as make from './core_helpers';
 import * as api from './makers/maker';
 import {GameObjects} from './GameObjectClass';
 
+import { ipcRenderer  } from 'electron'; // electron system
+
 var camera, scene, renderer;
 var NEAR = 10, FAR = 3000;
 //Cannon (physic engine)
@@ -171,6 +173,14 @@ var core = {
     var button = document.getElementById('addSpeed');
     speedButton = api.interaction.click(button, function () {
       that.addMovement(objectSet.object2, 5);
+    });
+
+    console.log(ipcRenderer );
+
+    var fullScreen = document.getElementById('fullscreen');
+    fullScreen.addEventListener('click', function () {
+      console.log('enter fullscreen');
+      ipcRenderer .send('enter-full-screen');
     });
 
     //init mouse controls

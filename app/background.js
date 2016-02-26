@@ -3,7 +3,7 @@
 // It doesn't have any windows which you can see on screen, but we can open
 // window from here.
 
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow,  ipcMain } from 'electron';
 import devHelper from './vendor/electron_boilerplate/dev_helper';
 import windowStateKeeper from './vendor/electron_boilerplate/window_state';
 
@@ -19,9 +19,14 @@ var mainWindowState = windowStateKeeper('main', {
     height: 600
 });
 
+
+
+
+
 app.on('ready', function () {
 
     mainWindow = new BrowserWindow({
+        fullscreen: false,
         x: mainWindowState.x,
         y: mainWindowState.y,
         width: mainWindowState.width,
@@ -51,3 +56,16 @@ app.on('ready', function () {
 app.on('window-all-closed', function () {
     app.quit();
 });
+
+//Przyklad zastosowania fullscreen
+ipcMain.on('enter-full-screen', function() {
+    console.log('odpalono enter fullscreen komende');
+
+    if(mainWindow.isFullScreen()){
+        mainWindow.setFullScreen(false);
+    } else {
+        mainWindow.setFullScreen(true);
+    }
+
+});
+
