@@ -23,6 +23,8 @@ import interactions from './interactions/interaction';
 
 import geometries from './objects/geometries/geometrie';
 
+import materials from './objects/materials/material';
+
 
 
 
@@ -47,5 +49,6 @@ export {
   camera as camera,
   lights as light,
   interactions as interaction,
-  geometries as geometry
+  geometries as geometry,
+  materials as material
 };

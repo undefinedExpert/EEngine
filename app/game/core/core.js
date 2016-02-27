@@ -231,9 +231,11 @@ var core = {
     //TODO: Opakowanie tego w funkcje, najlepiej helper
     let currentWindow = remote.getCurrentWindow().removeAllListeners();
 
-    currentWindow.on('resize', _.debounce(function () {
+    //Resize event
+    window.addEventListener('resize', function(e){
+      e.preventDefault();
       that.onWindowResize();
-    }, 100));
+    })
 
 
   },
@@ -257,6 +259,7 @@ var core = {
     if(props.phyxType === 'Plane'){
       box.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
     }
+    //TODO: replace make.material with API
     material = make.material(props.materialType, props.materialProps);
 
     //building up mesh from options

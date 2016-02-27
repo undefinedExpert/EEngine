@@ -6,27 +6,28 @@ import helpers from './../../../collectors/helpers';
    * @desc Placing light object into application
    * @class Light
  */
-class ShapeRecipe {
+class MaterialRecipe {
 
   /**
    * @desc Default type of the shape
    * @param {string} type - Type of selected shape
-   * @param {string} size - Type of selected size
+   * @param {string} properties - Type of selected size
    */
-  constructor(type='Box', size='low') {
+  constructor(type='Basic', properties={}) {
     this.type = helpers.toTitleCase(type);
   }
 
   craft() {
     //trzeba tutaj udostepnic odpowiedni rozmiar
-    let shape = new THREE[this.type + 'Geometry'](...this.currentSize);
+    let material = new THREE['Mesh' + this.type + 'Material'](...this.properties);
+    //return new THREE[['Mesh' + this.type + 'Material']](properties);
 
-    return shape;
+    return material;
 
   }
 
 }
 
-export default ShapeRecipe;
+export default MaterialRecipe;
 
 

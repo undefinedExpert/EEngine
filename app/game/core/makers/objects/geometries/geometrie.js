@@ -20,9 +20,6 @@ class Geometry {
   create(type, pickedSize){
 
     let shape = this[type](type, pickedSize);
-
-
-
     shape = shape.craft();
     //return selected type of a function
     return shape;
@@ -40,7 +37,6 @@ class Geometry {
     return new recipe.Plane(type, pickedSize);
   }
 
-
   small() {
     return [];
   }
@@ -53,7 +49,5 @@ class Geometry {
 
 var supportShapesTypes = ['cylinder', 'box', 'plane'];
 let geometry = new Geometry(supportShapesTypes);
-
-console.log(geometry.create('plane'))
 
 export default geometry;
