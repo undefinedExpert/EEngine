@@ -205,9 +205,6 @@ var core = {
       objectsListToRender.push(name);
     }
 
-
-
-
     //Adding object to scene using custom method
     api.scene.add(objectsListToRender, 'mesh');
     // LIGHTS

@@ -1,10 +1,10 @@
 import THREE from 'three.js'; // 3D library
 import CANNON from 'cannon'; // Physics Library
 import helpers from './../../../collectors/helpers';
-//TODO: Poprawa komentarzy
+
 /**
-   * @desc Placing light object into application
-   * @class Light
+ * @desc ShapeRecipe class is used to buildup a shape from proprieties and return appropriate value
+ * @class ShapeRecipe
  */
 class ShapeRecipe {
 
@@ -17,12 +17,15 @@ class ShapeRecipe {
     this.type = helpers.toTitleCase(type);
   }
 
+  /**
+   * @desc requests a shape creation process from three.js plugin, ...this.curreuntSize is a
+   * variable which contains a custom set array which contains sizes
+   * for each specific geometry shape
+   * @return fully created shape
+   */
   craft() {
-    //trzeba tutaj udostepnic odpowiedni rozmiar
     let shape = new THREE[this.type + 'Geometry'](...this.currentSize);
-
     return shape;
-
   }
 
 }

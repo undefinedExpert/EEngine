@@ -20,8 +20,8 @@ class Material {
    * @return fully build material from options
    */
   create(type = 'basic', properties = {}) {
-    let typeOfMaterial = this.build(type, properties);
-    return typeOfMaterial;
+    let fullyBuildedMaterial = this.build(type, properties);
+    return fullyBuildedMaterial;
   }
 
   /**

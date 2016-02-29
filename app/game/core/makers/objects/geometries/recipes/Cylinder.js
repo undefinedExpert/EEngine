@@ -3,30 +3,37 @@ import CANNON from 'cannon'; // Physics Library
 
 import ShapeRecipe from './Shape'
 /**
-   * @desc Placing light object into application
-   * @class Light
- TODO: Poprawa komentarzy
+ * @desc CylinderRecipe class contains sets of sizes which are used in geometry creation process
+ * @class CylinderRecipe
+ * @extends ShapeRecipe
  */
 class CylinderRecipe extends ShapeRecipe{
 
   /**
-   * @desc Creates cylinder with selected size.
+   * @desc Creates Cylinder with selected size.
    * @param {string} type - Type of selected shape
-   * @param {string} size - Type of selected size
+   * @param {string} size - selected size pattern
    */
   constructor(type, size='low') {
     super(type);
-
-    console.log(size);
-
     this.currentSize = this[size]();
   }
 
+  /**
+   * @desc This function is used to set up specific size of an element
+   * @return Array
+   * @function small()
+   */
    small() {
      //radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength
     return [2, 2, 5, 32];
   }
 
+  /**
+   * @desc This function is used to set up specific size of an element
+   * @return Array
+   * @function low()
+   */
    low() {
      //radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength
     return [2, 2, 5, 8];
