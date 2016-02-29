@@ -13,13 +13,18 @@ class MaterialRecipe {
    * @param {string} type - Type of selected shape
    * @param {string} properties - Type of selected size
    */
-  constructor(type='Basic', properties={}) {
+  constructor(type='Basic', properties={color: '0xff0000'}) {
+    console.log(type, properties);
     this.type = helpers.toTitleCase(type);
+    this.properties = properties
   }
 
-  craft() {
+  craft(type, properties) {
+
     //trzeba tutaj udostepnic odpowiedni rozmiar
-    let material = new THREE['Mesh' + this.type + 'Material'](...this.properties);
+    console.log(this.properties);
+    console.log(this.type);
+    let material = new THREE['Mesh' + this.type + 'Material'](...this.type);
     //return new THREE[['Mesh' + this.type + 'Material']](properties);
 
     return material;

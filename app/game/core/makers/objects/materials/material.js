@@ -19,28 +19,37 @@ class Material {
   }
 
   create(type='basic', properties={}){
+    this.type = type;
+    this.properties = properties;
 
-    let material = this[type](type, properties);
-    material = material.craft();
-    //return selected type of a function
-    return material;
+
+    let typeOfMaterial = this[type](type, properties);
+
+
+    return typeOfMaterial;
 
   }
   //TODO: All functions uses the same class
   basic(type, properties){
-    return new recipe.Material(type, properties);
+
+    return new recipe.MaterialRecipe(this.type, this.properties);
   }
 
   depth(type, properties){
-    return new recipe.Material(type, properties);
+    return new recipe.MaterialRecipe(this.type, this.properties);
   }
 
   lambert(type, properties){
-    return new recipe.Material(type, properties);
+    console.log(type, properties);
+    console.log(this.type, this.properties);
+    let material = new recipe.MaterialRecipe(type, properties);
+
+    let craftedMaterial = material.craft();
+    return craftedMaterial;
   }
 
   phong(type, properties){
-    return new recipe.Material(type, properties);
+    return new recipe.MaterialRecipe(this.type, this.properties);
   }
 
 }

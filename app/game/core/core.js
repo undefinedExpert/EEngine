@@ -260,7 +260,8 @@ var core = {
       box.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
     }
     //TODO: replace make.material with API
-    material = make.material(props.materialType, props.materialProps);
+
+    material = api.material.create(props.materialType, props.materialProps);
 
     //building up mesh from options
     props.meshName = make.mesh(props.meshType, box, material, props.phyxType);
