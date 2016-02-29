@@ -256,11 +256,11 @@ var core = {
     if(props.phyxType === 'Plane'){
       box.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
     }
-    //TODO: replace make.material with API
 
     material = api.material.create(props.materialType, props.materialProps);
 
     //building up mesh from options
+    //TODO: replace make.mesh with API
     props.meshName = make.mesh(props.meshType, box, material, props.phyxType);
 
     //Dodawanie mecha do proporcji zwrotnych
