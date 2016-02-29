@@ -21,7 +21,7 @@ import lights from './lights/light';
 
 import interactions from './interactions/interaction';
 
-import geometries from './objects/geometries/geometrie';
+import geometries from './objects/geometries/geometry';
 
 import materials from './objects/materials/material';
 
