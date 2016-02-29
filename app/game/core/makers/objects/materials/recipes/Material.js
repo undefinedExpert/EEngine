@@ -1,31 +1,30 @@
 import THREE from 'three.js'; // 3D library
 import CANNON from 'cannon'; // Physics Library
 import helpers from './../../../collectors/helpers';
-//TODO: Poprawa komentarzy
 /**
-   * @desc Placing light object into application
-   * @class Light
+ * @desc Material Class is used to build up custom material from Three.js
+ * @class MaterialRecipe
  */
 class MaterialRecipe {
 
   /**
-   * @desc Default type of the shape
-   * @param {string} type - Type of selected shape
-   * @param {string} properties - Type of selected size
+   * @desc Constructor which is used (invoked) in ../material.js file
+   * @param {string} type - Type of selected material, has to be uppercase
+   * @param {object} properties - Set of selected properties
    */
   constructor(type='Basic', properties={color: '0xff0000'}) {
     this.type = helpers.toTitleCase(type);
     this.properties = properties;
   }
 
+  /**
+   * @desc builds a material From THREE js specific class
+   * @return crafted material
+   * @requires THREE - requires Three.js dependencies
+   */
   craft() {
-
-
     let material = new THREE['Mesh' + this.type + 'Material'](this.properties);
-    //return new THREE[['Mesh' + this.type + 'Material']](properties);
-
     return material;
-
   }
 
 }

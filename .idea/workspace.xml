@@ -9,11 +9,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c91b8b3f-6a8b-4a9b-9f64-def8c25a1430" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/Basic.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/Depth.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/Lambert.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/Phong.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/game/core/makers/objects/materials_backup/material.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/game/core/makers/objects/materials_backup/recipes/Basic.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/game/core/makers/objects/materials_backup/recipes/Depth.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/game/core/makers/objects/materials_backup/recipes/Lambert.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/game/core/makers/objects/materials_backup/recipes/Material.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/game/core/makers/objects/materials_backup/recipes/Phong.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/game/core/makers/objects/materials_backup/recipes/recipe.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/core/core.js" afterPath="$PROJECT_DIR$/app/game/core/core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/core/makers/objects/geometries/geometrie.js" afterPath="$PROJECT_DIR$/app/game/core/makers/objects/geometries/geometrie.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/core/makers/objects/materials/material.js" afterPath="$PROJECT_DIR$/app/game/core/makers/objects/materials/material.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/Material.js" afterPath="$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/Material.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/recipe.js" afterPath="$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/recipe.js" />
     </list>
     <ignored path="electron-boilerplate.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,13 +43,13 @@
     <favorites_list name="electron-boilerplate" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.31342283">
+    <splitter split-orientation="horizontal" split-proportion="0.44636253">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="core_helpers.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/game/core/core_helpers.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.5447667">
+                <state vertical-scroll-proportion="1.3619168">
                   <caret line="150" column="0" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
@@ -53,11 +63,11 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
-          <file leaf-file-name="core.js" pinned="false" current-in-tab="true">
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="core.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/game/core/core.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.6128625">
+                <state vertical-scroll-proportion="0.0">
                   <caret line="77" column="27" selection-start-line="77" selection-start-column="27" selection-end-line="77" selection-end-column="27" />
                   <folding>
                     <element signature="e#6517#6667#0" expanded="false" />
@@ -78,7 +88,7 @@
             <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/geometries/geometrie.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="28" selection-end-column="29" />
+                  <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
                   <folding />
                 </state>
               </provider>
@@ -87,30 +97,28 @@
           <file leaf-file-name="material.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/materials/material.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-4.137931">
-                  <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Lambert.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/Lambert.js">
+          <file leaf-file-name="recipe.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/recipe.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding>
-                    <element signature="n#!!doc" expanded="true" />
-                  </folding>
+                  <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+                  <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Material.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="Material.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/Material.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="23" column="47" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
+                <state vertical-scroll-proportion="0.060529634">
+                  <caret line="2" column="52" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="52" />
                   <folding />
                 </state>
               </provider>
@@ -179,13 +187,13 @@
         <option value="$PROJECT_DIR$/app/game/core/makers/maker.js" />
         <option value="$PROJECT_DIR$/app/game/core/makers/collectors/helpers.js" />
         <option value="$PROJECT_DIR$/app/game/core/makers/objects/geometries/recipes/Shape.js" />
-        <option value="$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/recipe.js" />
         <option value="$PROJECT_DIR$/app/game/core/makers/objects/materials_backup/material.js" />
         <option value="$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/Lambert.js" />
         <option value="$PROJECT_DIR$/app/game/core/makers/objects/geometries/geometrie.js" />
-        <option value="$PROJECT_DIR$/app/game/core/makers/objects/materials/material.js" />
-        <option value="$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/Material.js" />
         <option value="$PROJECT_DIR$/app/game/core/core.js" />
+        <option value="$PROJECT_DIR$/app/game/core/makers/objects/materials/material.js" />
+        <option value="$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/recipe.js" />
+        <option value="$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/Material.js" />
       </list>
     </option>
   </component>
@@ -313,8 +321,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -472,40 +480,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="objects" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="electron-boilerplate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="eliza" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="makers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="objects" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="materials_backup" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -750,10 +724,10 @@
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19020021" sideWeight="0.55568314" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21496312" sideWeight="0.7186358" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14541623" sideWeight="0.7125457" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33396584" sideWeight="0.49789253" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22106262" sideWeight="0.5295047" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21496312" sideWeight="0.2813642" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14541623" sideWeight="0.28745434" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22106262" sideWeight="0.47049525" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -916,7 +890,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.0818505">
           <caret line="38" column="45" selection-start-line="38" selection-start-column="45" selection-end-line="38" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -931,7 +904,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -939,9 +911,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="26" column="33" selection-start-line="0" selection-start-column="0" selection-end-line="38" selection-end-column="23" />
-          <folding>
-            <element signature="n#!!block;n#create#0;n#Scene#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -956,9 +925,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29365963">
           <caret line="11" column="36" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
-          <folding>
-            <element signature="n#!!block;n#create#0;n#Light#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -966,9 +932,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-          <folding>
-            <element signature="n#!!block;n#create#0;n#Camera#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -997,7 +960,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="29" column="12" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1019,9 +981,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-14.896552">
           <caret line="45" column="4" selection-start-line="45" selection-start-column="4" selection-end-line="45" selection-end-column="24" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1036,7 +995,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6666667">
           <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1075,7 +1033,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1083,47 +1040,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="3" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/materials_backup/recipes/Material.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6933333">
-          <caret line="26" column="60" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/materials_backup/recipes/recipe.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/materials_backup/material.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5750315">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/materials_backup/recipes/Basic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/game/core/core_helpers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5447667">
+        <state vertical-scroll-proportion="1.3619168">
           <caret line="150" column="0" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -1133,81 +1055,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/Depth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/Basic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/recipe.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/Phong.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/geometries/geometrie.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="28" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/Lambert.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/materials/material.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.137931">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/Material.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="47" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/game/core/core.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6128625">
+        <state vertical-scroll-proportion="0.0">
           <caret line="77" column="27" selection-start-line="77" selection-start-column="27" selection-end-line="77" selection-end-column="27" />
           <folding>
             <element signature="e#6517#6667#0" expanded="false" />
@@ -1220,6 +1070,38 @@
             <element signature="e#9552#9646#0" expanded="false" />
             <element signature="e#9688#9870#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/geometries/geometrie.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/materials/material.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/recipe.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/Material.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.060529634">
+          <caret line="2" column="52" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="52" />
+          <folding />
         </state>
       </provider>
     </entry>
