@@ -25,6 +25,7 @@ class Geometry {
     return shape;
   }
 
+  //zamiast uzywania oddzielnych metod mozna stworzyc jedna metode, ktora by wyszukiwala odpowiednia klase z receptur, zamiast wyszukiwac odpowiedniej metody w funkcji create
   cylinder(type, pickedSize){
     return new recipe.Cylinder(type, pickedSize);
   }

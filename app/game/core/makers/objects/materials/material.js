@@ -11,46 +11,26 @@ import * as recipe from './recipes/recipe' ;
  */
 class Material {
 
-  constructor(type='Basic', properties={}) {
-    type = helpers.toTitleCase(type);
-    this.type = type;
-    this.properties = properties;
-
-  }
+  constructor() {}
 
   create(type='basic', properties={}){
-    this.type = type;
-    this.properties = properties;
 
 
-    let typeOfMaterial = this[type](type, properties);
+    let typeOfMaterial = this.build(type,properties);
 
+    console.log(typeOfMaterial);
 
     return typeOfMaterial;
 
   }
   //TODO: All functions uses the same class
-  basic(type, properties){
 
-    return new recipe.MaterialRecipe(this.type, this.properties);
+  build(type,properties){
+    var obj = new recipe.MaterialRecipe(type,properties);
+    var crafted = obj.craft();
+    return crafted;
   }
 
-  depth(type, properties){
-    return new recipe.MaterialRecipe(this.type, this.properties);
-  }
-
-  lambert(type, properties){
-    console.log(type, properties);
-    console.log(this.type, this.properties);
-    let material = new recipe.MaterialRecipe(type, properties);
-
-    let craftedMaterial = material.craft();
-    return craftedMaterial;
-  }
-
-  phong(type, properties){
-    return new recipe.MaterialRecipe(this.type, this.properties);
-  }
 
 }
 

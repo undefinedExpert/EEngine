@@ -75,7 +75,7 @@ var core = {
         geoSize: 'low',
         materialType: 'lambert',
         materialProps: {
-          color: 'rgb(255,0,0)', emissive: 0x200000
+          color: 'rgb(0,255,0)', emissive: 0x200000
         },
         meshType: 'basic',
         meshName: 'object2',
