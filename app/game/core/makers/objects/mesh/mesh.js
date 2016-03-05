@@ -83,7 +83,11 @@ class Mesh {
     if(phyxShapeType === 'Plane'){
       let planeShape = new CANNON.Plane();
       phyxBase.addShape(planeShape);
+    } else {
+      debugger;
+      phyxBase.addShape(phyxShape);
     }
+
     //attach shape to phyx
 
 
@@ -110,8 +114,9 @@ class Mesh {
    */
   buildPhyxShape(phyxShapeType, position){
 
-    let shape = this.shape = new CANNON[phyxShapeType](...position);
+    let shape = new CANNON.Box();
 
+    console.log(shape)
     return shape;
 
   }

@@ -51,7 +51,7 @@ var core = {
     //TODO: Implementacja dzwiekow
     //TODO: Kolekcja obiektow / zbior obiektow ktory wskazuje na obiekt o proporcjach z danego zbioru
     var objectsListToRender = [];
-    this.cannon();
+
 
     var objectSet = {
       object1: that.object({
@@ -67,7 +67,6 @@ var core = {
         phyxType: 'Body',
         phyxBodyTypeParameters: {
           mass: 30,
-          material: 'slipperyMaterial',
           type: CANNON.Body.DYNAMIC
         },
         position: [5,3,0]
@@ -86,7 +85,6 @@ var core = {
         phyxType: 'Body',
         phyxBodyTypeParameters: {
           mass: 30,
-          material: 'slipperyMaterial',
           type: CANNON.Body.DYNAMIC
         },
         position: [2,5,0]
@@ -106,7 +104,6 @@ var core = {
         phyxShapeType: 'Plane',
         phyxBodyTypeParameters: {
           mass: 0,
-          material: 'slipperyMaterial',
           type: CANNON.Body.DYNAMIC
         },
         position: [0,0,0]
@@ -304,7 +301,7 @@ var core = {
 
 
     //Pokurwione sa pozycje
-    if(!items){
+
 //Cannon init
       world = new CANNON.World();
       world.gravity.set(0, -10, 0);
@@ -339,7 +336,8 @@ var core = {
       physicsContactMaterial.contactEquationStiffness = 1e8;
       physicsContactMaterial.contactEquationRegularizationTime = 3;
       console.log(world);
-    } else {
+    // Create a plane            // Joint body
+    console.log(world);
       items.forEach(function(item){
 
         //TODO: Naprawic dodawanie fizyki
@@ -347,11 +345,10 @@ var core = {
 
         //w kazdym item.phyx world jets null, why
         world.addBody(item.phyx);
-        console.log(item);
+        console.log(item.phyx);
       })
 
 
-    }
 
 
 
