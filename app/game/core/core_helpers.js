@@ -283,20 +283,6 @@ function mesh(type, object, material, phyxType='Box') {
 
 
     }
-    //init(name, bodyType='Body', parameters={mass: 1}) {
-    //  name = new CANNON.Body(parameters);
-    //  //new CANNON.RigidBody(0,groundShape,groundMaterial)
-    //  console.log(this.shape());
-    //
-    //
-    //  name.shape = this.shape();
-    //
-    //  name.angularVelocity.set(0, 0, 0);
-    //
-    //  name.angularDamping = 0.5;
-    //
-    //  return name;
-    //}
 
   }
 

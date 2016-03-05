@@ -25,6 +25,8 @@ import geometries from './objects/geometries/geometry';
 
 import materials from './objects/materials/material';
 
+import meshes from './objects/mesh/mesh';
+
 
 
 
@@ -50,5 +52,6 @@ export {
   lights as light,
   interactions as interaction,
   geometries as geometry,
-  materials as material
+  materials as material,
+  meshes as mesh
 };

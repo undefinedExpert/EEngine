@@ -65,7 +65,7 @@ var core = {
         meshType: 'basic',
         shadow: 'object1Shadow',
         phyxName: 'objectPhyx',
-        phyxBodyType: 'Body',
+        phyxType: 'Body',
         phyxBodyTypeParameters: {
           mass: 1
         }
@@ -81,7 +81,7 @@ var core = {
         meshName: 'object2',
         shadow: 'object2Shadow',
         phyxName: 'object2Phyx',
-        phyxBodyType: 'Body',
+        phyxType: 'Body',
         phyxBodyTypeParameters: {
           mass: 1
         }
@@ -97,9 +97,8 @@ var core = {
         meshName: 'plane',
         shadow: 'planeShadow',
         phyxName: 'planePhyx',
-        phyxType: 'Plane',
+        phyxType: 'Body',
         phyxShapeType: 'Plane',
-        phyxBodyType: 'Body',
         phyxBodyTypeParameters: {
           mass: 1
         }
@@ -253,7 +252,7 @@ var core = {
     //var box = make.geometry(props.geoType, props.geoSize);
     var box = api.geometry.create(props.geoType, props.geoSize);
 
-    if(props.phyxType === 'Plane'){
+    if(props.phyxShapeType === 'Plane'){
       box.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
     }
 
@@ -261,13 +260,14 @@ var core = {
 
     //building up mesh from options
     //TODO: replace make.mesh with API
-    props.meshName = make.mesh(props.meshType, box, material, props.phyxType);
+    props.meshName = api.mesh.create(props.meshType, box, material, props.phyxType, props.phyxShapeType, props.phyxBodyTypeParameters);
+
 
     //Dodawanie mecha do proporcji zwrotnych
     container.mesh = props.meshName;
 
     //Adding phyx to this mesh
-    props.phyxName = props.meshName.construct.init(props.phyxName, props.phyxBodyType, props.phyxBodyTypeParameters, props.phyxShapeType); //init phyx for this object
+    props.phyxName = props.meshName.phyx; //init phyx for this object
 
     //Dodawanie phyx do proporcji zwrotnych
     container.phyx = props.phyxName;
@@ -286,9 +286,11 @@ var core = {
     world.broadphase = new CANNON.NaiveBroadphase();
     world.solver.iterations = 10;
 
+
     //Tutaj trzeba dodac fizyczne "cialo" na ktorym sie odbywa manipulacja do swiata
     items.forEach(function(item){
       //console.log(item);
+      console.log(item.phyx);
       world.addBody(item.phyx);
     })
 

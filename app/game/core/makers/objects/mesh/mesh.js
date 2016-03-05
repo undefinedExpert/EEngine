@@ -1,132 +1,117 @@
 import THREE from 'three.js'; // 3D library
 import CANNON from 'cannon'; // Physics Library
+
+import helpers from './../../collectors/helpers';
+
+//Import recipes object from ./recipe file.
+import * as recipe from './recipes/recipe' ;
+
+
+
 /**
-   * @desc Placing light object into application
-   * @class Light
+ * @desc Returns material object
+ * @class Mesh
  */
-class Light {
+class Mesh {
 
   constructor() {}
 
   /**
-     * @desc Creating Three.js light
-     * @function create()
-   * @return new Three.js light
-   * //TODO: Adding more lights
+   * @desc Request a build function to make mesh from set of properties
+   * @param {string} type - Type of mesh, default value is 'basic'
+   * @param {object} geometry - geometry of upcoming mesh
+   * @param {object} material - material for that mesh
+   * @param {string} phyxType - physical type for mesh (like Body)
+   * @param {string} phyxShapeType - physical shape type a for mesh (like Plane)
+   * @param {object} phyxProperties - physical properties for mesh
+   * @return fully build material from options
    */
-  create() {
-    light = new THREE.DirectionalLight(0xffeedd);
-    return light;
+  create(type = 'basic', geometry, material, phyxType='Body', phyxShapeType='Body', phyxProperties={mass: 1}) {
+
+    //Making sure it's uppercase
+    phyxType = helpers.toTitleCase(phyxType);
+    phyxShapeType = helpers.toTitleCase(phyxShapeType);
+
+    //It build up mesh
+    let fullyBuildedMesh = this.buildMesh(type, geometry, material, phyxType);
+
+    //It's attaching physic to that builded mesh
+    fullyBuildedMesh.phyx = this.buildPhyx(phyxType, phyxProperties, phyxShapeType);
+
+    return fullyBuildedMesh;
+  }
+
+  /**
+   * @desc builds a material From MeshRecipe class
+   * @param {string} type - Type of mesh, default value is 'basic'
+   * @param {object} geometry - geometry of upcoming mesh
+   * @param {object} material - material for that mesh
+   * @param {object} phyxType - physical type for mesh
+   * @return crafted mesh
+   * @requires MeshRecipe Class - Default class for building meshes
+   */
+  buildMesh(type, geometry, material, phyxType) {
+
+    var obj = new recipe.MeshRecipe(type, geometry, material, phyxType);
+    var crafted = obj.craft();
+    return crafted;
+
+  }
+
+  /**
+   * @desc builds a physical shape for a mesh
+   * @param {string} phyxType - Type of physics to build
+   * @param {object} phyxProperties - proporties for a base physics
+   * @param {object} phyxShapeType - shape of a physics
+   * @return crafted physics of a mesh
+   */
+  buildPhyx(phyxType, phyxProperties, phyxShapeType) {
+
+    //build phyx shape
+    var phyxShape = this.buildPhyxShape(phyxShapeType);
+
+    //build base of phyx
+    var phyxBase = this.BuildBasicPhyx(phyxType, phyxProperties);
+
+    //attach shape to phyx
+    phyxBase.shape = phyxShape;
+
+    //default phyx values
+    phyxBase.angularVelocity.set(0, 0, 0);
+
+    phyxBase.angularDamping = 0.5;
+
+    return phyxBase;
+
+  }
+
+  /**
+   * @desc build up a shape for physic object using CANNON
+   * @param {object} phyxShapeType - shape of a physics
+   */
+  buildPhyxShape(phyxShapeType){
+
+    let shape = this.shape = new CANNON[phyxShapeType](new CANNON.Vec3(1, 1, 1));
+
+    return shape;
+
+  }
+
+  /**
+   * @desc build up base physic object
+   * @param {object} phyxType - type of physical body to build
+   * @param {object} phyxProperties - set of properties
+   */
+  BuildBasicPhyx(phyxType, phyxProperties){
+
+    let phyxBase = new CANNON[phyxType](phyxProperties);
+
+    return phyxBase;
   }
 
 }
 
+//Creates new material Object
 let mesh = new Mesh();
 
 export default mesh;
-
-
-
-
-/**
- * This file has been created by Emanuel Slotwinski on 2016-02-25
- */
-/**
-  * @desc Placing camera into scene
-  * @function camera
- * @param {object} position - set initial position of the camera
- * @param {number} fov - camera Field of View value
-  * @return bool - camera object
- */
-//TODO: mesh comment
-
-
-function mesh(type, object, material, phyxType='Box') {
-
-
-  var meshes = {
-    basic: function () {
-      return new Mesh(type, object, material, phyxType);
-    }
-  };
-
-  class Mesh {
-    /**
-     * @desc Default constructor of material
-     * @param {string} type - Type of selected shape
-     * @param {object} properties - Type of selected size
-     */
-    constructor(type, object, material, phyxType) {
-      type = toTitleCase(type);
-      this.type = type;
-      this.object = object;
-      this.material = material;
-      this.phyxType = phyxType;
-
-    }
-
-
-    craft(type, object, material) {
-      //console.log(new THREE['Mesh' + this.type + 'Material']({wireframe: true}));
-      //Properties are from Constructor
-      return new THREE.Mesh(object, material);
-    }
-
-    shape() {
-      console.log(this);
-      this.shape = new CANNON[phyxType](new CANNON.Vec3(1, 1, 1));
-
-      return this.shape;
-
-
-    }
-    //init(name, bodyType='Body', parameters={mass: 1}) {
-    //  name = new CANNON.Body(parameters);
-    //  //new CANNON.RigidBody(0,groundShape,groundMaterial)
-    //  console.log(this.shape());
-    //
-    //
-    //  name.shape = this.shape();
-    //
-    //  name.angularVelocity.set(0, 0, 0);
-    //
-    //  name.angularDamping = 0.5;
-    //
-    //  return name;
-    //}
-
-  }
-
-
-  var mesh = meshes[type](type, object, material, phyxType);
-  var craftedMesh = mesh.craft.apply(Mesh, [type, object, material]);
-
-  craftedMesh.construct = {
-    shape: function (phyxType) {
-
-      this.shape = new CANNON[phyxType](new CANNON.Vec3(1, 1, 1));
-      return this.shape;
-    },
-    mass: 1,
-    init: function (name, bodyType='Body', bodyTypeProperties={mass: 1}, phyxType='Body') {
-
-
-      name = new CANNON[bodyType](bodyTypeProperties);
-      //CANNON.RigidBody(0,groundShape,groundMaterial);
-      name.shape = this.shape(phyxType);
-
-      name.angularVelocity.set(0, 0, 0);
-
-      name.angularDamping = 0.5;
-
-      return name;
-    }
-
-  };
-
-  //Returning material
-
-  return craftedMesh;
-
-
-}
