@@ -193,132 +193,132 @@ function toTitleCase(str) {
  * @param {object} properties - Proporties of a material
    * @return bool - object
  */
-function material(type = 'basic', properties = {wireframe: true}) {
-//TODO: Adding more base materials
-  //Base materials which are use to create new objects from classes
-  var materials = {
-    "basic": function () {
-      return new Material(type, properties);
-    },
-    "depth": function () {
-      return new Material(type, properties);
-    },
-    "lambert": function(){
-      return new Material(type, properties);
-    },
-    "phong": function(){
-      return new Material(type, properties);
-    }
-  };
-
-  //Main class
-  class Material {
-    /**
-     * @desc Default constructor of material
-     * @param {string} type - Type of selected shape
-     * @param {object} properties - Type of selected size
-     */
-    constructor(type, properties) {
-      type = toTitleCase(type);
-      this.type = type;
-      this.properties = properties;
-    }
-
-
-    craft(properties) {
-      //console.log(new THREE['Mesh' + this.type + 'Material']({wireframe: true}));
-      //Properties are from Constructor
-      return new THREE[['Mesh' + this.type + 'Material']](properties);
-    }
-
-  }
-
-  //Setting specific type with properties to materials
-  var material = materials[type](type, properties);
-
-  //Creating material
-  let craftedMaterial = material.craft.apply(material, [properties]);
-
-  //Returning material
-  return craftedMaterial;
-}
-
-
-function mesh(type, object, material, phyxType='Box') {
-
-
-  var meshes = {
-    basic: function () {
-      return new Mesh(type, object, material, phyxType);
-    }
-  };
-
-  class Mesh {
-    /**
-     * @desc Default constructor of material
-     * @param {string} type - Type of selected shape
-     * @param {object} properties - Type of selected size
-     */
-    constructor(type, object, material, phyxType) {
-      type = toTitleCase(type);
-      this.type = type;
-      this.object = object;
-      this.material = material;
-      this.phyxType = phyxType;
-
-    }
-
-
-    craft(type, object, material) {
-      //console.log(new THREE['Mesh' + this.type + 'Material']({wireframe: true}));
-      //Properties are from Constructor
-      return new THREE.Mesh(object, material);
-    }
-
-    shape() {
-      console.log(this);
-      this.shape = new CANNON[phyxType](new CANNON.Vec3(1, 1, 1));
-
-      return this.shape;
-
-
-    }
-
-  }
-
-
-  var mesh = meshes[type](type, object, material, phyxType);
-  var craftedMesh = mesh.craft.apply(Mesh, [type, object, material]);
-
-  craftedMesh.construct = {
-    shape: function (phyxType) {
-
-      this.shape = new CANNON[phyxType](new CANNON.Vec3(1, 1, 1));
-      return this.shape;
-    },
-    mass: 1,
-    init: function (name, bodyType='Body', bodyTypeProperties={mass: 1}, phyxType='Body') {
-
-
-      name = new CANNON[bodyType](bodyTypeProperties);
-      //CANNON.RigidBody(0,groundShape,groundMaterial);
-      name.shape = this.shape(phyxType);
-
-      name.angularVelocity.set(0, 0, 0);
-
-      name.angularDamping = 0.5;
-
-      return name;
-    }
-
-  };
-
-  //Returning material
-
-  return craftedMesh;
-
-
-}
+//function material(type = 'basic', properties = {wireframe: true}) {
+////TODO: Adding more base materials
+//  //Base materials which are use to create new objects from classes
+//  var materials = {
+//    "basic": function () {
+//      return new Material(type, properties);
+//    },
+//    "depth": function () {
+//      return new Material(type, properties);
+//    },
+//    "lambert": function(){
+//      return new Material(type, properties);
+//    },
+//    "phong": function(){
+//      return new Material(type, properties);
+//    }
+//  };
+//
+//  //Main class
+//  class Material {
+//    /**
+//     * @desc Default constructor of material
+//     * @param {string} type - Type of selected shape
+//     * @param {object} properties - Type of selected size
+//     */
+//    constructor(type, properties) {
+//      type = toTitleCase(type);
+//      this.type = type;
+//      this.properties = properties;
+//    }
+//
+//
+//    craft(properties) {
+//      //console.log(new THREE['Mesh' + this.type + 'Material']({wireframe: true}));
+//      //Properties are from Constructor
+//      return new THREE[['Mesh' + this.type + 'Material']](properties);
+//    }
+//
+//  }
+//
+//  //Setting specific type with properties to materials
+//  var material = materials[type](type, properties);
+//
+//  //Creating material
+//  let craftedMaterial = material.craft.apply(material, [properties]);
+//
+//  //Returning material
+//  return craftedMaterial;
+//}
+//
+//
+//function mesh(type, object, material, phyxType='Box') {
+//
+//
+//  var meshes = {
+//    basic: function () {
+//      return new Mesh(type, object, material, phyxType);
+//    }
+//  };
+//
+//  class Mesh {
+//    /**
+//     * @desc Default constructor of material
+//     * @param {string} type - Type of selected shape
+//     * @param {object} properties - Type of selected size
+//     */
+//    constructor(type, object, material, phyxType) {
+//      type = toTitleCase(type);
+//      this.type = type;
+//      this.object = object;
+//      this.material = material;
+//      this.phyxType = phyxType;
+//
+//    }
+//
+//
+//    craft(type, object, material) {
+//      //console.log(new THREE['Mesh' + this.type + 'Material']({wireframe: true}));
+//      //Properties are from Constructor
+//      return new THREE.Mesh(object, material);
+//    }
+//
+//    shape() {
+//      console.log(this);
+//      this.shape = new CANNON[phyxType](new CANNON.Vec3(1, 1, 1));
+//
+//      return this.shape;
+//
+//
+//    }
+//
+//  }
+//
+//
+//  var mesh = meshes[type](type, object, material, phyxType);
+//  var craftedMesh = mesh.craft.apply(Mesh, [type, object, material]);
+//
+//  craftedMesh.construct = {
+//    shape: function (phyxType) {
+//
+//      this.shape = new CANNON[phyxType](new CANNON.Vec3(1, 1, 1));
+//      return this.shape;
+//    },
+//    mass: 1,
+//    init: function (name, bodyType='Body', bodyTypeProperties={mass: 1}, phyxType='Body') {
+//
+//
+//      name = new CANNON[bodyType](bodyTypeProperties);
+//      //CANNON.RigidBody(0,groundShape,groundMaterial);
+//      name.shape = this.shape(phyxType);
+//
+//      name.angularVelocity.set(0, 0, 0);
+//
+//      name.angularDamping = 0.5;
+//
+//      return name;
+//    }
+//
+//  };
+//
+//  //Returning material
+//
+//  return craftedMesh;
+//
+//
+//}
 
 
 //function addObjects(arrayOfElementsToAdd) {

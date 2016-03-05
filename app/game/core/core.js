@@ -7,7 +7,6 @@ import CANNON from 'cannon'; // Physics Library
 var OrbitControls = require('three-orbit-controls')(THREE);
 import config from './config'; // importing config of core module
 
-import * as make from './core_helpers';
 import * as api from './makers/maker';
 import {GameObjects} from './GameObjectClass';
 
@@ -228,10 +227,7 @@ var core = {
     let currentWindow = remote.getCurrentWindow().removeAllListeners();
 
     //Resize event
-    window.addEventListener('resize', function(e){
-      e.preventDefault();
-      that.onWindowResize();
-    })
+    this.control();
 
 
   },
@@ -243,8 +239,10 @@ var core = {
 
     light = api.light.create();
   },
-  //TODO: Te funkcje to powinny bys konstruktory, z konsktruktora obiektu
-  // Tworzylo by sie inne obiekty na podstawie wprowadzanych danych etc.
+  /**
+   * @method object
+   * @desc This method build up fully working mesh from bunch of properties, it also bulds up a physical body for that mesh
+   */
   object: function(props){
 
     //init materials to build mesh
@@ -252,16 +250,16 @@ var core = {
     //var box = make.geometry(props.geoType, props.geoSize);
     var box = api.geometry.create(props.geoType, props.geoSize);
 
+    //If the physical shape is a Plane then make it rotate (ground)
     if(props.phyxShapeType === 'Plane'){
       box.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
     }
 
+    //Build up a material for upcoming object
     material = api.material.create(props.materialType, props.materialProps);
 
     //building up mesh from options
-    //TODO: replace make.mesh with API
     props.meshName = api.mesh.create(props.meshType, box, material, props.phyxType, props.phyxShapeType, props.phyxBodyTypeParameters);
-
 
     //Dodawanie mecha do proporcji zwrotnych
     container.mesh = props.meshName;
@@ -342,7 +340,6 @@ var core = {
    */
   render: function () {
     renderer.render(scene, camera);
-
   },
   /**
    * @function addMovement
@@ -376,10 +373,11 @@ var core = {
     renderer.setSize( window.innerWidth, window.innerHeight );
     },
   control: function () {
-    //document.addEventListener( 'mousemove', this.onDocumentMouseMove, false );
-    window.addEventListener('resize', this.onWindowResize, false);
-
-
+    let that = this;
+    window.addEventListener('resize', function(e){
+      e.preventDefault();
+      that.onWindowResize();
+    });
   }
 };
 
