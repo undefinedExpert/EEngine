@@ -51,7 +51,7 @@ var core = {
     //TODO: Implementacja dzwiekow
     //TODO: Kolekcja obiektow / zbior obiektow ktory wskazuje na obiekt o proporcjach z danego zbioru
     var objectsListToRender = [];
-
+    this.cannon();
 
     var objectSet = {
       object1: that.object({
@@ -66,8 +66,11 @@ var core = {
         phyxName: 'objectPhyx',
         phyxType: 'Body',
         phyxBodyTypeParameters: {
-          mass: 30
-        }
+          mass: 30,
+          material: 'slipperyMaterial',
+          type: CANNON.Body.DYNAMIC
+        },
+        position: [5,3,0]
       }),
       object2: that.object({
         geoType: 'box',
@@ -82,8 +85,11 @@ var core = {
         phyxName: 'object2Phyx',
         phyxType: 'Body',
         phyxBodyTypeParameters: {
-          mass: 30
-        }
+          mass: 30,
+          material: 'slipperyMaterial',
+          type: CANNON.Body.DYNAMIC
+        },
+        position: [2,5,0]
       }),
       plane: that.object({
         geoType: 'plane',
@@ -99,8 +105,11 @@ var core = {
         phyxType: 'Body',
         phyxShapeType: 'Plane',
         phyxBodyTypeParameters: {
-          mass: 0
-        }
+          mass: 0,
+          material: 'slipperyMaterial',
+          type: CANNON.Body.DYNAMIC
+        },
+        position: [0,0,0]
       })
 
     };
@@ -110,12 +119,20 @@ var core = {
     scene.add(grid);
 
 
+
+
+    // rotate and position the plane
+
     // create the ground plane
 
 
     objectSet.plane.mesh.receiveShadow = true;
     // rotate and position the plane
+    objectSet.plane.mesh.rotation.x = -0.5 * Math.PI;
 
+
+    objectSet.plane.mesh.position.clone(objectSet.plane.phyx.position);
+    objectSet.plane.mesh.quaternion.clone(objectSet.plane.phyx.rotation);
 
 
     //Object manipulations
@@ -261,7 +278,7 @@ var core = {
     material = api.material.create(props.materialType, props.materialProps);
 
     //building up mesh from options
-    props.meshName = api.mesh.create(props.meshType, box, material, props.phyxType, props.phyxShapeType, props.phyxBodyTypeParameters);
+    props.meshName = api.mesh.create(props.meshType, box, material, props.phyxType, props.phyxShapeType, props.phyxBodyTypeParameters, props.position);
 
     //Dodawanie mecha do proporcji zwrotnych
     container.mesh = props.meshName;
@@ -284,47 +301,59 @@ var core = {
    * @desc Initialize whole physics for scene and it's objects
    */
   cannon: function (items) {
-    //Cannon init
-    world = new CANNON.World();
-    world.gravity.set(0, 0, 0);
-    world.broadphase = new CANNON.NaiveBroadphase();
-    world.solver.iterations = 10;
-    world.quatNormalizeSkip = 0;
-    world.quatNormalizeFast = false;
-    world.defaultContactMaterial.contactEquationStiffness = 1e7;
-    world.defaultContactMaterial.contactEquationRelaxation = 4;
-
-    var solver = new CANNON.GSSolver();
-    solver.iterations = 7;
-    solver.tolerance = 0.1;
-
-    var split = true;
-    if(split)
-      world.solver = new CANNON.SplitSolver(solver);
-    else
-      world.solver = solver;
-
-    var physicsMaterial = new CANNON.Material("slipperyMaterial");
-    //Tutaj trzeba dodac fizyczne "cialo" na ktorym sie odbywa manipulacja do swiata
-    var physicsContactMaterial = new CANNON.ContactMaterial(physicsMaterial,
-      physicsMaterial,
-      0.0, // friction coefficient
-      0.3  // restitution
-    );
-    // We must add the contact materials to the world
-    world.addContactMaterial(physicsContactMaterial);
-
 
 
     //Pokurwione sa pozycje
-    items.forEach(function(item){
+    if(!items){
+//Cannon init
+      world = new CANNON.World();
+      world.gravity.set(0, -10, 0);
+      world.broadphase = new CANNON.NaiveBroadphase();
+      world.solver.iterations = 10;
+      world.quatNormalizeSkip = 0;
+      world.quatNormalizeFast = false;
+      world.defaultContactMaterial.contactEquationStiffness = 1e7;
+      world.defaultContactMaterial.contactEquationRelaxation = 4;
 
 
-      console.log(item.phyx.position);
-      console.log(item.mesh.position);
-      console.log('---------------------')
-      world.addBody(item.phyx);
-    })
+
+      var solver = new CANNON.GSSolver();
+      solver.iterations = 7;
+      solver.tolerance = 0.1;
+
+      var split = true;
+      if(split)
+        world.solver = new CANNON.SplitSolver(solver);
+      else
+        world.solver = solver;
+
+      var physicsMaterial = new CANNON.Material("slipperyMaterial");
+      //Tutaj trzeba dodac fizyczne "cialo" na ktorym sie odbywa manipulacja do swiata
+      var physicsContactMaterial = new CANNON.ContactMaterial(physicsMaterial, physicsMaterial, [0.1, 0.3]);
+      // We must add the contact materials to the world
+      world.addContactMaterial(physicsContactMaterial);
+      world.solver.iterations = 20; // Increase solver iterations (default is 10)
+      world.solver.tolerance = 0;   // Force solver to use all iterations
+
+// Adjust constraint equation parameters: use to tweak sponginess
+      physicsContactMaterial.contactEquationStiffness = 1e8;
+      physicsContactMaterial.contactEquationRegularizationTime = 3;
+      console.log(world);
+    } else {
+      items.forEach(function(item){
+
+        //TODO: Naprawic dodawanie fizyki
+
+
+        //w kazdym item.phyx world jets null, why
+        world.addBody(item.phyx);
+        console.log(item);
+      })
+
+
+    }
+
+
 
   },
   /**
