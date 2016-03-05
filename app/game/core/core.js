@@ -132,7 +132,6 @@ var core = {
     objectSet.object2.mesh.receiveShadow = true;
 
 
-    //console.log(objectSet.object2.mesh.position);
 
 
     light.position.set( 556, 555, 555 );
@@ -162,8 +161,9 @@ var core = {
       that.addMovement(objectSet.object2, 5);
     });
 
-    console.log(ipcRenderer );
 
+    //TODO: remove this from this file
+    //Fullescreen event
     var fullScreen = document.getElementById('fullscreen');
 
 
