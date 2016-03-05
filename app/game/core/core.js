@@ -6,6 +6,7 @@ import THREE from 'three.js'; // 3D library
 import CANNON from 'cannon'; // Physics Library
 var OrbitControls = require('three-orbit-controls')(THREE);
 import config from './config'; // importing config of core module
+import smoothie from 'smoothie';
 
 import * as api from './makers/maker';
 import {GameObjects} from './GameObjectClass';
@@ -65,6 +66,7 @@ var core = {
         shadow: 'object1Shadow',
         phyxName: 'objectPhyx',
         phyxType: 'Body',
+        phyxShapeType: 'Cylinder',
         phyxBodyTypeParameters: {
           mass: 30,
           type: CANNON.Body.DYNAMIC
@@ -83,6 +85,7 @@ var core = {
         shadow: 'object2Shadow',
         phyxName: 'object2Phyx',
         phyxType: 'Body',
+        phyxShapeType: 'Box',
         phyxBodyTypeParameters: {
           mass: 30,
           type: CANNON.Body.DYNAMIC
@@ -176,7 +179,7 @@ var core = {
     //Adding interaction to button
     var button = document.getElementById('addSpeed');
     speedButton = api.interaction.click(button, function () {
-      that.addMovement(objectSet.object2, 5);
+      that.addMovement(objectSet.object2, 10);
     });
 
 
@@ -266,7 +269,7 @@ var core = {
     //init materials to build mesh
     var container = {};
     //var box = make.geometry(props.geoType, props.geoSize);
-    var box = api.geometry.create(props.geoType, props.geoSize);
+    var geometry = api.geometry.create(props.geoType, props.geoSize);
 
     //If the physical shape is a Plane then make it rotate (ground)
 
@@ -275,7 +278,7 @@ var core = {
     material = api.material.create(props.materialType, props.materialProps);
 
     //building up mesh from options
-    props.meshName = api.mesh.create(props.meshType, box, material, props.phyxType, props.phyxShapeType, props.phyxBodyTypeParameters, props.position);
+    props.meshName = api.mesh.create(props.meshType, geometry, material, props.phyxType, props.phyxShapeType, props.phyxBodyTypeParameters, props.position);
 
     //Dodawanie mecha do proporcji zwrotnych
     container.mesh = props.meshName;
@@ -311,8 +314,7 @@ var core = {
       world.quatNormalizeFast = false;
       world.defaultContactMaterial.contactEquationStiffness = 1e7;
       world.defaultContactMaterial.contactEquationRelaxation = 4;
-
-
+      world.doProfiling = true;
 
       var solver = new CANNON.GSSolver();
       solver.iterations = 7;
@@ -335,9 +337,9 @@ var core = {
 // Adjust constraint equation parameters: use to tweak sponginess
       physicsContactMaterial.contactEquationStiffness = 1e8;
       physicsContactMaterial.contactEquationRegularizationTime = 3;
-      console.log(world);
+
     // Create a plane            // Joint body
-    console.log(world);
+
       items.forEach(function(item){
 
         //TODO: Naprawic dodawanie fizyki
@@ -345,7 +347,7 @@ var core = {
 
         //w kazdym item.phyx world jets null, why
         world.addBody(item.phyx);
-        console.log(item.phyx);
+
       })
 
 

@@ -25,6 +25,9 @@ class ShapeRecipe {
    */
   craft() {
     let shape = new THREE[this.type + 'Geometry'](...this.currentSize);
+
+    //Exporting size to make an usage at phyx creation process
+    shape.size = this.currentSize;
     return shape;
   }
 

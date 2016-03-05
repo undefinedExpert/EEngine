@@ -26,7 +26,7 @@ class CylinderRecipe extends ShapeRecipe{
    */
    small() {
      //radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength
-    return [2, 2, 5, 32];
+    return [2, 2, 4, 10];
   }
 
   /**

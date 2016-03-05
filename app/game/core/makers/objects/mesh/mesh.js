@@ -29,6 +29,7 @@ class Mesh {
    */
   create(type = 'basic', geometry, material, phyxType='Body', phyxShapeType='Body', phyxProperties={mass: 0}, position=[0,0,0]) {
 
+    var size = geometry.size;
     //Making sure it's uppercase
     phyxType = helpers.toTitleCase(phyxType);
     phyxShapeType = helpers.toTitleCase(phyxShapeType);
@@ -36,8 +37,9 @@ class Mesh {
     //It build up mesh
     let fullyBuildedMesh = this.buildMesh(type, geometry, material, phyxType, position);
 
+
     //It's attaching physic to that builded mesh
-    fullyBuildedMesh.phyx = this.buildPhyx(phyxType, phyxProperties, phyxShapeType, position);
+    fullyBuildedMesh.phyx = this.buildPhyx(phyxType, phyxProperties, phyxShapeType, position, size);
 
     return fullyBuildedMesh;
   }
@@ -48,6 +50,8 @@ class Mesh {
    * @param {object} geometry - geometry of upcoming mesh
    * @param {object} material - material for that mesh
    * @param {object} phyxType - physical type for mesh
+   * @param {object} position - physical type for mesh
+   * @param {array} size - physical type for mesh
    * @return crafted mesh
    * @requires MeshRecipe Class - Default class for building meshes
    */
@@ -70,21 +74,22 @@ class Mesh {
    * @param {object} phyxShapeType - shape of a physics
    * @return crafted physics of a mesh
    */
-  buildPhyx(phyxType, phyxProperties, phyxShapeType, position) {
+  buildPhyx(phyxType, phyxProperties, phyxShapeType, position, size) {
 
     //build phyx shape
-    var phyxShape = this.buildPhyxShape(phyxShapeType, position);
+    var phyxShape = this.buildPhyxShape(phyxShapeType, position, size);
 
-    console.log(phyxShape);
+
     //phyxProperties.shape = phyxShape;
     //build base of phyx
     var phyxBase = this.BuildBasicPhyx(phyxType, phyxProperties);
 
+    //todo: refactor
     if(phyxShapeType === 'Plane'){
       let planeShape = new CANNON.Plane();
       phyxBase.addShape(planeShape);
     } else {
-      debugger;
+
       phyxBase.addShape(phyxShape);
     }
 
@@ -96,7 +101,7 @@ class Mesh {
     //default phyx values
     phyxBase.angularVelocity.set(0, 0, 0);
 
-    phyxBase.angularDamping = 0.5;
+    phyxBase.angularDamping = 0.0;
     phyxBase.velocity.set(0,0,0);
     phyxBase.linearDamping = 0;
 
@@ -112,11 +117,18 @@ class Mesh {
    * @desc build up a shape for physic object using CANNON
    * @param {object} phyxShapeType - shape of a physics
    */
-  buildPhyxShape(phyxShapeType, position){
+  buildPhyxShape(phyxShapeType, position, size){
 
-    let shape = new CANNON.Box();
+    //TODO: stworzenie odpowiednich rozmiarow dla naszego mesha
+    //shape powinnien rowneiz korzystac w wczesniej predefiniowanych rozmiarow dla obiektow
+    // Tak jak jest to w ../geometry
+    var shape;
+    if(phyxShapeType === 'Box'){
+      shape = new CANNON[phyxShapeType](new CANNON.Vec3(...size));
+    } else {
+      shape = new CANNON[phyxShapeType](...size);
+    }
 
-    console.log(shape)
     return shape;
 
   }
@@ -132,6 +144,7 @@ class Mesh {
 
     return phyxBase;
   }
+
 
 }
 

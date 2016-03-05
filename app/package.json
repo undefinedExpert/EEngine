@@ -11,6 +11,7 @@
     "cannon": "^0.6.2",
     "fs-jetpack": "^0.7.0",
     "lodash": "^4.4.0",
+    "smoothie": "^1.27.0",
     "three-orbit-controls": "^72.0.0",
     "three.js": "^0.73.0"
   }
