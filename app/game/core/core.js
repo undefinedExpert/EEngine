@@ -66,7 +66,7 @@ var core = {
         phyxName: 'objectPhyx',
         phyxType: 'Body',
         phyxBodyTypeParameters: {
-          mass: 1
+          mass: 30
         }
       }),
       object2: that.object({
@@ -82,7 +82,7 @@ var core = {
         phyxName: 'object2Phyx',
         phyxType: 'Body',
         phyxBodyTypeParameters: {
-          mass: 1
+          mass: 30
         }
       }),
       plane: that.object({
@@ -99,9 +99,8 @@ var core = {
         phyxType: 'Body',
         phyxShapeType: 'Plane',
         phyxBodyTypeParameters: {
-          mass: 1
+          mass: 0
         }
-
       })
 
     };
@@ -116,16 +115,21 @@ var core = {
 
     objectSet.plane.mesh.receiveShadow = true;
     // rotate and position the plane
-    objectSet.plane.mesh.rotation.x = -0.5 * Math.PI;
 
-
-    objectSet.plane.mesh.position.clone(objectSet.plane.phyx.position);
-    objectSet.plane.mesh.quaternion.clone(objectSet.plane.phyx.rotation);
 
 
     //Object manipulations
-    objectSet.object2.phyx.position.set(5,  2, 0);
-    objectSet.object1.phyx.position.set(2,  3, 0);
+    //TODO: naprawienie pozycjonowania obydwu elementow, najlepiej aby byly one ze soba polaczone (o ile nei sa)
+    //Musisz ogarnac na jakiej zasadzie to dziala, najlepiej tez ogarnac jakis przyklad gdzie bedziesz poruszal
+    //Kwadratem  na prawo i lewo.
+    objectSet.object2.phyx.position.set(5,  3, 0);
+    objectSet.object1.phyx.position.set(2,  5, 0);
+
+    objectSet.object2.mesh.position.x = 5;
+    objectSet.object2.mesh.position.y = 3;
+
+    objectSet.object2.mesh.position.x = 2;
+    objectSet.object2.mesh.position.y = 5;
     objectSet.object1.mesh.castShadow = true;
     objectSet.object2.mesh.castShadow = true;
     objectSet.object1.mesh.receiveShadow = true;
@@ -251,9 +255,7 @@ var core = {
     var box = api.geometry.create(props.geoType, props.geoSize);
 
     //If the physical shape is a Plane then make it rotate (ground)
-    if(props.phyxShapeType === 'Plane'){
-      box.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
-    }
+
 
     //Build up a material for upcoming object
     material = api.material.create(props.materialType, props.materialProps);
@@ -263,9 +265,13 @@ var core = {
 
     //Dodawanie mecha do proporcji zwrotnych
     container.mesh = props.meshName;
-
+    if(props.phyxShapeType === 'Plane'){
+      props.meshName.phyx.quaternion.setFromAxisAngle(new CANNON.Vec3(1,0,0),-Math.PI/2);
+    }
     //Adding phyx to this mesh
     props.phyxName = props.meshName.phyx; //init phyx for this object
+
+
 
     //Dodawanie phyx do proporcji zwrotnych
     container.phyx = props.phyxName;
@@ -283,12 +289,40 @@ var core = {
     world.gravity.set(0, 0, 0);
     world.broadphase = new CANNON.NaiveBroadphase();
     world.solver.iterations = 10;
+    world.quatNormalizeSkip = 0;
+    world.quatNormalizeFast = false;
+    world.defaultContactMaterial.contactEquationStiffness = 1e7;
+    world.defaultContactMaterial.contactEquationRelaxation = 4;
 
+    var solver = new CANNON.GSSolver();
+    solver.iterations = 7;
+    solver.tolerance = 0.1;
 
+    var split = true;
+    if(split)
+      world.solver = new CANNON.SplitSolver(solver);
+    else
+      world.solver = solver;
+
+    var physicsMaterial = new CANNON.Material("slipperyMaterial");
     //Tutaj trzeba dodac fizyczne "cialo" na ktorym sie odbywa manipulacja do swiata
+    var physicsContactMaterial = new CANNON.ContactMaterial(physicsMaterial,
+      physicsMaterial,
+      0.0, // friction coefficient
+      0.3  // restitution
+    );
+    // We must add the contact materials to the world
+    world.addContactMaterial(physicsContactMaterial);
+
+
+
+    //Pokurwione sa pozycje
     items.forEach(function(item){
-      //console.log(item);
-      console.log(item.phyx);
+
+
+      console.log(item.phyx.position);
+      console.log(item.mesh.position);
+      console.log('---------------------')
       world.addBody(item.phyx);
     })
 

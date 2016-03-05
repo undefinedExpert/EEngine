@@ -26,7 +26,7 @@ class Mesh {
    * @param {object} phyxProperties - physical properties for mesh
    * @return fully build material from options
    */
-  create(type = 'basic', geometry, material, phyxType='Body', phyxShapeType='Body', phyxProperties={mass: 1}) {
+  create(type = 'basic', geometry, material, phyxType='Body', phyxShapeType='Body', phyxProperties={mass: 0}) {
 
     //Making sure it's uppercase
     phyxType = helpers.toTitleCase(phyxType);
@@ -70,16 +70,23 @@ class Mesh {
     //build phyx shape
     var phyxShape = this.buildPhyxShape(phyxShapeType);
 
+    console.log(phyxShape);
+    //phyxProperties.shape = phyxShape;
     //build base of phyx
     var phyxBase = this.BuildBasicPhyx(phyxType, phyxProperties);
 
+    if(phyxShapeType === 'Plane'){
+      phyxBase.addShape(phyxShape);
+    }
     //attach shape to phyx
-    phyxBase.shape = phyxShape;
+
 
     //default phyx values
     phyxBase.angularVelocity.set(0, 0, 0);
 
-    phyxBase.angularDamping = 0.5;
+    phyxBase.angularDamping = 0;
+    phyxBase.velocity.set(0,-5,0);
+    phyxBase.linearDamping = 0;
 
     return phyxBase;
 
