@@ -7,7 +7,6 @@ import helpers from './../../collectors/helpers';
 import * as recipe from './recipes/recipe' ;
 
 
-
 /**
  * @desc Returns material object
  * @class Mesh
@@ -27,7 +26,7 @@ class Mesh {
    * @param {object} position - physical properties for mesh
    * @return fully build material from options
    */
-  create(type = 'basic', geometry, material, phyxType='Body', phyxShapeType='Body', phyxProperties={mass: 0}, position=[0,0,0]) {
+  create(type = 'basic', geometry, material, phyxType='Body', phyxShapeType='Body', phyxProperties={mass: 0}, position=[0,0,0], scene) {
 
     var size = geometry.size;
     //Making sure it's uppercase
@@ -41,6 +40,7 @@ class Mesh {
     //It's attaching physic to that builded mesh
     fullyBuildedMesh.phyx = this.buildPhyx(phyxType, phyxProperties, phyxShapeType, position, size);
 
+    fullyBuildedMesh.phyx.buildAABBMesh = this.buildAabbMesh(scene);
     return fullyBuildedMesh;
   }
 
@@ -145,7 +145,48 @@ class Mesh {
     return phyxBase;
   }
 
+  GeometryCache(createFunc, scene){
+    //geo -- schemat geometrii dla powloki
+    var that=this, geometries=[], gone=[];
 
+    var geo;
+
+    this.request = function(){
+      if(geometries.length){
+        geo = geometries.pop();
+      } else{
+        geo = createFunc();
+      }
+      scene.add(geo);
+      gone.push(geo);
+      return geo;
+    };
+
+    this.restart = function(){
+      while(gone.length){
+        geometries.push(gone.pop());
+      }
+    };
+
+    this.hideCached = function(){
+      for(var i=0; i<geometries.length; i++){
+        //scene.remove(geometries[i]);
+      }
+    };
+
+  }
+
+  buildAabbMesh(scene){
+    var bboxGeometry = new THREE.BoxGeometry(1,1,1);
+    var bboxMaterial = new THREE.MeshBasicMaterial({
+      color: 0xdddddd,
+      wireframe:true
+    });
+
+    return new this.GeometryCache(function(){
+      return new THREE.Mesh(bboxGeometry,bboxMaterial);
+    }, scene);
+  }
 }
 
 //Creates new material Object
