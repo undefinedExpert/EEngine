@@ -12,6 +12,7 @@ import * as api from './makers/maker';
 import {GameObjects} from './GameObjectClass';
 
 import { ipcRenderer, remote  } from 'electron'; // electron system
+import * as $ from 'jquery';
 
 var camera, scene, renderer;
 var NEAR = 10, FAR = 3000;
@@ -70,7 +71,7 @@ var core = {
         phyxBodyTypeParameters: {
           mass: 30
         },
-        position: [1,3,0]
+        position: [6,3,0]
       }),
       object2: that.object({
         geoType: 'box',
@@ -88,7 +89,7 @@ var core = {
         phyxBodyTypeParameters: {
           mass: 30
         },
-        position: [2,5,0]
+        position: [0,5,0]
       }),
       plane: that.object({
         geoType: 'plane',
@@ -138,11 +139,6 @@ var core = {
     //Kwadratem  na prawo i lewo.
 
 
-    objectSet.object2.mesh.position.x = 5;
-    objectSet.object2.mesh.position.y = 3;
-
-    objectSet.object2.mesh.position.x = 2;
-    objectSet.object2.mesh.position.y = 5;
     objectSet.object1.mesh.castShadow = true;
     objectSet.object2.mesh.castShadow = true;
     objectSet.object1.mesh.receiveShadow = true;
@@ -177,6 +173,30 @@ var core = {
     speedButton = api.interaction.click(button, function () {
       that.addMovement(objectSet.object2, 10);
     });
+
+
+
+    $(window).keydown(function( event ) {
+      if (event.which == 65) {
+        event.preventDefault();
+        that.addMovement(objectSet.object2, 'left', -15);
+      }
+      if (event.which == 68) {
+        event.preventDefault();
+        that.addMovement(objectSet.object2, 'right', 15);
+      }
+
+      if (event.which == 87) {
+        event.preventDefault();
+        that.addMovement(objectSet.object2, 'up', 15);
+      }
+
+      if (event.which == 83) {
+        event.preventDefault();
+        that.addMovement(objectSet.object2, 'down', -15);
+      }
+    });
+
 
 
     //TODO: remove this from this file
@@ -360,19 +380,6 @@ var core = {
     requestAnimationFrame(this.animate.bind(this, elements));
     this.updatePhysics(elements);
 
-
-    //elements.forEach(function(item){
-    //  console.log(item);
-    //});
-
-
-
-
-
-
-
-
-
     this.render();
   },
   /**
@@ -433,11 +440,26 @@ var core = {
      * @param object $element - which element will be affected
      * @param number $force - What is the force of affection
    */
-  addMovement: function (element, force = 0) {
+  addMovement: function (element, key, force) {
+    let velocity = element.phyx.velocity;
 
-    let velocity = element.phyx.angularVelocity;
-    velocity.y = velocity.y + force;
 
+
+    switch(key) {
+      case 'left':
+        velocity = velocity.set(force,0,0);
+        break;
+      case 'right':
+        velocity = velocity.set(force,0,0);
+        break;
+      case 'up':
+        velocity = velocity.set(0,force,0);
+        break;
+      case 'down':
+        velocity = velocity.set(0,force,0);
+        break;
+
+    }
 
   },
   onDocumentMouseMove: function (event) {

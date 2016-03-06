@@ -139,9 +139,10 @@ class Mesh {
     } else if(phyxShapeType === 'Cylinder'){
 
       // Cylinder shape 2
-      shape = new CANNON.Cylinder(1,1,2,10);
-
-
+      shape = new CANNON.Cylinder(...size);
+      var q = new CANNON.Quaternion();
+      q.setFromAxisAngle(new CANNON.Vec3(1,0,0),Math.PI / 2);
+      shape.transformAllPoints(new CANNON.Vec3(),q);
     } else {
 
       shape = new CANNON[phyxShapeType](...size);
