@@ -23,6 +23,26 @@ class BoxRecipe extends ShapeRecipe{
   /**
    * @desc This function is used to set up specific size of an element
    * @return Array
+   * @function huge()
+   */
+  huge() {
+    //width, height, depth, widthSegments, heightSegments, depthSegments
+    return [128,128,128, 1, 1, 1];
+  }
+
+  /**
+   * @desc This function is used to set up specific size of an element
+   * @return Array
+   * @function medium()
+   */
+  medium() {
+    //width, height, depth, widthSegments, heightSegments, depthSegments
+    return [4, 4, 4, 8, 8, 8];
+  }
+
+  /**
+   * @desc This function is used to set up specific size of an element
+   * @return Array
    * @function small()
    */
   small() {

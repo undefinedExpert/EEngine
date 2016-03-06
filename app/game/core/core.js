@@ -57,7 +57,7 @@ var core = {
     var objectSet = {
       object1: that.object({
         geoType: 'cylinder',
-        geoSize: 'small',
+        geoSize: 'low',
         materialType: 'lambert',
         materialProps: {
           color: 'rgb(255,0,0)', emissive: 0x200000
@@ -68,14 +68,13 @@ var core = {
         phyxType: 'Body',
         phyxShapeType: 'Cylinder',
         phyxBodyTypeParameters: {
-          mass: 30,
-          type: CANNON.Body.DYNAMIC
+          mass: 30
         },
-        position: [5,3,0]
+        position: [1,3,0]
       }),
       object2: that.object({
         geoType: 'box',
-        geoSize: 'low',
+        geoSize: 'medium',
         materialType: 'lambert',
         materialProps: {
           color: 'rgb(0,255,0)', emissive: 0x200000
@@ -87,8 +86,7 @@ var core = {
         phyxType: 'Body',
         phyxShapeType: 'Box',
         phyxBodyTypeParameters: {
-          mass: 30,
-          type: CANNON.Body.DYNAMIC
+          mass: 30
         },
         position: [2,5,0]
       }),
@@ -106,8 +104,7 @@ var core = {
         phyxType: 'Body',
         phyxShapeType: 'Plane',
         phyxBodyTypeParameters: {
-          mass: 0,
-          type: CANNON.Body.DYNAMIC
+          mass: 0
         },
         position: [0,0,0]
       })
@@ -139,8 +136,7 @@ var core = {
     //TODO: naprawienie pozycjonowania obydwu elementow, najlepiej aby byly one ze soba polaczone (o ile nei sa)
     //Musisz ogarnac na jakiej zasadzie to dziala, najlepiej tez ogarnac jakis przyklad gdzie bedziesz poruszal
     //Kwadratem  na prawo i lewo.
-    objectSet.object2.phyx.position.set(5,  3, 0);
-    objectSet.object1.phyx.position.set(2,  5, 0);
+
 
     objectSet.object2.mesh.position.x = 5;
     objectSet.object2.mesh.position.y = 3;
@@ -304,13 +300,13 @@ var core = {
   cannon: function (items) {
 
 
-    //Pokurwione sa pozycje
+    //Todo: refactor
 
 //Cannon init
       world = new CANNON.World();
       world.gravity.set(0, -10, 0);
       world.broadphase = new CANNON.NaiveBroadphase();
-      world.solver.iterations = 10;
+      world.solver.iterations = 20;
       world.quatNormalizeSkip = 0;
       world.quatNormalizeFast = false;
       world.defaultContactMaterial.contactEquationStiffness = 1e7;
@@ -335,9 +331,7 @@ var core = {
       world.solver.iterations = 20; // Increase solver iterations (default is 10)
       world.solver.tolerance = 0;   // Force solver to use all iterations
 
-// Adjust constraint equation parameters: use to tweak sponginess
-      physicsContactMaterial.contactEquationStiffness = 1e8;
-      physicsContactMaterial.contactEquationRegularizationTime = 3;
+
 
     // Create a plane            // Joint body
 

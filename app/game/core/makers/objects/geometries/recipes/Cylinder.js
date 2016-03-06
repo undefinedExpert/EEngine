@@ -36,7 +36,7 @@ class CylinderRecipe extends ShapeRecipe{
    */
    low() {
      //radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength
-    return [2, 2, 5, 8];
+    return [2, 2, 4, 8];
   }
 
 

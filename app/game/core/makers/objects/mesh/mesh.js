@@ -7,6 +7,7 @@ import helpers from './../../collectors/helpers';
 import * as recipe from './recipes/recipe' ;
 
 
+
 /**
  * @desc Returns material object
  * @class Mesh
@@ -40,7 +41,7 @@ class Mesh {
     //It's attaching physic to that builded mesh
     fullyBuildedMesh.phyx = this.buildPhyx(phyxType, phyxProperties, phyxShapeType, position, size);
 
-    fullyBuildedMesh.phyx.buildAABBMesh = this.buildAabbMesh(scene);
+    fullyBuildedMesh.phyx.buildAABBMesh = this.buildAabbMesh(scene, geometry, size);
     return fullyBuildedMesh;
   }
 
@@ -101,7 +102,7 @@ class Mesh {
     //default phyx values
     phyxBase.angularVelocity.set(0, 0, 0);
 
-    phyxBase.angularDamping = 0.0;
+    phyxBase.angularDamping = 0.5;
     phyxBase.velocity.set(0,0,0);
     phyxBase.linearDamping = 0;
 
@@ -123,9 +124,26 @@ class Mesh {
     //shape powinnien rowneiz korzystac w wczesniej predefiniowanych rozmiarow dla obiektow
     // Tak jak jest to w ../geometry
     var shape;
+
     if(phyxShapeType === 'Box'){
-      shape = new CANNON[phyxShapeType](new CANNON.Vec3(...size));
+
+      //dividing why?
+      //FIXME: POTENTIAL ISSUE
+      //TODO: Dowiedziec sie dlaczego box moze wymagac podzielonej powlowki dla cannona?
+      //Musze spedzic wiecej czasu nad analiza tego
+      let boxSize = _.map([...size], function(n){
+        return n * 0.5;
+      });
+
+      shape = new CANNON[phyxShapeType](new CANNON.Vec3(...boxSize));
+    } else if(phyxShapeType === 'Cylinder'){
+
+      // Cylinder shape 2
+      shape = new CANNON.Cylinder(1,1,2,10);
+
+
     } else {
+
       shape = new CANNON[phyxShapeType](...size);
     }
 
@@ -145,6 +163,7 @@ class Mesh {
     return phyxBase;
   }
 
+  //this method is used to build wireframe of phyx
   GeometryCache(createFunc, scene){
     //geo -- schemat geometrii dla powloki
     var that=this, geometries=[], gone=[];
@@ -157,6 +176,7 @@ class Mesh {
       } else{
         geo = createFunc();
       }
+      //todo: make current scene function to make an usage in here
       scene.add(geo);
       gone.push(geo);
       return geo;
@@ -176,7 +196,8 @@ class Mesh {
 
   }
 
-  buildAabbMesh(scene){
+  //this method is used to build wireframe of phyx
+  buildAabbMesh(scene, geometry, size ){
     var bboxGeometry = new THREE.BoxGeometry(1,1,1);
     var bboxMaterial = new THREE.MeshBasicMaterial({
       color: 0xdddddd,
