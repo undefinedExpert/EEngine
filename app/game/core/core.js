@@ -195,6 +195,10 @@ var core = {
         event.preventDefault();
         that.addMovement(objectSet.object2, 'down', -15);
       }
+      if (event.which == 32) {
+        event.preventDefault();
+        that.addMovement(objectSet.object2, 'jump', 15);
+      }
     });
 
 
@@ -453,9 +457,12 @@ var core = {
         velocity = velocity.set(force,0,0);
         break;
       case 'up':
-        velocity = velocity.set(0,force,0);
+        velocity = velocity.set(0,0,force);
         break;
       case 'down':
+        velocity = velocity.set(0,0,force);
+        break;
+      case 'jump':
         velocity = velocity.set(0,force,0);
         break;
 
