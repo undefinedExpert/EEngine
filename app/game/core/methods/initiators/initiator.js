@@ -89,7 +89,22 @@ import * as api from '../../makers/maker';
 //  });
 //
 //};
-
+let defaultProps = {
+  geoType: props.geoType || 'Box',
+  geoSize: props.geoSize || 'small',
+  materialType: props.materialType || 'basic',
+  materialProps: props.materialProps || {color: 0xff0000},
+  flipX: props.flipX || false,
+  meshType: props.meshType || 'basic',
+  meshName: props.meshName || error('set a propertie name of this object: ' + props),
+  phyxName: props.meshName + 'phyx',
+  phyxType: props.phyxType || 'Body',
+  phyxShapeType: props.geoType || 'Box',
+  phyxBodyTypeParameters: props.phyxBodyTypeParameters || {mass: 1},
+  position: props.position || [0, 0, 0],
+  manipulation: props.manipulation,
+  shadow: props.shadow || {cast: true, receive: true}
+};
 
 export  {
   init as init

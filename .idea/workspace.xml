@@ -4,16 +4,13 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/game/core/core.js" line="446" />
+    <bookmark url="file://$PROJECT_DIR$/app/game/core/core.js" line="447" />
     <bookmark url="file://$PROJECT_DIR$/app/game/core/makers/objects/geometries/recipes/Shape.js" description="import helpers from './../../../collectors/helpers..." line="3" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c91b8b3f-6a8b-4a9b-9f64-def8c25a1430" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/game/core/methods/initiators/initiator.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/game/core/methods/manipulators/manipulator.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/game/core/methods/method.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/core/core.js" afterPath="$PROJECT_DIR$/app/game/core/core.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/core/methods/initiators/initiator.js" afterPath="$PROJECT_DIR$/app/game/core/methods/initiators/initiator.js" />
     </list>
     <ignored path="electron-boilerplate.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,21 +36,31 @@
           <file leaf-file-name="core.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/game/core/core.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-0.055555556">
-                  <caret line="310" column="4" selection-start-line="310" selection-start-column="4" selection-end-line="310" selection-end-column="4" />
+                <state vertical-scroll-proportion="0.5833333">
+                  <caret line="287" column="1" selection-start-line="287" selection-start-column="1" selection-end-line="287" selection-end-column="1" />
                   <folding>
-                    <element signature="e#7166#7337#0" expanded="false" />
-                    <element signature="e#9305#10630#0" expanded="false" />
-                    <element signature="e#10768#10889#0" expanded="false" />
-                    <element signature="e#10893#11045#0" expanded="false" />
-                    <element signature="e#11080#12666#0" expanded="false" />
-                    <element signature="e#12670#12768#0" expanded="false" />
-                    <element signature="e#12791#12832#0" expanded="false" />
-                    <element signature="e#13105#13568#0" expanded="false" />
-                    <element signature="e#13610#13792#0" expanded="false" />
-                    <element signature="e#13822#14108#0" expanded="false" />
-                    <element signature="e#14133#14273#0" expanded="false" />
+                    <element signature="e#6105#6276#0" expanded="false" />
+                    <element signature="e#9451#10776#0" expanded="false" />
+                    <element signature="e#10914#11035#0" expanded="false" />
+                    <element signature="e#11039#11191#0" expanded="false" />
+                    <element signature="e#11226#12812#0" expanded="false" />
+                    <element signature="e#12816#12914#0" expanded="false" />
+                    <element signature="e#12937#12978#0" expanded="false" />
+                    <element signature="e#13251#13714#0" expanded="false" />
+                    <element signature="e#13756#13938#0" expanded="false" />
+                    <element signature="e#13968#14254#0" expanded="false" />
+                    <element signature="e#14279#14419#0" expanded="false" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="mesh.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/mesh/mesh.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-14.896552">
+                  <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -105,8 +112,8 @@
           <file leaf-file-name="initiator.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/game/core/methods/initiators/initiator.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.5555556">
-                  <caret line="85" column="37" selection-start-line="85" selection-start-column="37" selection-end-line="85" selection-end-column="37" />
+                <state vertical-scroll-proportion="0.75">
+                  <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="102" selection-end-column="37" />
                   <folding />
                 </state>
               </provider>
@@ -183,13 +190,13 @@
         <option value="$PROJECT_DIR$/app/game/core/makers/scene/scene.js" />
         <option value="$PROJECT_DIR$/app/game/core/makers/objects/geometries/recipes/Box.js" />
         <option value="$PROJECT_DIR$/app/game/core/makers/objects/geometries/recipes/Cylinder.js" />
-        <option value="$PROJECT_DIR$/app/game/core/makers/objects/mesh/mesh.js" />
         <option value="$PROJECT_DIR$/app/game/core/makers/interactions/recipes/click.js" />
         <option value="$PROJECT_DIR$/app/app.html" />
         <option value="$PROJECT_DIR$/app/app.js" />
         <option value="$PROJECT_DIR$/app/game/core/makers/objects/geometries/geometry.js" />
         <option value="$PROJECT_DIR$/app/game/core/methods/manipulators/manipulator.js" />
         <option value="$PROJECT_DIR$/app/game/core/methods/method.js" />
+        <option value="$PROJECT_DIR$/app/game/core/makers/objects/mesh/mesh.js" />
         <option value="$PROJECT_DIR$/app/game/core/methods/initiators/initiator.js" />
         <option value="$PROJECT_DIR$/app/game/core/core.js" />
       </list>
@@ -592,6 +599,70 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="objects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="electron-boilerplate" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eliza" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="makers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="objects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mesh" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="electron-boilerplate" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eliza" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="makers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="interactions" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -817,16 +888,16 @@
     <frame x="-8" y="-8" width="1936" height="1186" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16807166" sideWeight="0.33767644" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16807166" sideWeight="0.33767644" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16807166" sideWeight="0.66232353" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.019267824" sideWeight="0.49789253" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12618595" sideWeight="0.5316122" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12618595" sideWeight="0.5337197" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11206078" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16807166" sideWeight="0.33767644" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="npm" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16807166" sideWeight="0.33767644" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12618595" sideWeight="0.46838778" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12618595" sideWeight="0.46628028" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34874758" sideWeight="0.4768177" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11574952" sideWeight="0.47471023" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20864068" sideWeight="0.55987054" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1020,13 +1091,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/mesh/mesh.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32891566">
-          <caret line="41" column="27" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/game/core/makers/scene/scene.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16144578">
@@ -1184,30 +1248,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/mesh/mesh.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.896552">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/game/core/methods/initiators/initiator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5555556">
-          <caret line="85" column="37" selection-start-line="85" selection-start-column="37" selection-end-line="85" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.75">
+          <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="102" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/game/core/core.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.055555556">
-          <caret line="310" column="4" selection-start-line="310" selection-start-column="4" selection-end-line="310" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.5833333">
+          <caret line="287" column="1" selection-start-line="287" selection-start-column="1" selection-end-line="287" selection-end-column="1" />
           <folding>
-            <element signature="e#7166#7337#0" expanded="false" />
-            <element signature="e#9305#10630#0" expanded="false" />
-            <element signature="e#10768#10889#0" expanded="false" />
-            <element signature="e#10893#11045#0" expanded="false" />
-            <element signature="e#11080#12666#0" expanded="false" />
-            <element signature="e#12670#12768#0" expanded="false" />
-            <element signature="e#12791#12832#0" expanded="false" />
-            <element signature="e#13105#13568#0" expanded="false" />
-            <element signature="e#13610#13792#0" expanded="false" />
-            <element signature="e#13822#14108#0" expanded="false" />
-            <element signature="e#14133#14273#0" expanded="false" />
+            <element signature="e#6105#6276#0" expanded="false" />
+            <element signature="e#9451#10776#0" expanded="false" />
+            <element signature="e#10914#11035#0" expanded="false" />
+            <element signature="e#11039#11191#0" expanded="false" />
+            <element signature="e#11226#12812#0" expanded="false" />
+            <element signature="e#12816#12914#0" expanded="false" />
+            <element signature="e#12937#12978#0" expanded="false" />
+            <element signature="e#13251#13714#0" expanded="false" />
+            <element signature="e#13756#13938#0" expanded="false" />
+            <element signature="e#13968#14254#0" expanded="false" />
+            <element signature="e#14279#14419#0" expanded="false" />
           </folding>
         </state>
       </provider>

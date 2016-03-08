@@ -62,29 +62,16 @@ var core = {
 
     var objectSet = {
       object1: that.object({
-        geoType: 'cylinder',
+        geoType: 'Cylinder',
         geoSize: 'low',
         materialType: 'lambert',
         materialProps: {
           color: 'rgb(255,0,0)', emissive: 0x200000
         },
-        meshType: 'basic',
-        shadow: 'object1Shadow',
-        phyxName: 'objectPhyx',
-        phyxType: 'Body',
-        phyxShapeType: 'Cylinder',
+        meshName: 'cylinder',
+        position: [6,3,0],
         phyxBodyTypeParameters: {
           mass: 30
-        },
-        position: [6,3,0],
-        /**
-           * @desc manipulation it might be a @function or @object
-         * @param {object} mesh - Crafted mesh of this object
-         * @param {object} phyx - crafted phyx of this object
-         */
-        manipulation: function(mesh,phyx){
-          mesh.castShadow = true;
-          mesh.receiveShadow = true;
         }
       }),
       object2: that.object({
@@ -94,24 +81,10 @@ var core = {
         materialProps: {
           color: 'rgb(0,255,0)', emissive: 0x200000
         },
-        meshType: 'basic',
         meshName: 'object2',
-        shadow: 'object2Shadow',
-        phyxName: 'object2Phyx',
-        phyxType: 'Body',
-        phyxShapeType: 'Box',
+        position: [0,5,0],
         phyxBodyTypeParameters: {
           mass: 30
-        },
-        position: [0,5,0],
-        /**
-           * @desc manipulation it might be a @function or @object
-         * @param {object} mesh - Crafted mesh of this object
-         * @param {object} phyx - crafted phyx of this object
-         */
-        manipulation: function(mesh,phyx){
-          mesh.castShadow = true;
-          mesh.receiveShadow = true;
         }
       }),
       plane: that.object({
@@ -122,28 +95,26 @@ var core = {
           color: 0xffffff
         },
         flipX: true,
-        meshType: 'basic',
         meshName: 'plane',
-        shadow: 'planeShadow',
-        phyxName: 'planePhyx',
-        phyxType: 'Body',
-        phyxShapeType: 'Plane',
         phyxBodyTypeParameters: {
           mass: 0
         },
-        position: [0,0,0],
+        shadow: {
+          receive: true
+        },
         /**
           * @desc manipulation it might be a @function or @object
           * @param {object} mesh - Crafted mesh of this object
           * @param {object} phyx - crafted phyx of this object
         */
         manipulation: function(mesh,phyx){
-          mesh.receiveShadow = true;
+          //...;
         }
 
       })
 
     };
+
 
     //grid helper
     var grid = new THREE.GridHelper(100, 10);
@@ -222,6 +193,7 @@ var core = {
     //init mouse controls
     controls = new OrbitControls(camera);
 
+    //init render with options
     renderer = api.render.create(camera, { antialias: true });
 
 
@@ -267,46 +239,75 @@ var core = {
    * @method object
    * @desc This method build up fully working mesh from bunch of properties, it also bulds up a physical body for that mesh
    */
+
   object: function(props){
     let thatObject = this;
 
+    let defaultProps = {
+      geoType: props.geoType || 'Box',
+      geoSize: props.geoSize || 'small',
+      materialType: props.materialType || 'basic',
+      materialProps: props.materialProps || {color: 0xff0000},
+      flipX: props.flipX || false,
+      meshType: props.meshType || 'basic',
+      meshName: props.meshName || error('set a propertie name of this object: ' + props),
+      phyxName: props.meshName + 'phyx',
+      phyxType: props.phyxType || 'Body',
+      phyxShapeType: props.geoType || 'Box',
+      phyxBodyTypeParameters: props.phyxBodyTypeParameters || {mass: 1},
+      position: props.position || [0, 0, 0],
+      manipulation: props.manipulation,
+      shadow: props.shadow || {cast: true, receive: true}
+    };
+
+
     //default value for manipulation
-    props.manipulation = typeof props.manipulation === 'object' || typeof props.manipulation === 'function' ? props.manipulation :{mesh: function(){}, phyx(){}};
+    defaultProps.manipulation = typeof props.manipulation === 'object' || typeof defaultProps.manipulation === 'function' ? defaultProps.manipulation :{mesh: function(){}, phyx(){}};
     //init materials to build mesh
     var container = {};
-    //var box = make.geometry(props.geoType, props.geoSize);
-    var geometry = api.geometry.create(props.geoType, props.geoSize);
+    //var box = make.geometry(defaultProps.geoType, defaultProps.geoSize);
+    var geometry = api.geometry.create(defaultProps.geoType, defaultProps.geoSize);
 
     //Build up a material for upcoming object
-    material = api.material.create(props.materialType, props.materialProps);
+    material = api.material.create(defaultProps.materialType, defaultProps.materialProps);
 
     //building up mesh from options
-    props.meshName = api.mesh.create(props.meshType, geometry, material, props.phyxType, props.phyxShapeType, props.phyxBodyTypeParameters, props.position, this.CurrentScene);
+    props.meshName = api.mesh.create(defaultProps.meshType, geometry, material, defaultProps.phyxType, defaultProps.phyxShapeType, defaultProps.phyxBodyTypeParameters, defaultProps.position, this.CurrentScene);
 
+    //Freshly object manipulation, adding shadows and at future more.
+    //if set to recive shadow
+    props.meshName.receiveShadow = defaultProps.shadow.receive;
+
+    //if set to cast shadow
+    props.meshName.castShadow = defaultProps.shadow.cast;
 
     //mesh manipulation callback
-    if(typeof props.manipulation !== 'function'){
-      props.manipulation.mesh(props.meshName);
+    if(typeof defaultProps.manipulation !== 'function'){
+      defaultProps.manipulation.mesh(props.meshName);
     }
 
     //Dodawanie mecha do proporcji zwrotnych
     container.mesh = props.meshName;
-    if(props.flipX === true){
+    if(defaultProps.flipX === true){
       props.meshName.phyx.quaternion.setFromAxisAngle(new CANNON.Vec3(1,0,0),-Math.PI/2);
     }
 
     //Adding phyx to this mesh
-    props.phyxName = props.meshName.phyx; //init phyx for this object
+    defaultProps.phyxName = props.meshName.phyx; //init phyx for this object
 
     //phyx manipulation callback
-    if(typeof props.manipulation !== 'function'){
-      props.manipulation.phyx(props.phyxName); //Phyx manipulation callback
+    if(typeof defaultProps.manipulation !== 'function'){
+      defaultProps.manipulation.phyx(defaultProps.phyxName); //Phyx manipulation callback
     } //Phyx manipulation callback
 
     //Dodawanie phyx do proporcji zwrotnych
-    container.phyx = props.phyxName;
-    if(typeof props.manipulation === 'function'){
-      props.manipulation(container.mesh, container.phyx);
+    container.phyx = defaultProps.phyxName;
+    if(typeof defaultProps.manipulation === 'function'){
+      defaultProps.manipulation(container.mesh, container.phyx);
+    }
+
+    function error(txt){
+      throw(txt);
     }
 
     //return object mesh with phyx
