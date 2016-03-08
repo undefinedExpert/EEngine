@@ -14,7 +14,9 @@ import {GameObjects} from './GameObjectClass';
 import { ipcRenderer, remote  } from 'electron'; // electron system
 import * as $ from 'jquery';
 
-var camera, scene, renderer;
+//import * as method from './methods/method'; //todo: refactor whole core file
+
+var camera, scene, renderer, CurrentScene;
 var NEAR = 10, FAR = 3000;
 //Cannon (physic engine)
 var  material, light, speedButton, controls;
@@ -31,6 +33,9 @@ var core = {
    */
   scener: function () {
     let that = this;
+
+    //methode.init(scene,CurrentScene,camera, light);
+
     //W tej funkcji bede wczytywal poziomy
     //Oraz dodawal wszystkie elementy potrzebne do importu takiej sceny, obiekty itd.
     //Ta funkcja bedzie wykorzystywana do scalania kazdej sceny.
@@ -40,18 +45,18 @@ var core = {
     //2. Kamera
     //3. Swiatlo
     //4. Obiekty
-
-    //Init all basic functions which are create scene an so
     this.init();
 
+    //Init all basic functions which are create scene an so
     //TODO: Latwiejsze dodawanie swiatel do widoku
     //TODO: Cienie dla obiektow/swiatel
-    //TODO: Dodawanie obiektow z prototypu
-    //TODO: Stworzenie obiektu 'grunt' ktory przyjmowal by cienie innych obiektow
     //TODO: Rozbicie tego pliku na mniejsze pliki
-    //TODO: Wlaczenie grawitacji dla obiektu 'ground'
     //TODO: Implementacja dzwiekow
     //TODO: Kolekcja obiektow / zbior obiektow ktory wskazuje na obiekt o proporcjach z danego zbioru
+    //TODO: Ladowanie tekstur
+    //TODO: Ladowanie animacji
+    //TODO: Dodawanie modeli
+    //TODO:
     var objectsListToRender = [];
 
 
@@ -71,7 +76,16 @@ var core = {
         phyxBodyTypeParameters: {
           mass: 30
         },
-        position: [6,3,0]
+        position: [6,3,0],
+        /**
+           * @desc manipulation it might be a @function or @object
+         * @param {object} mesh - Crafted mesh of this object
+         * @param {object} phyx - crafted phyx of this object
+         */
+        manipulation: function(mesh,phyx){
+          mesh.castShadow = true;
+          mesh.receiveShadow = true;
+        }
       }),
       object2: that.object({
         geoType: 'box',
@@ -89,7 +103,16 @@ var core = {
         phyxBodyTypeParameters: {
           mass: 30
         },
-        position: [0,5,0]
+        position: [0,5,0],
+        /**
+           * @desc manipulation it might be a @function or @object
+         * @param {object} mesh - Crafted mesh of this object
+         * @param {object} phyx - crafted phyx of this object
+         */
+        manipulation: function(mesh,phyx){
+          mesh.castShadow = true;
+          mesh.receiveShadow = true;
+        }
       }),
       plane: that.object({
         geoType: 'plane',
@@ -98,6 +121,7 @@ var core = {
         materialProps: {
           color: 0xffffff
         },
+        flipX: true,
         meshType: 'basic',
         meshName: 'plane',
         shadow: 'planeShadow',
@@ -107,49 +131,31 @@ var core = {
         phyxBodyTypeParameters: {
           mass: 0
         },
-        position: [0,0,0]
+        position: [0,0,0],
+        /**
+          * @desc manipulation it might be a @function or @object
+          * @param {object} mesh - Crafted mesh of this object
+          * @param {object} phyx - crafted phyx of this object
+        */
+        manipulation: function(mesh,phyx){
+          mesh.receiveShadow = true;
+        }
+
       })
 
     };
 
-    //grid
+    //grid helper
     var grid = new THREE.GridHelper(100, 10);
     scene.add(grid);
-
-
-
-
-    // rotate and position the plane
-
-    // create the ground plane
-
-
-    objectSet.plane.mesh.receiveShadow = true;
-    // rotate and position the plane
-    objectSet.plane.mesh.rotation.x = -0.5 * Math.PI;
-
-
-    objectSet.plane.mesh.position.clone(objectSet.plane.phyx.position);
-    objectSet.plane.mesh.quaternion.clone(objectSet.plane.phyx.rotation);
-
-
-    //Object manipulations
-    //TODO: naprawienie pozycjonowania obydwu elementow, najlepiej aby byly one ze soba polaczone (o ile nei sa)
-    //Musisz ogarnac na jakiej zasadzie to dziala, najlepiej tez ogarnac jakis przyklad gdzie bedziesz poruszal
-    //Kwadratem  na prawo i lewo.
-
-
-    objectSet.object1.mesh.castShadow = true;
-    objectSet.object2.mesh.castShadow = true;
-    objectSet.object1.mesh.receiveShadow = true;
-    objectSet.object2.mesh.receiveShadow = true;
-
 
 
 
     light.position.set( 556, 555, 555 );
     light.lookAt( scene.position );
     light.castShadow = true;
+    light.shadowDarkness = 0.5;
+
     scene.add( new THREE.CameraHelper( light.shadow.camera ) );
     scene.add( light );
 
@@ -202,11 +208,9 @@ var core = {
     });
 
 
-
     //TODO: remove this from this file
     //Fullescreen event
     var fullScreen = document.getElementById('fullscreen');
-
 
     fullScreen.addEventListener('click', function () {
       console.log('enter fullscreen');
@@ -217,23 +221,6 @@ var core = {
 
     //init mouse controls
     controls = new OrbitControls(camera);
-    //
-    //objectSet.ground.mesh.reciveShadow = true;
-    //objectSet.ground.mesh.castShadow = true;
-
-    objectSet.object2.mesh.castShadow = true;
-    objectSet.object1.mesh.castShadow = true;
-
-    objectSet.object2.mesh.reciveShadow = true;
-    objectSet.object1.mesh.reciveShadow = true;
-
-
-    light.castShadow = true;
-    light.shadowDarkness = 0.5;
-
-    //init render
-    //renderer = make.render();
-
 
     renderer = api.render.create(camera, { antialias: true });
 
@@ -246,10 +233,9 @@ var core = {
 
     //Adding object to scene using custom method
     api.scene.add(objectsListToRender, 'mesh');
+
     // LIGHTS
-
     // add subtle ambient lighting
-
    // make.add([objectSet.object1.mesh, objectSet.object2.mesh, light]);
 
 
@@ -262,10 +248,6 @@ var core = {
     this.cannon(objectsListToRender);
     //mesh
     this.animate(objectsListToRender);
-
-
-    //TODO: Opakowanie tego w funkcje, najlepiej helper
-    let currentWindow = remote.getCurrentWindow().removeAllListeners();
 
     //Resize event
     this.control();
@@ -286,14 +268,14 @@ var core = {
    * @desc This method build up fully working mesh from bunch of properties, it also bulds up a physical body for that mesh
    */
   object: function(props){
+    let thatObject = this;
 
+    //default value for manipulation
+    props.manipulation = typeof props.manipulation === 'object' || typeof props.manipulation === 'function' ? props.manipulation :{mesh: function(){}, phyx(){}};
     //init materials to build mesh
     var container = {};
     //var box = make.geometry(props.geoType, props.geoSize);
     var geometry = api.geometry.create(props.geoType, props.geoSize);
-
-    //If the physical shape is a Plane then make it rotate (ground)
-
 
     //Build up a material for upcoming object
     material = api.material.create(props.materialType, props.materialProps);
@@ -301,18 +283,31 @@ var core = {
     //building up mesh from options
     props.meshName = api.mesh.create(props.meshType, geometry, material, props.phyxType, props.phyxShapeType, props.phyxBodyTypeParameters, props.position, this.CurrentScene);
 
+
+    //mesh manipulation callback
+    if(typeof props.manipulation !== 'function'){
+      props.manipulation.mesh(props.meshName);
+    }
+
     //Dodawanie mecha do proporcji zwrotnych
     container.mesh = props.meshName;
-    if(props.phyxShapeType === 'Plane'){
+    if(props.flipX === true){
       props.meshName.phyx.quaternion.setFromAxisAngle(new CANNON.Vec3(1,0,0),-Math.PI/2);
     }
+
     //Adding phyx to this mesh
     props.phyxName = props.meshName.phyx; //init phyx for this object
 
-
+    //phyx manipulation callback
+    if(typeof props.manipulation !== 'function'){
+      props.manipulation.phyx(props.phyxName); //Phyx manipulation callback
+    } //Phyx manipulation callback
 
     //Dodawanie phyx do proporcji zwrotnych
     container.phyx = props.phyxName;
+    if(typeof props.manipulation === 'function'){
+      props.manipulation(container.mesh, container.phyx);
+    }
 
     //return object mesh with phyx
     return container;
@@ -322,11 +317,7 @@ var core = {
    * @desc Initialize whole physics for scene and it's objects
    */
   cannon: function (items) {
-
-
     //Todo: refactor
-
-//Cannon init
       world = new CANNON.World();
       world.gravity.set(0, -10, 0);
       world.broadphase = new CANNON.NaiveBroadphase();
@@ -355,24 +346,12 @@ var core = {
       world.solver.iterations = 20; // Increase solver iterations (default is 10)
       world.solver.tolerance = 0;   // Force solver to use all iterations
 
-
-
-    // Create a plane            // Joint body
-
       items.forEach(function(item){
 
         //TODO: Naprawic dodawanie fizyki
-
-
-        //w kazdym item.phyx world jets null, why
         world.addBody(item.phyx);
 
-
       })
-
-
-
-
 
   },
   /**
@@ -424,9 +403,6 @@ var core = {
         }
       }
       item.phyx.buildAABBMesh.hideCached();
-
-
-
     });
 
   },
@@ -446,8 +422,6 @@ var core = {
    */
   addMovement: function (element, key, force) {
     let velocity = element.phyx.velocity;
-
-
 
     switch(key) {
       case 'left':
