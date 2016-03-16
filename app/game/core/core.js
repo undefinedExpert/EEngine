@@ -273,6 +273,7 @@ var core = {
 
     camera = api.camera.create({x: 0, y: 3, z: 50}, 35);
 
+    //todo: refactor lights to add them automaticly into view
     light = api.light.create('Directional', {color: 0xffffff}, function(crafted){
       crafted.shadowMapDarkness = 0.5;
       crafted.position.set(30, 100, 0);
