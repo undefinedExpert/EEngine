@@ -52,6 +52,8 @@ class Render {
 
     //Shadow Settings
     render.shadowMap.enabled = true;
+    render.shadowMapSoft = true;
+
 
     render.shadowMap.type = THREE.PCFSoftShadowMap;
     render.shadowMapBias = 0.0039;

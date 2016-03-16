@@ -61,10 +61,13 @@ var core = {
       object1: that.object({
         geoType: 'Cylinder',
         geoSize: 'low',
-        materialType: 'lambert',
+        materialType: 'phong',
         materialProps: {
           color: 'rgb(255,0,0)',
-          emissive: 0x200000
+          emissive: 0x200000,
+          shininess: 150,
+          specular: 0x222222,
+          shading: THREE.SmoothShading
         },
         meshName: 'cylinder',
         position: [6,3,0],
@@ -75,10 +78,13 @@ var core = {
       object2: that.object({
         geoType: 'box',
         geoSize: 'medium',
-        materialType: 'lambert',
+        materialType: 'phong',
         materialProps: {
           color: 'rgb(0,255,0)',
-          emissive: 0x200000
+          emissive: 0x200000,
+          shininess: 150,
+          specular: 0x222222,
+          shading: THREE.SmoothShading
         },
         meshName: 'object2',
         position: [0,5,0],
@@ -91,9 +97,9 @@ var core = {
         geoSize: 'huge',
         materialType: 'phong',
         materialProps: {
-          color: 0xffffff,
-          shininess: 150,
-          specular: 0xffffff,
+          color: 0xa0adaf,
+          shininess: 350,
+          specular: 0xefefef,
           shading: THREE.SmoothShading
         },
         flipX: true,
@@ -127,21 +133,19 @@ var core = {
 
     scene.add( new THREE.AmbientLight( 0x404040 ) );
     var spotLight = new THREE.SpotLight( 0xffffff );
-    spotLight.name = 'Spot Light';
-    spotLight.angle = Math.PI / 5;
-    spotLight.penumbra = 0.3;
-    spotLight.position.set( 10, 10, 5 );
+    spotLight.position.set( 10, 10, 15 );
     spotLight.castShadow = true;
     spotLight.shadowCameraNear = 8;
     spotLight.shadowCameraFar = 30;
-    spotLight.shadowMapWidth = 1024;
-    spotLight.shadowMapHeight = 1024;
+    spotLight.shadowDarkness = 0.5;
+    spotLight.shadowMapWidth = 4096;
+    spotLight.shadowMapHeight = 4096;
+    spotLight.shadowBias = 0;
+    spotLight.name = 'Spot Light';
     scene.add( spotLight );
     scene.add( new THREE.CameraHelper( spotLight.shadow.camera ) );
 
-    /*Lights*/
-    var ambient = new THREE.AmbientLight( 0x404040 );
-    scene.add( ambient );
+
 
 
     //Adding interaction to button
@@ -290,7 +294,7 @@ var core = {
 
     //Build up a material for upcoming object
     material = api.material.create(defaultProps.materialType, defaultProps.materialProps);
-
+    console.log(material);
     //building up mesh from options
     props.meshName = api.mesh.create(defaultProps.meshType, geometry, material, defaultProps.phyxType, defaultProps.phyxShapeType, defaultProps.phyxBodyTypeParameters, defaultProps.position, this.CurrentScene);
 
