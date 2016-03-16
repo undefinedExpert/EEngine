@@ -7,6 +7,7 @@ import CANNON from 'cannon'; // Physics Library
 var OrbitControls = require('three-orbit-controls')(THREE);
 import config from './config'; // importing config of core module
 import smoothie from 'smoothie';
+import Stats from 'stats.js';
 
 import * as api from './makers/maker';
 
@@ -23,7 +24,9 @@ var world, timeStep = 1 / 60;
 var lightPosition4D = new THREE.Vector4();
 
 var mouseX = 0, mouseY = 0;
-var windowHalfY, windowHalfX;
+var windowHalfY, windowHalfX, fpsStats;
+
+
 
 var core = {
   /**
@@ -192,6 +195,19 @@ var core = {
     });
 
 
+    var container = document.getElementById( "blocker" );
+
+    fpsStats = new Stats();
+    fpsStats.domElement.style.position = 'absolute';
+    fpsStats.domElement.style.top = '0px';
+    container.appendChild( fpsStats.domElement );
+
+
+
+
+
+
+
 
     //init mouse controls
     controls = new OrbitControls(camera);
@@ -226,7 +242,7 @@ var core = {
 
     //Resize event
     this.control();
-
+    fpsStats.update();
 
   },
   init: function () {
@@ -386,6 +402,8 @@ var core = {
     this.updatePhysics(elements);
 
     this.render();
+
+    fpsStats.update();
   },
   /**
    * @method updatePhysics
@@ -473,21 +491,14 @@ var core = {
     mouseY = ( event.clientY - windowHalfY );
 
   },
-  onWindowResize: function(){
-    console.log('windowResized');
-    windowHalfX = window.innerWidth / 2;
-    windowHalfY = window.innerHeight / 2;
-
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    },
   control: function () {
     let that = this;
+    //resize
     window.addEventListener('resize', function(e){
       e.preventDefault();
-      that.onWindowResize();
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize( window.innerWidth, window.innerHeight );
     });
   }
 };
