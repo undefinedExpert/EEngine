@@ -243,7 +243,7 @@ var core = {
     console.log(lightListToRender);
     //Adding object to scene using custom method
     api.scene.add(objectsListToRender, 'mesh');
-    api.scene.add(lightListToRender, 'light');
+    //api.scene.add(lightListToRender, 'light');
 
 
     // LIGHTS
@@ -273,8 +273,40 @@ var core = {
 
     camera = api.camera.create({x: 0, y: 3, z: 50}, 35);
 
+    light = api.light.create('Directional', {color: 0xffffff}, function(crafted){
+      crafted.shadowMapDarkness = 0.5;
+      crafted.position.set(30, 100, 0);
+      crafted.target.position.set(0, 0, 0);
+      crafted.castShadow = true;
+      crafted.shadow.camera.near = 0;
+      crafted.shadow.camera.far = 300;
+      crafted.shadow.mapSize.width = 4096;
+      crafted.shadow.mapSize.height = 4096;
+      crafted.shadow.camera.left = -50;
+      crafted.shadow.camera.right = 50;
+      crafted.shadow.camera.top = 50;
+      crafted.shadow.camera.bottom = -50;
+    });
 
-    //scene.add( new THREE.CameraHelper( spotLight.shadow.camera ) );
+    scene.add( new THREE.CameraHelper( light.shadow.camera ) );
+    scene.add( light );
+
+    var ambientLight = new THREE.AmbientLight( 0x404040 );
+    scene.add(ambientLight  );
+
+    var spotLight = api.light.create('Spot', {color: 0xffffff}, function(crafted){
+      crafted.position.set( 10, 10, 15 );
+      crafted.castShadow = true;
+      crafted.shadow.camera.near = 8;
+      crafted.shadow.camera.far = 30;
+      crafted.shadowMapDarkness = 0.5;
+      crafted.shadow.mapSize.width = 4096;
+      crafted.shadow.mapSize.height = 4096;
+      crafted.shadow.bias = 0;
+      crafted.name = 'Spot Light';
+    });
+   scene.add(spotLight);
+    scene.add( new THREE.CameraHelper( spotLight.shadow.camera ) );
 
 
   },
