@@ -14,7 +14,9 @@ class Scene {
      * @return new Three.js scene
    */
   create() {
-    return scene = new THREE.Scene();
+    scene = new THREE.Scene();
+    scene.fog = new THREE.Fog( 0x5081B5, 1000, 50000 );
+    return scene;
   }
 
   /**

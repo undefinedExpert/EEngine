@@ -7,10 +7,11 @@ import CANNON from 'cannon'; // Physics Library
  */
 class Render {
 
-  constructor(camera, renderProps='') {
+  constructor(camera, scene, renderProps='') {
     render = this.render;
     this.camera = camera;
     this.props = renderProps;
+    this.scene = scene;
   }
 
   /**
@@ -18,14 +19,14 @@ class Render {
      * @function create()
      * @return render object
    */
-  create(camera, renderProps) {
+  create(camera, scene, renderProps) {
 
     //Create render three.js object
 
     render = new THREE.WebGLRenderer(renderProps);
 
     //Setting props to camera
-    this.setRenderOptions(camera);
+    this.setRenderOptions(camera,scene);
 
     //Append camera at DOM
     document.body.appendChild(render.domElement);
@@ -38,13 +39,11 @@ class Render {
      * @desc Manipulate render settings
      * @function setRenderOptions()
    */
-  setRenderOptions(camera){
+  setRenderOptions(camera,scene){
 
     //General Settings of Render
     render.setSize(window.innerWidth, window.innerHeight);
-    render.setClearColor(0x5081B5);
-    render.setPixelRatio( window.devicePixelRatio );
-
+    render.setClearColor(scene.fog.color);
 
     //Camera settings
     render.shadowCameraNear = camera.near;

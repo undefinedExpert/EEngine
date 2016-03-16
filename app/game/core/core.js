@@ -89,9 +89,12 @@ var core = {
       plane: that.object({
         geoType: 'plane',
         geoSize: 'huge',
-        materialType: 'lambert',
+        materialType: 'phong',
         materialProps: {
-          color: 0xffffff
+          color: 0xffffff,
+          shininess: 150,
+          specular: 0xffffff,
+          shading: THREE.SmoothShading
         },
         flipX: true,
         meshName: 'plane',
@@ -135,6 +138,10 @@ var core = {
     spotLight.shadowMapHeight = 1024;
     scene.add( spotLight );
     scene.add( new THREE.CameraHelper( spotLight.shadow.camera ) );
+
+    /*Lights*/
+    var ambient = new THREE.AmbientLight( 0x404040 );
+    scene.add( ambient );
 
 
     //Adding interaction to button
@@ -186,7 +193,7 @@ var core = {
     controls = new OrbitControls(camera);
 
     //init render with options
-    renderer = api.render.create(camera, { antialias: true,devicePixelRatio: window.devicePixelRatio || 1});
+    renderer = api.render.create(camera, scene, { antialias: true,devicePixelRatio: window.devicePixelRatio || 1});
 
 
     //Adding all object into array
@@ -225,25 +232,26 @@ var core = {
 
     camera = api.camera.create({x: 0, y: 3, z: 50}, 35);
 
-    light = api.light.create('Directional', 0xffffff, function(crafted){
+    light = api.light.create('Directional', {color: 0xffffff}, function(crafted){
 
-      //crafted.lookAt( scene.position );
 
-      //crafted.shadowDarkness =1;
 
-      crafted.position.set(50, 50, 50);
+      crafted.position.set(30, 100, 0);
       crafted.target.position.set(0, 0, 0);
 
       crafted.castShadow = true;
-      crafted.shadowDarkness = 0.5;
 
       crafted.shadowCameraNear = 0;
-      crafted.shadowCameraFar = 100;
-      //crafted.shadowBias = 100;
+      crafted.shadowCameraFar = 300;
 
+
+
+      crafted.shadowMapWidth = 4096;
+      crafted.shadowMapHeight = 4096;
       crafted.shadowCameraLeft = -50;
       crafted.shadowCameraRight = 50;
       crafted.shadowCameraTop = 50;
+
       crafted.shadowCameraBottom = -50;
     });
   },
