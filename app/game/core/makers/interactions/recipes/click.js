@@ -1,13 +1,11 @@
 /**
-  * @desc Placing camera into scene
-  * @function camera
- * @param {object} position - set initial position of the camera
- * @param {number} fov - camera Field of View value
-  * @return bool - camera object
+  * @desc Placing interaction to a button
+  * @function click
+ * @param {object} button - what button gonna have action
+ * @param {number} fn - callback fn, for an event what's going to happen whenever the interaction will shown
+  * @return object - button with a event listener
  */
-//TODO: interaction comment
 function click(button, fn) {
-  //Interaction with square button
   button.addEventListener('click', () => {
     fn();
   });

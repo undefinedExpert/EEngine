@@ -9,7 +9,6 @@ import config from './config'; // importing config of core module
 import smoothie from 'smoothie';
 
 import * as api from './makers/maker';
-import {GameObjects} from './GameObjectClass';
 
 import { ipcRenderer, remote  } from 'electron'; // electron system
 import * as $ from 'jquery';
@@ -49,14 +48,12 @@ var core = {
 
     //Init all basic functions which are create scene an so
     //TODO: Latwiejsze dodawanie swiatel do widoku
-    //TODO: Cienie dla obiektow/swiatel
     //TODO: Rozbicie tego pliku na mniejsze pliki
     //TODO: Implementacja dzwiekow
     //TODO: Kolekcja obiektow / zbior obiektow ktory wskazuje na obiekt o proporcjach z danego zbioru
     //TODO: Ladowanie tekstur
     //TODO: Ladowanie animacji
     //TODO: Dodawanie modeli
-    //TODO:
     var objectsListToRender = [];
 
 
@@ -348,10 +345,7 @@ var core = {
       world.solver.tolerance = 0;   // Force solver to use all iterations
 
       items.forEach(function(item){
-
-        //TODO: Naprawic dodawanie fizyki
         world.addBody(item.phyx);
-
       })
 
   },
