@@ -28,7 +28,8 @@ class Scene {
   add(arrayOfElementsToAdd=[], type='mesh') {
     let lowerCaseType = type.toLowerCase();
     for (var i = 0, len = arrayOfElementsToAdd.length; i < len; i++) {
-      scene.add(arrayOfElementsToAdd[i][lowerCaseType]);
+      //scene.add(arrayOfElementsToAdd[i][lowerCaseType]);
+      lowerCaseType === 'mesh' ? scene.add(arrayOfElementsToAdd[i][lowerCaseType]) : scene.add(arrayOfElementsToAdd[i]);
     }
   }
 

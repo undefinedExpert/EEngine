@@ -58,8 +58,43 @@ var core = {
     //TODO: Ladowanie animacji
     //TODO: Dodawanie modeli
     var objectsListToRender = [];
+    var lightListToRender = [];
 
 
+
+    //todo: refactor - powinno to bardziej przypominac tworzenie obiektu z jakimis domyslnymi wartosciami
+    //Po za tym wpisywanie tego za kazdym razem bedzie meczace, dlatego have to be done
+
+    var lightSet = {
+      directionalLight: api.light.create('Directional', {color: 0xffffff}, function(crafted){
+        crafted.shadowMapDarkness = 0.5;
+        crafted.position.set(30, 100, 0);
+        crafted.target.position.set(0, 0, 0);
+        crafted.castShadow = true;
+        crafted.shadow.camera.near = 0;
+        crafted.shadow.camera.far = 300;
+        crafted.shadow.mapSize.width = 4096;
+        crafted.shadow.mapSize.height = 4096;
+        crafted.shadow.camera.left = -50;
+        crafted.shadow.camera.right = 50;
+        crafted.shadow.camera.top = 50;
+        crafted.shadow.camera.bottom = -50;
+        new THREE.CameraHelper( crafted.shadow.camera);
+
+      }),
+      spotLight:  api.light.create('Spot', {color: 0xffffff}, function(crafted){
+        crafted.position.set( 10, 10, 15 );
+        crafted.castShadow = true;
+        crafted.shadow.camera.near = 8;
+        crafted.shadow.camera.far = 30;
+        crafted.shadowMapDarkness = 0.5;
+        crafted.shadow.mapSize.width = 4096;
+        crafted.shadow.mapSize.height = 4096;
+        crafted.shadow.bias = 0;
+        new THREE.CameraHelper( crafted.shadow.camera);
+      }),
+      ambient: api.light.create('Ambient', {color: 0x404040}, function(){})
+    };
     var objectSet = {
       object1: that.object({
         geoType: 'Cylinder',
@@ -131,22 +166,6 @@ var core = {
     var grid = new THREE.GridHelper(100, 10);
     scene.add(grid);
 
-    scene.add( new THREE.CameraHelper( light.shadow.camera ) );
-    scene.add( light );
-
-    scene.add( new THREE.AmbientLight( 0x404040 ) );
-    var spotLight = new THREE.SpotLight( 0xffffff );
-    spotLight.position.set( 10, 10, 15 );
-    spotLight.castShadow = true;
-    spotLight.shadow.camera.near = 8;
-    spotLight.shadow.camera.far = 30;
-
-    spotLight.shadow.mapSize.width = 4096;
-    spotLight.shadow.mapSize.height = 4096;
-    spotLight.shadow.bias = 0;
-    spotLight.name = 'Spot Light';
-    scene.add( spotLight );
-    scene.add( new THREE.CameraHelper( spotLight.shadow.camera ) );
 
 
 
@@ -202,13 +221,6 @@ var core = {
     fpsStats.domElement.style.top = '0px';
     container.appendChild( fpsStats.domElement );
 
-
-
-
-
-
-
-
     //init mouse controls
     controls = new OrbitControls(camera);
 
@@ -217,13 +229,22 @@ var core = {
 
 
     //Adding all object into array
-    for(var key in objectSet){
+    for(let key in objectSet){
       let name = objectSet[key];
       objectsListToRender.push(name);
     }
 
+    for(let key in lightSet){
+      console.log(key);
+      let name = lightSet[key];
+      lightListToRender.push(name);
+    }
+
+    console.log(lightListToRender);
     //Adding object to scene using custom method
     api.scene.add(objectsListToRender, 'mesh');
+    api.scene.add(lightListToRender, 'light');
+
 
     // LIGHTS
     // add subtle ambient lighting
@@ -252,28 +273,10 @@ var core = {
 
     camera = api.camera.create({x: 0, y: 3, z: 50}, 35);
 
-    light = api.light.create('Directional', {color: 0xffffff}, function(crafted){
+
+    //scene.add( new THREE.CameraHelper( spotLight.shadow.camera ) );
 
 
-
-      crafted.position.set(30, 100, 0);
-      crafted.target.position.set(0, 0, 0);
-
-      crafted.castShadow = true;
-
-      crafted.shadow.camera.near = 0;
-      crafted.shadow.camera.far = 300;
-
-
-
-      crafted.shadow.mapSize.width = 4096;
-      crafted.shadow.mapSize.height = 4096;
-      crafted.shadow.camera.left = -50;
-      crafted.shadow.camera.right = 50;
-      crafted.shadow.camera.top = 50;
-
-      crafted.shadow.camera.bottom = -50;
-    });
   },
   /**
    * @method object
