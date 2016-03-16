@@ -1,4 +1,4 @@
-import THREE from 'three.js'; // 3D library
+import THREE from 'three'; // 3D library
 import CANNON from 'cannon'; // Physics Library
 /**
    * @desc Placing scene object into application
@@ -53,13 +53,12 @@ class Render {
     //Shadow Settings
     render.shadowMap.enabled = true;
     render.shadowMapSoft = true;
-
-
     render.shadowMap.type = THREE.PCFSoftShadowMap;
+
     render.shadowMapBias = 0.0039;
     render.shadowMapDarkness = 0.5;
-    render.shadowMapWidth = 2048;
-    render.shadowMapHeight = 2048;
+    render.shadowMapWidth = 4096;
+    render.shadowMapHeight = 4096;
 
   }
 }

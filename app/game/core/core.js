@@ -2,7 +2,7 @@
 
 "use strict";
 
-import THREE from 'three.js'; // 3D library
+import THREE from 'three'; // 3D library
 import CANNON from 'cannon'; // Physics Library
 var OrbitControls = require('three-orbit-controls')(THREE);
 import config from './config'; // importing config of core module
@@ -135,12 +135,12 @@ var core = {
     var spotLight = new THREE.SpotLight( 0xffffff );
     spotLight.position.set( 10, 10, 15 );
     spotLight.castShadow = true;
-    spotLight.shadowCameraNear = 8;
-    spotLight.shadowCameraFar = 30;
-    spotLight.shadowDarkness = 0.5;
-    spotLight.shadowMapWidth = 4096;
-    spotLight.shadowMapHeight = 4096;
-    spotLight.shadowBias = 0;
+    spotLight.shadow.camera.near = 8;
+    spotLight.shadow.camera.far = 30;
+
+    spotLight.shadow.mapSize.width = 4096;
+    spotLight.shadow.mapSize.height = 4096;
+    spotLight.shadow.bias = 0;
     spotLight.name = 'Spot Light';
     scene.add( spotLight );
     scene.add( new THREE.CameraHelper( spotLight.shadow.camera ) );
@@ -245,18 +245,18 @@ var core = {
 
       crafted.castShadow = true;
 
-      crafted.shadowCameraNear = 0;
-      crafted.shadowCameraFar = 300;
+      crafted.shadow.camera.near = 0;
+      crafted.shadow.camera.far = 300;
 
 
 
-      crafted.shadowMapWidth = 4096;
-      crafted.shadowMapHeight = 4096;
-      crafted.shadowCameraLeft = -50;
-      crafted.shadowCameraRight = 50;
-      crafted.shadowCameraTop = 50;
+      crafted.shadow.mapSize.width = 4096;
+      crafted.shadow.mapSize.height = 4096;
+      crafted.shadow.camera.left = -50;
+      crafted.shadow.camera.right = 50;
+      crafted.shadow.camera.top = 50;
 
-      crafted.shadowCameraBottom = -50;
+      crafted.shadow.camera.bottom = -50;
     });
   },
   /**

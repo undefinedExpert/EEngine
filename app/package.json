@@ -1,9 +1,9 @@
 {
-  "name": "electron-boilerplate",
-  "productName": "Electron Boilerplate",
-  "identifier": "com.example.electron-boilerplate",
-  "description": "Starter for your Electron application. Out of the box ready for serious stuff.",
-  "version": "0.1.1",
+  "name": "Elizabeth",
+  "productName": "Elizabeth",
+  "identifier": "siemankoElizabeth",
+  "description": "Elizabeth - say what.",
+  "version": "0.1.2",
   "author": "Mr Gumby",
   "private": true,
   "main": "background.js",
@@ -13,7 +13,7 @@
     "jquery": "^2.2.1",
     "lodash": "^4.4.0",
     "smoothie": "^1.27.0",
-    "three-orbit-controls": "^72.0.0",
-    "three.js": "^0.73.0"
+    "three": "^0.74.0",
+    "three-orbit-controls": "^72.0.0"
   }
 }

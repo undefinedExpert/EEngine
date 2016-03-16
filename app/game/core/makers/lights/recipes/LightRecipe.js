@@ -1,7 +1,7 @@
 /**
  * This file has been created by Emanuel Slotwinski on 2016-03-16
  */
-import THREE from 'three.js'; // 3D library
+import THREE from 'three'; // 3D library
 import CANNON from 'cannon'; // Physics Library
 import helpers from './../../collectors/helpers';
 /**

@@ -1,4 +1,4 @@
-import THREE from 'three.js'; // 3D library
+import THREE from 'three'; // 3D library
 import CANNON from 'cannon'; // Physics Library
 
 //Import recipes object from ./recipe file.
