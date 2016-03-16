@@ -63,7 +63,8 @@ var core = {
         geoSize: 'low',
         materialType: 'lambert',
         materialProps: {
-          color: 'rgb(255,0,0)', emissive: 0x200000
+          color: 'rgb(255,0,0)',
+          emissive: 0x200000
         },
         meshName: 'cylinder',
         position: [6,3,0],
@@ -76,7 +77,8 @@ var core = {
         geoSize: 'medium',
         materialType: 'lambert',
         materialProps: {
-          color: 'rgb(0,255,0)', emissive: 0x200000
+          color: 'rgb(0,255,0)',
+          emissive: 0x200000
         },
         meshName: 'object2',
         position: [0,5,0],
@@ -116,13 +118,6 @@ var core = {
     //grid helper
     var grid = new THREE.GridHelper(100, 10);
     scene.add(grid);
-
-
-
-    light.position.set( 556, 555, 555 );
-    light.lookAt( scene.position );
-    light.castShadow = true;
-    light.shadowDarkness = 0.5;
 
     scene.add( new THREE.CameraHelper( light.shadow.camera ) );
     scene.add( light );
@@ -191,7 +186,7 @@ var core = {
     controls = new OrbitControls(camera);
 
     //init render with options
-    renderer = api.render.create(camera, { antialias: true });
+    renderer = api.render.create(camera, { antialias: true,devicePixelRatio: window.devicePixelRatio || 1});
 
 
     //Adding all object into array
@@ -230,8 +225,26 @@ var core = {
 
     camera = api.camera.create({x: 0, y: 3, z: 50}, 35);
 
-    light = api.light.create('Directional', 0xffeedd, function(crafted){
-      //...manipulation
+    light = api.light.create('Directional', 0xffffff, function(crafted){
+
+      //crafted.lookAt( scene.position );
+
+      //crafted.shadowDarkness =1;
+
+      crafted.position.set(50, 50, 50);
+      crafted.target.position.set(0, 0, 0);
+
+      crafted.castShadow = true;
+      crafted.shadowDarkness = 0.5;
+
+      crafted.shadowCameraNear = 0;
+      crafted.shadowCameraFar = 100;
+      //crafted.shadowBias = 100;
+
+      crafted.shadowCameraLeft = -50;
+      crafted.shadowCameraRight = 50;
+      crafted.shadowCameraTop = 50;
+      crafted.shadowCameraBottom = -50;
     });
   },
   /**
