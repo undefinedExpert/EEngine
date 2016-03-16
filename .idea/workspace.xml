@@ -4,14 +4,11 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/game/core/core.js" line="441" />
+    <bookmark url="file://$PROJECT_DIR$/app/game/core/core.js" line="443" />
     <bookmark url="file://$PROJECT_DIR$/app/game/core/makers/objects/geometries/recipes/Shape.js" description="import helpers from './../../../collectors/helpers..." line="3" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c91b8b3f-6a8b-4a9b-9f64-def8c25a1430" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/game/core/makers/lights/recipes/LightRecipe.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/game/core/makers/lights/recipes/recipe.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/core/core.js" afterPath="$PROJECT_DIR$/app/game/core/core.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/game/core/makers/lights/light.js" afterPath="$PROJECT_DIR$/app/game/core/makers/lights/light.js" />
     </list>
@@ -33,25 +30,45 @@
     <favorites_list name="electron-boilerplate" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.260311">
+    <splitter split-orientation="horizontal" split-proportion="0.637593">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="core.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/game/core/core.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.4017857">
-                  <caret line="219" column="0" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.18584071">
+                  <caret line="244" column="20" selection-start-line="244" selection-start-column="20" selection-end-line="244" selection-end-column="20" />
                   <folding>
-                    <element signature="e#10793#10914#0" expanded="false" />
-                    <element signature="e#10918#11070#0" expanded="false" />
-                    <element signature="e#11105#12691#0" expanded="false" />
-                    <element signature="e#12695#12793#0" expanded="false" />
-                    <element signature="e#12816#12857#0" expanded="false" />
-                    <element signature="e#13130#13593#0" expanded="false" />
-                    <element signature="e#13635#13817#0" expanded="false" />
-                    <element signature="e#13847#14133#0" expanded="false" />
-                    <element signature="e#14158#14298#0" expanded="false" />
+                    <element signature="e#10863#10984#0" expanded="false" />
+                    <element signature="e#10988#11140#0" expanded="false" />
+                    <element signature="e#11175#12761#0" expanded="false" />
+                    <element signature="e#12765#12863#0" expanded="false" />
+                    <element signature="e#12886#12927#0" expanded="false" />
+                    <element signature="e#13200#13663#0" expanded="false" />
+                    <element signature="e#13705#13887#0" expanded="false" />
+                    <element signature="e#13917#14203#0" expanded="false" />
+                    <element signature="e#14228#14368#0" expanded="false" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="recipe.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/game/core/makers/lights/recipes/recipe.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="1" column="38" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="light.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/game/core/makers/lights/light.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="18" column="89" selection-start-line="18" selection-start-column="89" selection-end-line="18" selection-end-column="89" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -60,63 +77,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="method.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="method.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/game/core/methods/method.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="23" column="25" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="25" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="click.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/game/core/makers/interactions/recipes/click.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="maker.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/game/core/makers/maker.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-                  <folding>
-                    <element signature="n#!!doc" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="material.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/materials/material.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="0" column="14" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Material.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/materials/recipes/Material.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="interaction.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/game/core/makers/interactions/interaction.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="47" />
+                <state vertical-scroll-proportion="0.45132744">
+                  <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="23" selection-end-column="16" />
                   <folding />
                 </state>
               </provider>
@@ -189,9 +154,9 @@
         <option value="$PROJECT_DIR$/app/game/core/makers/interactions/recipes/click.js" />
         <option value="$PROJECT_DIR$/app/game/core/makers/maker.js" />
         <option value="$PROJECT_DIR$/app/game/core/makers/lights/recipes/recipe.js" />
+        <option value="$PROJECT_DIR$/app/game/core/makers/lights/recipes/LightRecipe.js" />
         <option value="$PROJECT_DIR$/app/game/core/makers/lights/light.js" />
         <option value="$PROJECT_DIR$/app/game/core/core.js" />
-        <option value="$PROJECT_DIR$/app/game/core/makers/lights/recipes/LightRecipe.js" />
       </list>
     </option>
   </component>
@@ -932,15 +897,15 @@
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16807166" sideWeight="0.33767644" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22075869" sideWeight="0.6515151" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22075869" sideWeight="0.65128756" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06451613" sideWeight="0.49578503" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41650853" sideWeight="0.50421494" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11206078" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22075869" sideWeight="0.34848484" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12333966" sideWeight="0.45995784" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22075869" sideWeight="0.34871244" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12333966" sideWeight="0.45995784" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11574952" sideWeight="0.47049525" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11574952" sideWeight="0.47049525" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20864068" sideWeight="0.55987054" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1006,15 +971,15 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="53" column="34" selection-start-line="53" selection-start-column="34" selection-end-line="53" selection-end-column="34" />
           <folding>
-            <element signature="e#10793#10914#0" expanded="false" />
-            <element signature="e#10918#11070#0" expanded="false" />
-            <element signature="e#11105#12691#0" expanded="false" />
-            <element signature="e#12695#12793#0" expanded="false" />
-            <element signature="e#12816#12857#0" expanded="false" />
-            <element signature="e#13130#13593#0" expanded="false" />
-            <element signature="e#13635#13817#0" expanded="false" />
-            <element signature="e#13847#14133#0" expanded="false" />
-            <element signature="e#14158#14298#0" expanded="false" />
+            <element signature="e#10863#10984#0" expanded="false" />
+            <element signature="e#10988#11140#0" expanded="false" />
+            <element signature="e#11175#12761#0" expanded="false" />
+            <element signature="e#12765#12863#0" expanded="false" />
+            <element signature="e#12886#12927#0" expanded="false" />
+            <element signature="e#13200#13663#0" expanded="false" />
+            <element signature="e#13705#13887#0" expanded="false" />
+            <element signature="e#13917#14203#0" expanded="false" />
+            <element signature="e#14228#14368#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1282,14 +1247,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/game/core/methods/method.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="25" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/mesh/mesh.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1327,7 +1284,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1348,14 +1305,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/game/core/makers/lights/recipes/recipe.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="38" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/game/core/makers/lights/recipes/LightRecipe.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.72321427">
@@ -1372,37 +1321,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/materials/material.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="14" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/game/core/methods/method.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45132744">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="23" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/game/core/makers/lights/recipes/recipe.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="38" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/game/core/makers/lights/light.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5089286">
-          <caret line="19" column="57" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="89" selection-start-line="18" selection-start-column="89" selection-end-line="18" selection-end-column="89" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/game/core/core.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4017857">
-          <caret line="219" column="0" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.18584071">
+          <caret line="244" column="20" selection-start-line="244" selection-start-column="20" selection-end-line="244" selection-end-column="20" />
           <folding>
-            <element signature="e#10793#10914#0" expanded="false" />
-            <element signature="e#10918#11070#0" expanded="false" />
-            <element signature="e#11105#12691#0" expanded="false" />
-            <element signature="e#12695#12793#0" expanded="false" />
-            <element signature="e#12816#12857#0" expanded="false" />
-            <element signature="e#13130#13593#0" expanded="false" />
-            <element signature="e#13635#13817#0" expanded="false" />
-            <element signature="e#13847#14133#0" expanded="false" />
-            <element signature="e#14158#14298#0" expanded="false" />
+            <element signature="e#10863#10984#0" expanded="false" />
+            <element signature="e#10988#11140#0" expanded="false" />
+            <element signature="e#11175#12761#0" expanded="false" />
+            <element signature="e#12765#12863#0" expanded="false" />
+            <element signature="e#12886#12927#0" expanded="false" />
+            <element signature="e#13200#13663#0" expanded="false" />
+            <element signature="e#13705#13887#0" expanded="false" />
+            <element signature="e#13917#14203#0" expanded="false" />
+            <element signature="e#14228#14368#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/game/core/makers/objects/materials/material.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="14" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>

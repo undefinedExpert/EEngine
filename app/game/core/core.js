@@ -230,7 +230,9 @@ var core = {
 
     camera = api.camera.create({x: 0, y: 3, z: 50}, 35);
 
-    light = api.light.create('Directional', 0xffeedd);
+    light = api.light.create('Directional', 0xffeedd, function(crafted){
+      //...manipulation
+    });
   },
   /**
    * @method object
@@ -240,6 +242,7 @@ var core = {
   object: function(props){
     let thatObject = this;
 
+    //Default props
     let defaultProps = {
       geoType: props.geoType || 'Box',
       geoSize: props.geoSize || 'small',
@@ -256,7 +259,6 @@ var core = {
       manipulation: props.manipulation,
       shadow: props.shadow || {cast: true, receive: true}
     };
-
 
     //default value for manipulation
     defaultProps.manipulation = typeof props.manipulation === 'object' || typeof defaultProps.manipulation === 'function' ? defaultProps.manipulation :{mesh: function(){}, phyx(){}};

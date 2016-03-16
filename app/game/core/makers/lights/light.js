@@ -12,12 +12,14 @@ class Light {
   constructor() {}
 
   /**
-     * @desc Creating Three.js light
-     * @function create()
-     * @return new Three.js light
-     * //TODO: Adding more lights
+   * @desc Creating Three.js light
+   * @function create()
+   * @param {string} type - Type of created light, for now you should add spot wihout light word
+   * @param {string} properties - properties of newly created light
+   * @param {function} cb - callback function, it might be used for manipulation on light
    */
-  create(type = 'Spot', properties = {color: 0xff0000}) {
+  create(type = 'Spot', properties = {color: 0xff0000}, cb = function(){}) {
+    this.cb = cb;
     let fullyBuilded = this.build(type, properties);
     return fullyBuilded;
   }
@@ -31,6 +33,8 @@ class Light {
   build(type, properties) {
     var obj = new recipe.LightRecipe(type, properties);
     var crafted = obj.craft();
+
+    this.cb(crafted);
     return crafted;
   }
 
