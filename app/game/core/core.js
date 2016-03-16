@@ -230,7 +230,7 @@ var core = {
 
     camera = api.camera.create({x: 0, y: 3, z: 50}, 35);
 
-    light = api.light.create();
+    light = api.light.create('Directional', 0xffeedd);
   },
   /**
    * @method object
