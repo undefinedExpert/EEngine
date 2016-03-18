@@ -61,7 +61,13 @@ var core = {
     demo.demoCore.extend('Scener', function(){
       let scope = this;
 
+      scope.siemanko = 'czesc';
+
       console.log(scope.siemanko);
+
+      scope.init();
+
+
     });
 
 

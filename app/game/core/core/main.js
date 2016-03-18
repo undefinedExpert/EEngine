@@ -36,7 +36,12 @@ class Scener extends Core {
   }
 
   init(){
-    this.siemanko = 'siema';
+    this.siemanko = this.siemanko || 'siema';
+    console.log(this.siemanko);
+  }
+
+  light(){
+    return 'light';
   }
 
 
