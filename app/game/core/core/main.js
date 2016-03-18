@@ -4,6 +4,7 @@ import * as api from '../makers/maker';
 import THREE from 'three'; // 3D library
 import CANNON from 'cannon'; // Physics Library
 var OrbitControls = require('three-orbit-controls')(THREE);
+//import * as methods from './methods/methods';
 
 //Kontener
 var classList = [];
@@ -13,6 +14,8 @@ class Core {
     this.classList = classList;
     this.api = api;
 
+    //methods
+    //this.config = methods.core.config;
   };
 
   //Looks for specified method and runs a callback
@@ -20,9 +23,9 @@ class Core {
 
     var index = classList.indexOf(method),
         classMethods = classList[index + 1];
-
     //run method
     classMethods.classConfiguration(cb);
+
   }
 
   //Looks for specified method and runs a callback
@@ -33,8 +36,8 @@ class Core {
 
     //run method
     classMethods.classExtender(cb);
-  }
 
+  }
 
   /*
   *
@@ -242,10 +245,6 @@ class Scener extends Core {
     this.init();
   }
 
-  scope(){
-    return this;
-  }
-
 }
 
 //klasa metody core, jest to glowna klasa ktora rozszerza nasz "widok"
@@ -278,15 +277,7 @@ class Composer extends Core {
   }
 
 }
-
-
 }
-
-
-
-
-
-
 
 var core = new Core(classList);
 var scener = new Scener();

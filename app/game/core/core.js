@@ -54,8 +54,6 @@ var core = {
   scener: function () {
     let that = this;
 
-
-
     demo.demoCore.config('Scener', function(){
       let scope = this;
       scope.objectsListToRender = [];
@@ -63,13 +61,14 @@ var core = {
         //console.log(api);
         scope.scene = scope.api.scene.create();
         scope.camera = scope.api.camera.create({x: 0, y: 3, z: 50}, 35);
+
         //init render with options
         scope.renderer = scope.api.render.create(scope.camera, scope.scene, { antialias: true,devicePixelRatio: window.devicePixelRatio || 1});
         //init mouse controls
         controls = new OrbitControls(scope.camera);
 
         // Which we then observe
-        Object.observe(scope.objectsListToRender, function(changes){
+        Object.observe(scope.objectsListToRender, function(){
           scope.api.scene.add(scope.objectsListToRender, 'mesh');
           scope.cannon(scope.objectsListToRender);
           scope.animate(scope.objectsListToRender);
@@ -85,11 +84,14 @@ var core = {
     demo.demoCore.extend('Scener', function(){
       let scope = this;
 
+      //Grid
       var grid = new THREE.GridHelper(100, 10);
       scope.scene.add(grid);
 
+      //Objects
       scope.extend('Composer', function(){
-        let that = this; //todo: refactor lights to add them automaticly into view
+
+        let that = this;
         //todo: refactor lights to add them automaticly into view
         light = api.light.create('Directional', {color: 0xffffff}, function(crafted){
           crafted.shadowMapDarkness = 0.5;
@@ -183,7 +185,7 @@ var core = {
         $(window).keydown(function( event ) {
           if (event.which == 32) {
             event.preventDefault();
-            that.addMovement()
+            that.addMovement(objectSet.object2, 'jump', 15);
           }
         });
 
