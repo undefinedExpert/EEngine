@@ -54,13 +54,14 @@ var core = {
   scener: function () {
     let that = this;
 
+
+
     demo.demoCore.config('Scener', function(){
       let scope = this;
       scope.objectsListToRender = [];
       scope.config('Composer', function(){
         //console.log(api);
         scope.scene = scope.api.scene.create();
-
         scope.camera = scope.api.camera.create({x: 0, y: 3, z: 50}, 35);
         //init render with options
         scope.renderer = scope.api.render.create(scope.camera, scope.scene, { antialias: true,devicePixelRatio: window.devicePixelRatio || 1});
@@ -79,6 +80,8 @@ var core = {
 
     });
 
+
+
     demo.demoCore.extend('Scener', function(){
       let scope = this;
 
@@ -86,8 +89,7 @@ var core = {
       scope.scene.add(grid);
 
       scope.extend('Composer', function(){
-        let that = this;
-        //todo: refactor lights to add them automaticly into view
+        let that = this; //todo: refactor lights to add them automaticly into view
         //todo: refactor lights to add them automaticly into view
         light = api.light.create('Directional', {color: 0xffffff}, function(crafted){
           crafted.shadowMapDarkness = 0.5;
@@ -181,7 +183,7 @@ var core = {
         $(window).keydown(function( event ) {
           if (event.which == 32) {
             event.preventDefault();
-            console.log(that)
+            that.addMovement()
           }
         });
 
