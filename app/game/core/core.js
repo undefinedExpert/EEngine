@@ -58,9 +58,12 @@ var core = {
     /////////////////////Experiements
     console.log(demo);
 
-      demo.demoCore.extend('Scener', function(){
-        console.log('siemanko ze scener');
-      });
+    demo.demoCore.extend('Scener', function(){
+      let scope = this;
+
+      console.log(scope.siemanko);
+    });
+
 
 
 
