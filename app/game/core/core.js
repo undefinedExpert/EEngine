@@ -46,7 +46,6 @@ core.extend(function(scener){
 
  */
 
-
 var core = {
   /**
    * @method init
@@ -58,22 +57,45 @@ var core = {
     /////////////////////Experiements
     console.log(demo);
 
-    demo.demoCore.extend('Scener', function(){
+    demo.demoCore.config('Scener', function(){
       let scope = this;
 
-      scope.siemanko = 'czesc';
+      scope.config('Composer', function(){
+        //console.log(api);
+        scope.scene = scope.api.scene.create();
+        scope.camera = scope.api.camera.create({x: 0, y: 3, z: 50}, 35);
+        scope.objectsListToRender = [];
+        scope.lightListToRender = [];
 
-      console.log(scope.siemanko);
+      });
 
-      scope.init();
+
 
 
     });
 
 
 
-
-
+    //
+    //demo.demoCore.extend('Scener', function(){
+    //  let scope = this;
+    //  console.log(scope.siemanko);
+    //});
+    //
+    //
+    //demo.demoCore.config('Composer', function(){
+    //  let scope = this;
+    //  scope.siemanko = 'Czesc Ziomek';
+    //});
+    //
+    //demo.demoCore.extend('Scener', function(){
+    //  let scope = this;
+    //  scope.log(scope.siemanko);
+    //});
+    //
+    //
+    //
+    //
 
 
 
@@ -107,7 +129,7 @@ var core = {
     //2. Kamera
     //3. Swiatlo
     //4. Obiekty
-    this.init();
+    //this.init();
 
     //Init all basic functions which are create scene an so
     //TODO: Latwiejsze dodawanie swiatel do widoku
@@ -351,24 +373,6 @@ var core = {
 
     scene.add( new THREE.CameraHelper( light.shadow.camera ) );
     scene.add( light );
-
-    var ambientLight = new THREE.AmbientLight( 0x404040 );
-    scene.add(ambientLight  );
-
-    var spotLight = api.light.create('Spot', {color: 0xffffff}, function(crafted){
-      crafted.position.set( 10, 10, 15 );
-      crafted.castShadow = true;
-      crafted.shadow.camera.near = 8;
-      crafted.shadow.camera.far = 30;
-      crafted.shadowMapDarkness = 0.5;
-      crafted.shadow.mapSize.width = 4096;
-      crafted.shadow.mapSize.height = 4096;
-      crafted.shadow.bias = 0;
-      crafted.name = 'Spot Light';
-    });
-   scene.add(spotLight);
-    scene.add( new THREE.CameraHelper( spotLight.shadow.camera ) );
-
 
   },
   /**
