@@ -55,7 +55,37 @@ var core = {
   scener: function () {
     let that = this;
 
+    /////////////////////Experiements
     console.log(demo);
+
+      demo.demoCore.extend('Scener', function(){
+        console.log('siemanko ze scener');
+      });
+
+
+
+
+
+
+
+
+
+
+
+    //////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //methode.init(scene,CurrentScene,camera, light);
 
