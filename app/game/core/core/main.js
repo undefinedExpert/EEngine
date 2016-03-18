@@ -13,7 +13,6 @@ class Core {
     this.classList = classList;
     this.api = api;
 
-
   };
 
   //Looks for specified method and runs a callback
@@ -36,12 +35,6 @@ class Core {
     classMethods.classExtender(cb);
   }
 
-  log(string){
-    return console.log(string);
-  }
-  modify(){
-    //...tutaj modifikujemy nasze metody ktore sa juz w naszej funkcji core
-  }
 
   /*
   *
@@ -60,7 +53,8 @@ class Core {
 
   //Value - callback
   classExtender(value){
-    value.apply(this, []); //making avalible this context in extend
+    let scope = this;
+    value.apply(this, [scope]); //making avalible this context in extend
   }
 
   //inicializuje domyslne wartosci ktorymi bedziemy potem manipulowac
@@ -72,18 +66,6 @@ class Core {
     }
   }
 
-
-
-
-}
-
-//klasa metody core, jest to glowna klasa ktora rozszerza nasz "widok"
-class Scener extends Core {
-  constructor() {
-    super();
-    classList.push('Scener', this);
-    this.init();
-  }
 
   /**
    * @method cannon
@@ -136,44 +118,43 @@ class Scener extends Core {
     //fpsStats.update();
   }
   updatePhysics(items) {
-  // Step the physics world
-  var timeStep = 1 / 60;
-  this.world.step(timeStep);
+    // Step the physics world
+    var timeStep = 1 / 60;
+    this.world.step(timeStep);
 
-  //Tutaj dodajemy powloke (mesh) obiektu ktorym chcemy manipulowac
-  items.forEach(function(item, that){
-    item.mesh.position.copy(item.phyx.position);
-    item.mesh.quaternion.copy(item.phyx.quaternion);
+    //Tutaj dodajemy powloke (mesh) obiektu ktorym chcemy manipulowac
+    items.forEach(function(item, that){
+      item.mesh.position.copy(item.phyx.position);
+      item.mesh.quaternion.copy(item.phyx.quaternion);
 
-    //ComputeAABB jest to funkcja ktora cos tam robi
-    item.phyx.buildAABBMesh.restart();
-    if(item.phyx.computeAABB){
+      //ComputeAABB jest to funkcja ktora cos tam robi
+      item.phyx.buildAABBMesh.restart();
+      if(item.phyx.computeAABB){
 
-      //?????????????????
-      if(item.phyx.aabbNeedsUpdate){
-        item.phyx.computeAABB();
+        //?????????????????
+        if(item.phyx.aabbNeedsUpdate){
+          item.phyx.computeAABB();
+        }
+
+        if( isFinite(item.phyx.aabb.lowerBound.x) && isFinite(item.phyx.aabb.lowerBound.y) && isFinite(item.phyx.aabb.lowerBound.z) && isFinite(item.phyx.aabb.upperBound.x) && isFinite(item.phyx.aabb.upperBound.y) && isFinite(item.phyx.aabb.upperBound.z) && item.phyx.aabb.lowerBound.x - item.phyx.aabb.upperBound.x != 0 && item.phyx.aabb.lowerBound.y - item.phyx.aabb.upperBound.y != 0 && item.phyx.aabb.lowerBound.z - item.phyx.aabb.upperBound.z != 0){
+          let mesh = item.phyx.buildAABBMesh.request();
+
+
+          mesh.scale.set( item.phyx.aabb.lowerBound.x - item.phyx.aabb.upperBound.x,
+            item.phyx.aabb.lowerBound.y - item.phyx.aabb.upperBound.y,
+            item.phyx.aabb.lowerBound.z - item.phyx.aabb.upperBound.z);
+          mesh.position.set(  (item.phyx.aabb.lowerBound.x + item.phyx.aabb.upperBound.x)*0.5,
+            (item.phyx.aabb.lowerBound.y + item.phyx.aabb.upperBound.y)*0.5,
+            (item.phyx.aabb.lowerBound.z + item.phyx.aabb.upperBound.z)*0.5);
+        }
       }
+      item.phyx.buildAABBMesh.hideCached();
+    });
 
-      if( isFinite(item.phyx.aabb.lowerBound.x) && isFinite(item.phyx.aabb.lowerBound.y) && isFinite(item.phyx.aabb.lowerBound.z) && isFinite(item.phyx.aabb.upperBound.x) && isFinite(item.phyx.aabb.upperBound.y) && isFinite(item.phyx.aabb.upperBound.z) && item.phyx.aabb.lowerBound.x - item.phyx.aabb.upperBound.x != 0 && item.phyx.aabb.lowerBound.y - item.phyx.aabb.upperBound.y != 0 && item.phyx.aabb.lowerBound.z - item.phyx.aabb.upperBound.z != 0){
-        let mesh = item.phyx.buildAABBMesh.request();
-
-
-        mesh.scale.set( item.phyx.aabb.lowerBound.x - item.phyx.aabb.upperBound.x,
-          item.phyx.aabb.lowerBound.y - item.phyx.aabb.upperBound.y,
-          item.phyx.aabb.lowerBound.z - item.phyx.aabb.upperBound.z);
-        mesh.position.set(  (item.phyx.aabb.lowerBound.x + item.phyx.aabb.upperBound.x)*0.5,
-          (item.phyx.aabb.lowerBound.y + item.phyx.aabb.upperBound.y)*0.5,
-          (item.phyx.aabb.lowerBound.z + item.phyx.aabb.upperBound.z)*0.5);
-      }
-    }
-    item.phyx.buildAABBMesh.hideCached();
-  });
-
-}
+  }
   render() {
     this.renderer.render(this.scene, this.camera);
   }
-
   object(props){
 
     let thatObject = this;
@@ -252,6 +233,21 @@ class Scener extends Core {
     return container;
   }
 }
+
+//klasa metody core, jest to glowna klasa ktora rozszerza nasz "widok"
+class Scener extends Core {
+  constructor() {
+    super();
+    classList.push('Scener', this);
+    this.init();
+  }
+
+  scope(){
+    return this;
+  }
+
+}
+
 //klasa metody core, jest to glowna klasa ktora rozszerza nasz "widok"
 class Composer extends Core {
   constructor(){

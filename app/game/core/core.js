@@ -181,7 +181,7 @@ var core = {
         $(window).keydown(function( event ) {
           if (event.which == 32) {
             event.preventDefault();
-            that.addMovement(objectSet.object2, 'jump', 15);
+            console.log(that)
           }
         });
 
