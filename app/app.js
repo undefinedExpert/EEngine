@@ -37,15 +37,6 @@ import core from './game/core/core'; // Envoierment vars
 const
   app = remote.app,
   appDir = jetpack.cwd(app.getAppPath());
-
-var windowSize = remote.getCurrentWindow().getSize();
-var windowResize = remote.getCurrentWindow();
-
-windowResize.once('resize', function(){
-
-    console.log('czesc')
-
-});
 /*
 * When electron DOM will load then:
 * */

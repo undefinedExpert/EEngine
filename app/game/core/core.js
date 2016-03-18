@@ -14,6 +14,8 @@ import * as api from './makers/maker';
 import { ipcRenderer, remote  } from 'electron'; // electron system
 import * as $ from 'jquery';
 
+import * as demo from './core/main.js';
+
 //import * as method from './methods/method'; //todo: refactor whole core file
 
 var camera, scene, renderer, CurrentScene;
@@ -26,6 +28,23 @@ var lightPosition4D = new THREE.Vector4();
 var mouseX = 0, mouseY = 0;
 var windowHalfY, windowHalfX, fpsStats;
 
+/*
+ przykladowe uzcie nowego API kreacji
+ wazne tutaj jest to aby core bylo zbudowane z klasy i mialo wbudowane w sobie wszystkie
+ metody ktore sa ponizej,  mozemy w ten sposob w naszej funkcji extend wykorzystywac
+ wszystkie metody z glownej funkcji core jesli tylko tego chcemy
+
+core.extend(function(scener){
+ //...
+ });
+
+ Ponadto mozna by bylo stworzyc, modify ktore wplywalo by bezposrednio w tym obiekcie na
+ nasze metody np.
+ core.modify(function(cannon){
+   //... tutaj modifikujemy nasze leementy, powinnnismy miec dostep do wszystkich zmiennych etc
+ })
+
+ */
 
 
 var core = {
@@ -35,6 +54,8 @@ var core = {
    */
   scener: function () {
     let that = this;
+
+    console.log(demo);
 
     //methode.init(scene,CurrentScene,camera, light);
 
@@ -209,7 +230,7 @@ var core = {
     var fullScreen = document.getElementById('fullscreen');
 
     fullScreen.addEventListener('click', function () {
-      console.log('enter fullscreen');
+      //console.log('enter fullscreen');
       ipcRenderer .send('enter-full-screen');
     });
 
@@ -235,12 +256,12 @@ var core = {
     }
 
     for(let key in lightSet){
-      console.log(key);
+      //console.log(key);
       let name = lightSet[key];
       lightListToRender.push(name);
     }
 
-    console.log(lightListToRender);
+    //console.log(lightListToRender);
     //Adding object to scene using custom method
     api.scene.add(objectsListToRender, 'mesh');
     //api.scene.add(lightListToRender, 'light');
@@ -267,7 +288,7 @@ var core = {
 
   },
   init: function () {
-    console.log(api);
+    //console.log(api);
     scene = this.CurrentScene = api.scene.create();
 
 
@@ -346,7 +367,7 @@ var core = {
 
     //Build up a material for upcoming object
     material = api.material.create(defaultProps.materialType, defaultProps.materialProps);
-    console.log(material);
+    //console.log(material);
     //building up mesh from options
     props.meshName = api.mesh.create(defaultProps.meshType, geometry, material, defaultProps.phyxType, defaultProps.phyxShapeType, defaultProps.phyxBodyTypeParameters, defaultProps.position, this.CurrentScene);
 
