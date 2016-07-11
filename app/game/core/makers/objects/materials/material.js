@@ -1,7 +1,3 @@
-import THREE from 'three'; // 3D library
-import CANNON from 'cannon'; // Physics Library
-import helpers from './../../collectors/helpers';
-
 //Import recipes object from ./recipe file.
 import * as recipe from './recipes/recipe' ;
 
@@ -10,7 +6,6 @@ import * as recipe from './recipes/recipe' ;
  * @class Material
  */
 class Material {
-
   constructor() {}
 
   /**

@@ -1,10 +1,6 @@
 /*
-* This file contains bunch of class and objects which are used in core.js file
+* This file contains bunch of class and objects which are used in main.js file
 * */
-
-"use strict";
-import THREE from 'three'; // 3D library
-import CANNON from 'cannon'; // Physics Library
 import helpers from './collectors/helpers';
 import scene from './scene/scene';
 import render from './render/render';
@@ -34,9 +30,9 @@ export {
  *
  */
   helpers as helper,
-  scene as scene,
-  render as render,
-  camera as camera,
+  scene,
+  render,
+  camera,
   lights as light,
   interactions as interaction,
   geometries as geometry,

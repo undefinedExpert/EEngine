@@ -5,7 +5,7 @@ import core from '../../core/core';
 
 var mainmenu = {
   log: function(){
-    console.log('siema');
+    //... todo...
   }
 };
 

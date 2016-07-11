@@ -1,19 +1,32 @@
 {
-  "name": "Elizabeth",
-  "productName": "Elizabeth",
-  "identifier": "siemankoElizabeth",
-  "description": "Elizabeth - say what.",
-  "version": "0.1.2",
-  "author": "Mr Gumby",
-  "private": true,
+  "name": "EEngine",
+  "productName": "EEngine Upcoming 3D JS Engine",
+  "description": "3D JS engine build upon THREE.JS, Cannon.js, Electron",
+  "version": "0.1.0",
+  "author": "Emanuel Slotwinski",
+  "copyright": "© 2016, Emanuel Slotwinski",
   "main": "background.js",
+  "private": true,
   "dependencies": {
     "cannon": "^0.6.2",
-    "fs-jetpack": "^0.7.0",
+    "fs-jetpack": "^0.9.0",
     "jquery": "^2.2.1",
     "lodash": "^4.4.0",
+    "rx": "^4.1.0",
     "smoothie": "^1.27.0",
-    "three": "^0.74.0",
-    "three-orbit-controls": "^72.0.0"
+    "three": "^0.78.0",
+    "three-orbit-controls": "^72.0.0",
+    "stats.js": "^0.16.0"
+  },
+  "packageNameTemplate": "{{name}}-v{{version}}-{{platform}}-{{arch}}",
+  "osx": {
+    "build": "1",
+    "identifier": "com.example.EEngine",
+    "LSApplicationCategoryType": "public.app-category.games",
+    "//codeSignIdentitiy": {
+      "dmg": "Developer ID Application: EEngine",
+      "MAS": "3rd Party Mac Developer Application: EEngine",
+      "MASInstaller": "3rd Party Mac Developer Installer: EEngine"
+    }
   }
 }

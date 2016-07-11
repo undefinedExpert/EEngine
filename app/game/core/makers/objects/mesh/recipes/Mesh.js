@@ -1,6 +1,7 @@
 import THREE from 'three'; // 3D library
 import CANNON from 'cannon'; // Physics Library
 import helpers from './../../../collectors/helpers';
+
 /**
  * @desc Mesh Class is used to build up custom mesh from Three.js
  * @class MeshRecipe
