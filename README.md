@@ -1,7 +1,7 @@
 EEngine
 ==============
 
-###### Underconstruction, PRE-ALPHA
+###### Underconstruction
 3D JS engine build upon THREE.JS, Cannon.js, Electron
 
 # Quick start
