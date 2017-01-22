@@ -1,7 +1,7 @@
 EEngine
 ==============
 
-###### Underconstruction
+###### DEPRECATED
 3D JS engine build upon THREE.JS, Cannon.js, Electron
 
 # Quick start
