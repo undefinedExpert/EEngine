@@ -4,6 +4,14 @@ EEngine
 ###### DEPRECATED
 3D JS engine build upon THREE.JS, Cannon.js, Electron
 
+# Demo
+![til](./screens/demo.gif)
+
+# Prerequisits:
+```
+node 10.15.1
+```
+
 # Quick start
 ```
 git clone https://github.com/lanskey/EEngine.git

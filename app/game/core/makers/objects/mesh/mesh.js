@@ -1,6 +1,7 @@
 import THREE from 'three'; // 3D library
 import CANNON from 'cannon'; // Physics Library
 import helpers from './../../collectors/helpers';
+import _ from 'lodash'
 
 //Import recipes object from ./recipe file.
 import * as recipe from './recipes/recipe';
